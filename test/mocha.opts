@@ -1,3 +1,6 @@
 --compilers js:babel-core/register
 --recursive
 --reporter nyan
+
+./test/**/*.test.jsx
+./test/**/*.test.js

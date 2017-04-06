@@ -11,7 +11,7 @@ export default props => {
   const fruits = ['apple', 'banana', 'melon']
 
   return (
-    <div>
+    <div className={ 'calender-wrapper' }>
       <p>{ `${name} likes ..` }</p>
       <ul>
         { fruits.map(fruit => <li key={ `item-${fruit}` }>{ fruit }</li>) }
