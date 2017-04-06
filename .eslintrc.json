@@ -1,0 +1,183 @@
+{
+  "env": {
+    "browser"  : true,
+    "commonjs" : true,
+    "es6"      : true,
+    "node"     : true
+  },
+  "plugins": [
+    "import",
+    "jsx-a11y",
+    "react",
+    "flowtype"
+  ],
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaVersion": 2017,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true,
+      "jsx": true
+    }
+  },
+  "rules": {
+    "arrow-parens": ["error", "as-needed"],
+    "arrow-spacing": ["error", { "before": true, "after": true }],
+    "brace-style": ["error", "1tbs", { "allowSingleLine": true }],
+    "comma-spacing": ["error", { "before": false, "after": true }],
+    "indent": ["error", 2, { "SwitchCase": 1 }],
+    "jsx-quotes": ["error", "prefer-double"],
+    "valid-jsdoc": ["error"],
+    "key-spacing": ["off"],
+    "keyword-spacing": ["error"],
+    "linebreak-style": ["error", "unix"],
+    "no-dupe-args": ["error"],
+    "no-console": ["warn"],
+    "no-const-assign": ["error"],
+    "no-unused-vars": ["warn"],
+    "object-curly-spacing": ["error", "always"],
+    "require-jsdoc": ["error", {
+      "require": {
+        "FunctionDeclaration": true,
+        "ClassDeclaration": true,
+        "MethodDefinition": true,
+        "ArrowFunctionExpression": true      }
+    }],
+    "quotes": ["error", "single"],
+    "semi": ["error", "never"],
+    "spaced-comment": [
+      "error",
+      "always", {
+        "line": {
+          "markers": ["/"],
+          "exceptions": ["-", "+"]
+        },
+        "block": {
+          "markers": ["!"],
+          "exceptions": ["*"],
+          "balanced": true
+        }
+      }
+    ],
+    "space-unary-ops": ["error"],
+    "space-infix-ops": ["error", { "int32Hint": false }],
+    "sort-imports": ["off"],
+    "react/no-array-index-key": ["off"],
+    "react/no-children-prop": ["error"],
+    "react/no-danger": ["error"],
+    "react/no-danger-with-children": ["error"],
+    "react/no-deprecated": ["error"],
+    "react/no-did-mount-set-state": ["error"],
+    "react/no-did-update-set-state": ["error"],
+    "react/no-direct-mutation-state": ["error"],
+    "react/no-find-dom-node": ["error"],
+    "react/no-is-mounted": ["error"],
+    "react/no-multi-comp": ["error"],
+    "react/no-string-refs": ["error"],
+    "react/no-unescaped-entities": ["error"],
+    "react/no-unknown-property": ["error"],
+    "react/no-unused-prop-types": ["error"],
+    "react/prefer-es6-class": ["error"],
+    "react/prefer-stateless-function": ["warn", { "ignorePureComponents": true }],
+    "react/react-in-jsx-scope": ["error"],
+    "react/require-default-props": ["error"],
+    "react/require-optimization": ["warn"],
+    "react/require-render-return": ["error"],
+    "react/self-closing-comp": ["error", {
+      "component": true,
+      "html": true
+    }],
+    "react/sort-comp": ["error"],
+    "react/sort-prop-types": ["error", {
+      "callbacksLast": true,
+      "ignoreCase": true,
+      "requiredFirst": true
+    }],
+    "react/style-prop-object": ["error"],
+    "react/jsx-boolean-value": ["error", "never"],
+    "react/jsx-closing-bracket-location": ["error", "line-aligned"],
+    "react/jsx-curly-spacing": ["error", "always"],
+    "react/jsx-equals-spacing": ["error", "never"],
+    "react/jsx-filename-extension": ["error", { "extensions": [".jsx"] }],
+    "react/jsx-first-prop-new-line": ["error", "multiline"],
+    "react/jsx-indent": ["error", 2],
+    "react/jsx-indent-props": ["error", 2],
+    "react/jsx-key": ["error"],
+    "react/jsx-max-props-per-line": ["error", { "maximum": 2 }],
+    "react/jsx-no-comment-textnodes": ["error"],
+    "react/jsx-no-duplicate-props": ["error"],
+    "react/jsx-no-literals": ["error"],
+    "react/jsx-no-target-blank": ["error"],
+    "react/jsx-pascal-case": ["error"],
+    "react/jsx-sort-props": ["error", {
+      "callbacksLast": true,
+      "shorthandLast": true,
+      "ignoreCase": true
+    }],
+    "react/jsx-space-before-closing": ["error", "always"],
+    "react/jsx-tag-spacing": ["error", {
+      "closingSlash": "never",
+      "beforeSelfClosing": "always",
+      "afterOpening": "never"
+    }],
+    "react/jsx-uses-react": ["error"],
+    "react/jsx-uses-vars": ["error"],
+    "jsx-a11y/anchor-has-content": ["error"],
+    "jsx-a11y/aria-props": ["error"],
+    "jsx-a11y/aria-proptypes": ["error"],
+    "jsx-a11y/aria-role": ["error"],
+    "jsx-a11y/aria-unsupported-elements": ["error"],
+    "jsx-a11y/click-events-have-key-events": ["warn"],
+    "jsx-a11y/heading-has-content": ["error"],
+    "jsx-a11y/href-no-hash": ["error"],
+    "jsx-a11y/html-has-lang": ["error"],
+    "jsx-a11y/img-has-alt": ["error"],
+    "jsx-a11y/img-redundant-alt": ["error"],
+    "jsx-a11y/label-has-for": ["error"],
+    "jsx-a11y/lang": ["error"],
+    "jsx-a11y/mouse-events-have-key-events": ["error"],
+    "jsx-a11y/no-access-key": ["error"],
+    "jsx-a11y/no-onchange": ["error"],
+    "jsx-a11y/no-static-element-interactions": ["error"],
+    "jsx-a11y/onclick-has-focus": ["error"],
+    "jsx-a11y/onclick-has-role": ["error"],
+    "jsx-a11y/role-has-required-aria-props": ["error"],
+    "jsx-a11y/role-supports-aria-props": ["error"],
+    "jsx-a11y/scope": ["error"],
+    "jsx-a11y/tabindex-no-positive": ["error"],
+    "flowtype/boolean-style": ["error",  "boolean"],
+    "flowtype/define-flow-type": 1,
+    "flowtype/delimiter-dangle": ["error", "never"],
+    "flowtype/generic-spacing": ["error", "never"],
+    "flowtype/no-primitive-constructor-types": ["error"],
+    "flowtype/no-weak-types": ["warn"],
+    "flowtype/object-type-delimiter": ["error", "comma"],
+    "flowtype/require-parameter-type": ["error"],
+    "flowtype/require-return-type": ["error", "always",{ "annotateUndefined": "never" }],
+    "flowtype/require-valid-file-annotation": ["error"],
+    "flowtype/semi": ["error", "always"],
+    "flowtype/space-after-type-colon": ["error", "always"],
+    "flowtype/space-before-generic-bracket": ["error", "never"],
+    "flowtype/space-before-type-colon": ["error", "never"],
+    "flowtype/type-id-match": ["error", "^([A-Z][a-z0-9]+)+Type$"],
+    "flowtype/union-intersection-spacing": ["error",  "always"],
+    "flowtype/use-flow-type": 1,
+    "flowtype/valid-syntax": 1
+  },
+  "settings": {
+    "import/resolver": {"node": {
+        "paths": [
+        "src",
+        "test"
+        ],
+        "extensions": [
+          ".js",
+          ".jsx"
+        ]
+      }
+    },
+    "flowtype": {
+      "onlyFilesWithFlowAnnotation": true
+    }
+  }
+}

@@ -1,0 +1,7 @@
+/.eslintcache
+/node_modules
+/lib
+*.log
+/preview/*
+!/preview/index.html
+!/preview/main.jsx
