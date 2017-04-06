@@ -8,6 +8,6 @@ import { render }     from 'react-dom'
 import CalenderPicker from '../src/CalenderPicker.jsx'
 
 render(
-  <CalenderPicker name={ 'aa' } />,
+  <CalenderPicker name={ 'Bob' } />,
   document.getElementById('app')
 )

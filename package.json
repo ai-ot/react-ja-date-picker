@@ -7,6 +7,7 @@
     "lib"
   ],
   "scripts": {
+    "prebuild": "cp ./src/CalenderPicker.css ./lib/CalenderPicker.css && cp ./src/CalenderPicker.css ./preview/CalenderPicker.css",
     "build:dev": "browserify ./preview/main.jsx -t babelify -o ./preview/bundle.js",
     "build": "NODE_ENV=production babel ./src --out-dir lib --source-maps inline && npm run build:dev",
     "start": "npm run build:dev && http-server ./preview -io -p 8080",

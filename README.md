@@ -4,6 +4,17 @@
 
 カレンダーピッカーです。
 
+## 開発
+
+```shell
+$ git clone git@bitbucket.org:ai-ot/calender-picker.git
+$ cd calender-picker
+$ yarn
+$ npm test      # テスト実行
+$ npm run build # ビルド実行
+$ npm start     # プレビュー
+```
+
 ## 要件
 
 ### デザイン
