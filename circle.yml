@@ -14,7 +14,7 @@ test:
   pre:
     - "npm run build"
   override:
-    - "npm tset"
+    - "npm test"
 
 notify:
   webhooks:

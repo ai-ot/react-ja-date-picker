@@ -8,10 +8,14 @@ import React from 'react'
 export default props => {
 
   const name = props.name
+  const fruits = ['apple', 'banana', 'melon']
 
   return (
     <div>
-      <p>{ `Hello, ${name}` }</p>
+      <p>{ `${name} likes ..` }</p>
+      <ul>
+        { fruits.map(fruit => <li key={ `item-${fruit}` }>{ fruit }</li>) }
+      </ul>
     </div>
   )
 }
