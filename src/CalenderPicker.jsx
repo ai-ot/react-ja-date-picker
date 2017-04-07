@@ -1,4 +1,59 @@
 import React from 'react'
+import moment from 'moment'
+/**
+ * reply 2017 holiday
+ * @return {[array]} [holidays]
+ */
+const getHolidays = () => {
+  return [
+    '2017-01-01',
+    '2017-01-02',
+    '2017-02-11',
+    '2017-03-20',
+    '2017-04-29',
+    '2017-05-03',
+    '2017-05-04',
+    '2017-05-05',
+    '2017-07-17',
+    '2017-08-11',
+    '2017-09-18',
+    '2017-09-23',
+    '2017-10-09',
+    '2017-11-03',
+    '2017-11-23',
+    '2017-12-23',
+  ]
+}
+
+/**
+ * [指定した月のカレンダーを返してくれます]
+ * @param  {[string]} year  [year]
+ * @param  {[string]} month [month]
+ * @return {[array]}        [[week1[{monday},{tueday}...],week2[..],...]]
+ */
+const getMonthCalendar = (year, month) => {
+  const first = moment(`${year}-${month}-01`)
+  let weekdays = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
+  let monthDays = []
+  const holidays = getHolidays()
+  let idx = moment(`${year}-${month}-01`)
+  idx.subtract(idx.weekday() - 1, 'days').calendar()
+
+  for (var i = 0 ; i < 6 ; i++ ) {
+    monthDays.push([])
+    for (var j = 0 ; j < 7 ; j++ ) {
+      monthDays[i].push({
+        day: idx.date(), 
+        month: idx.month() + 1, 
+        active: (idx.month() + 1 == month), 
+        weekday: weekdays[idx.weekday()],    
+        isHoliday: holidays.indexOf(idx.format('YYYY-MM-DD')) == 0
+      })
+      idx.add(1, 'days')
+    } 
+  }
+  return monthDays
+}
 
 /**
  * Calender Component
@@ -10,7 +65,9 @@ export default props => {
   const name = props.name
   const fruits = ['apple', 'banana', 'melon']
 
-
+  const month = 4
+  const year = 2017
+//  console.log(getMonthCalendar(2017, 4))
   const monthDays = [
     [ // 第1週
       { day: 27, month: 3, active: false, weekday: 'monday',    isHoliday: false },
