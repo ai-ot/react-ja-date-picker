@@ -2,7 +2,11 @@
  * カレンダーピッカーのCSS
  */
 
+.calender-picker__thursday {
+  color: blue;
+}
 
-.sunday {
+.calender-picker__sunday,
+.calender-picler__holiday {
   color: red;
 }
