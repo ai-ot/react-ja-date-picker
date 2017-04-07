@@ -71,10 +71,15 @@ export default props => {
 
   return (
     <div className={ 'calender-wrapper' }>
-      <p>{ `${name} likes ..` }</p>
-      <ul>
-        { fruits.map(fruit => <li key={ `item-${fruit}` }>{ fruit }</li>) }
-      </ul>
+      <p>{ `名前: ${name}` }</p>
+      <dl>
+        <dt>{ '好きなくだもの' }</dt>
+        <dd>
+          <ul>
+            { fruits.map(fruit => <li key={ `item-${fruit}` }>{ fruit }</li>) }
+          </ul>
+        </dd>
+      </dl>
     </div>
   )
 }
