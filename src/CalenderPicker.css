@@ -2,6 +2,16 @@
  * カレンダーピッカーのCSS
  */
 
+.calender-picker__container {
+  background: yellow;
+  width: 618px;
+}
+
+.calender-picker__week li{
+  list-style: none;
+  display: inline-block;
+}
+
 .calender-picker__thursday {
   color: blue;
 }

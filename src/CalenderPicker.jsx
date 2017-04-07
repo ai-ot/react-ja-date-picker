@@ -71,15 +71,9 @@ export default props => {
 
   return (
     <div className={ 'calender-wrapper' }>
-      <p>{ `名前: ${name}` }</p>
-      <dl>
-        <dt>{ '好きなくだもの' }</dt>
-        <dd>
-          <ul>
-            { fruits.map(fruit => <li key={ `item-${fruit}` }>{ fruit }</li>) }
-          </ul>
-        </dd>
-      </dl>
+      { monthDays.map(function(week){
+        return <div>{week[0].day}</div>
+      }) }
     </div>
   )
 }
