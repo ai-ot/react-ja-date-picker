@@ -64,7 +64,7 @@
   text-align: center;
 }
 
-.calender-picker__week li{
+.calender-picker__week td{
   list-style: none;
   display: inline-block;
   width: 40px;

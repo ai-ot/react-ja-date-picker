@@ -125,35 +125,6 @@ export default props => {
     ]
   ]
 
-  //　ここ以下どうにかする
-
-  var week = monthDays[0];
-  var week2 = monthDays[1];
-  var week3 = monthDays[2];
-  var week4 = monthDays[3];
-
-  var list = [];
-  var list2 = [];
-  var list3 = [];
-  var list4 = [];
-
-  for(var i in week){
-    list.push(<td className="calender-picker__day">{week[i].day}</td>);
-  }
-  for(var i in week2){
-    list2.push(<td className="calender-picker__day">{week2[i].day}</td>);
-  }
-  for(var i in week3){
-    list3.push(<td className="calender-picker__day">{week3[i].day}</td>);
-  }
-  for(var i in week4){
-    list4.push(<td className="calender-picker__day">{week4[i].day}</td>);
-  }
-
-
-  var num = monthDays.day;
-  console.log(num);
-
   return (
     <div className={ 'calender-wrapper' }>
       <div className={ 'calender-picker__container' }>
@@ -164,62 +135,49 @@ export default props => {
 
         <div className={ 'calender-picker__month' }>
           <div className={ 'calender-picker__caption' }>
-              <strong>{week[6].month}月</strong>
+            <strong>{month}月</strong>
           </div>
-          <ul className={ 'calender-picker__week' }>
-            <li>月</li>
-            <li>火</li>
-            <li>水</li>
-            <li>木</li>
-            <li>金</li>
-            <li>土</li>
-            <li>日</li>
-          </ul>
+          <table>
+            <thead className={ 'calender-picker__week' }>
+              <tr>
+              <td>月</td>
+              <td>火</td>
+              <td>水</td>
+              <td>木</td>
+              <td>金</td>
+              <td>土</td>
+              <td>日</td>
+              </tr>
+            </thead>
 
-          <tbody className={ 'calender-picker__month__grid' }>
-            <tr>
-              {list}
-            </tr>
-            <tr>
-              {list2}
-            </tr>
-            <tr>
-              {list3}
-            </tr>
-            <tr>
-              {list4}
-            </tr>
-          </tbody>
+            <tbody className={ 'calender-picker__month__grid' }>
+              {calenderList}
+            </tbody>
+          </table>
+
         </div>
 
         <div className={ 'calender-picker__month' }>
           <div className={ 'calender-picker__caption' }>
-              <strong>{week[6].month + 1}月</strong>
+            <strong>{month + 1}月</strong>
           </div>
-          <ul className={ 'calender-picker__week' }>
-            <li>月</li>
-            <li>火</li>
-            <li>水</li>
-            <li>木</li>
-            <li>金</li>
-            <li>土</li>
-            <li>日</li>
-          </ul>
+          <table>
+            <thead className={ 'calender-picker__week' }>
+              <tr>
+              <td>月</td>
+              <td>火</td>
+              <td>水</td>
+              <td>木</td>
+              <td>金</td>
+              <td>土</td>
+              <td>日</td>
+              </tr>
+            </thead>
 
-          <tbody className={ 'calender-picker__month__grid' }>
-            <tr>
-              {list}
-            </tr>
-            <tr>
-              {list2}
-            </tr>
-            <tr>
-              {list3}
-            </tr>
-            <tr>
-              {list4}
-            </tr>
-          </tbody>
+            <tbody className={ 'calender-picker__month__grid' }>
+              {calenderList}
+            </tbody>
+          </table>
         </div>
 
       </div>
