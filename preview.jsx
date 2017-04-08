@@ -8,6 +8,10 @@ import { render }     from 'react-dom'
 import CalenderPicker from './src/CalenderPicker.jsx'
 
 render(
-  <CalenderPicker name={ 'Bob' } />,
+  <div>
+    <CalenderPicker date={ '2017/12/1' } />
+    <CalenderPicker date={ '2018/1/1' } type={ 'link' } />
+    <CalenderPicker date={ '2018/2/1' } type={ 'button' } />
+  </div>,
   document.getElementById('app')
 )

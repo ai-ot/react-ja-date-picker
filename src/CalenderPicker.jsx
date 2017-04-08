@@ -43,14 +43,14 @@ const getMonthCalendar = (year, month) => {
     monthDays.push([])
     for (var j = 0 ; j < 7 ; j++ ) {
       monthDays[i].push({
-        day: idx.date(), 
-        month: idx.month() + 1, 
-        active: (idx.month() + 1 == month), 
-        weekday: weekdays[idx.weekday()],    
+        day: idx.date(),
+        month: idx.month() + 1,
+        active: (idx.month() + 1 == month),
+        weekday: weekdays[idx.weekday()],
         isHoliday: holidays.indexOf(idx.format('YYYY-MM-DD')) == 0
       })
       idx.add(1, 'days')
-    } 
+    }
   }
   return monthDays
 }
@@ -62,34 +62,45 @@ const getMonthCalendar = (year, month) => {
  */
 export default props => {
 
-  const month = 4
-  const year = 2017
+  const date = moment(props.date)
+  const type = props.type
+
+  const month = date.month() + 1
+  const year = date.year()
+
+  /**
+   * wrap element with button or anchor
+   * @param  {Element} elem DOMElement
+   * @return {Element}      DOMElement
+   */
+  const wrap = elem => type === 'button' ? <button>{ elem }</button> : <a>{ elem }</a>
+
 //  console.log(getMonthCalendar(2017, 4))
   const thisMonth = getMonthCalendar(year, month)
   let thisList = []
   for (var tr in thisMonth){
     thisList.push(<tr>
-      <td className="calender-picker__day">{thisMonth[tr][0].day}</td>
-      <td className="calender-picker__day">{thisMonth[tr][1].day}</td>
-      <td className="calender-picker__day">{thisMonth[tr][2].day}</td>
-      <td className="calender-picker__day">{thisMonth[tr][3].day}</td>
-      <td className="calender-picker__day">{thisMonth[tr][4].day}</td>
-      <td className="calender-picker__day">{thisMonth[tr][5].day}</td>
-      <td className="calender-picker__day">{thisMonth[tr][6].day}</td>
+      <td className="calender-picker__day">{ wrap(thisMonth[tr][0].day) }</td>
+      <td className="calender-picker__day">{ wrap(thisMonth[tr][1].day) }</td>
+      <td className="calender-picker__day">{ wrap(thisMonth[tr][2].day) }</td>
+      <td className="calender-picker__day">{ wrap(thisMonth[tr][3].day) }</td>
+      <td className="calender-picker__day">{ wrap(thisMonth[tr][4].day) }</td>
+      <td className="calender-picker__day">{ wrap(thisMonth[tr][5].day) }</td>
+      <td className="calender-picker__day">{ wrap(thisMonth[tr][6].day) }</td>
     </tr>)
   }
 
-  const nextMonth = getMonthCalendar(year, month + 1) 
+  const nextMonth = getMonthCalendar(year, month + 1)
   let nextList = []
   for (var tr in nextMonth){
     nextList.push(<tr>
-      <td className="calender-picker__day">{nextMonth[tr][0].day}</td>
-      <td className="calender-picker__day">{nextMonth[tr][1].day}</td>
-      <td className="calender-picker__day">{nextMonth[tr][2].day}</td>
-      <td className="calender-picker__day">{nextMonth[tr][3].day}</td>
-      <td className="calender-picker__day">{nextMonth[tr][4].day}</td>
-      <td className="calender-picker__day">{nextMonth[tr][5].day}</td>
-      <td className="calender-picker__day">{nextMonth[tr][6].day}</td>
+      <td className="calender-picker__day">{ wrap(nextMonth[tr][0].day) }</td>
+      <td className="calender-picker__day">{ wrap(nextMonth[tr][1].day) }</td>
+      <td className="calender-picker__day">{ wrap(nextMonth[tr][2].day) }</td>
+      <td className="calender-picker__day">{ wrap(nextMonth[tr][3].day) }</td>
+      <td className="calender-picker__day">{ wrap(nextMonth[tr][4].day) }</td>
+      <td className="calender-picker__day">{ wrap(nextMonth[tr][5].day) }</td>
+      <td className="calender-picker__day">{ wrap(nextMonth[tr][6].day) }</td>
     </tr>)
   }
   //　ここ以下どうにかする
@@ -127,7 +138,7 @@ export default props => {
           <div className={ 'calender-picker__caption' }>
             <strong>{ (month + 1) + '月'}</strong>
           </div>
-          
+
           <table>
             <thead className={ 'calender-picker__week' }>
               <tr>
