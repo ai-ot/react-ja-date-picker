@@ -1,9 +1,11 @@
 import { expect } from 'chai'
-import { calculateAwesome } from '../src/lib'
+import { getMonthCalendar } from '../src/lib'
 
 
-describe('Test of lib', () => {
-  it('should do something awesome', () => {
-    expect(calculateAwesome('something')).to.be('awesome!')
+describe('Test of getMonthCalendar', () => {
+  it('should return weeks', () => {
+    const weeks = getMonthCalendar(2017, 4)
+    expect(weeks.length).toBe.above(3)
+    expect(weeks.length).toBe.below(7)
   })
 })
