@@ -1,8 +1,9 @@
 import React from 'react'
 import moment from 'moment'
+
 /**
  * reply 2017 holiday
- * @return {[array]} [holidays]
+ * @return {array<string>} holidays
  */
 const getHolidays = () => {
   return [
@@ -26,21 +27,23 @@ const getHolidays = () => {
 }
 
 /**
- * [指定した月のカレンダーを返してくれます]
- * @param  {[string]} year  [year]
- * @param  {[string]} month [month]
- * @return {[array]}        [[week1[{monday},{tueday}...],week2[..],...]]
+ * 指定した月のカレンダーを返してくれます
+ * @param  {number} year  year
+ * @param  {number} month month
+ * @return {array<{day:number, month:number, active:boolean, weekday:string, isHoliday:boolean}>} day information object
  */
 const getMonthCalendar = (year, month) => {
   const first = moment(`${year}-${month}-01`)
-  let weekdays = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
-  let monthDays = []
+  const weekdays = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
+  const monthDays = []
   const holidays = getHolidays()
-  let idx = moment(`${year}-${month}-01`)
+  const idx = moment(`${year}-${month}-01`)
   idx.subtract(idx.weekday() - 1, 'days').calendar()
 
+  // 第1週から第6週までをイテレート
   for (var i = 0 ; i < 6 ; i++ ) {
     monthDays.push([])
+    // 日曜から土曜までをいてレート
     for (var j = 0 ; j < 7 ; j++ ) {
       monthDays[i].push({
         day: idx.date(),
@@ -58,7 +61,7 @@ const getMonthCalendar = (year, month) => {
 /**
  * Calender Component
  * @param  {object}         props props
- * @return {ReactComponent}       render a calender
+ * @return {ReactComponent} render a calender
  */
 export default props => {
 
