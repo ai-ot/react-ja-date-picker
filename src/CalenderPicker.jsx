@@ -76,7 +76,7 @@ export default props => {
       <td className="calender-picker__day">{thisMonth[tr][4].day}</td>
       <td className="calender-picker__day">{thisMonth[tr][5].day}</td>
       <td className="calender-picker__day">{thisMonth[tr][6].day}</td>
-      </tr>)
+    </tr>)
   }
 
   const nextMonth = getMonthCalendar(year, month + 1) 
@@ -90,56 +90,62 @@ export default props => {
       <td className="calender-picker__day">{nextMonth[tr][4].day}</td>
       <td className="calender-picker__day">{nextMonth[tr][5].day}</td>
       <td className="calender-picker__day">{nextMonth[tr][6].day}</td>
-      </tr>)
+    </tr>)
   }
   //　ここ以下どうにかする
-
   return (
     <div className={ 'calender-wrapper' }>
       <div className={ 'calender-picker__container' }>
         <div className={ 'calender-picker__navigation' }>
-          <span　className={ 'calender-picker__navigation__button calender-picker__navigation__prev' }>←</span>
-          <span　className={ 'calender-picker__navigation__button calender-picker__navigation__next' }>→</span>
+          <span　className={ 'calender-picker__navigation__button calender-picker__navigation__prev' }>{'←'}</span>
+          <span　className={ 'calender-picker__navigation__button calender-picker__navigation__next' }>{'→'}</span>
         </div>
 
         <div className={ 'calender-picker__month' }>
           <div className={ 'calender-picker__caption' }>
-              <strong>{thisMonth[1][0].month}月</strong>
+            <strong>{ (month) + '月'}</strong>
           </div>
-          <ul className={ 'calender-picker__week' }>
-            <li>月</li>
-            <li>火</li>
-            <li>水</li>
-            <li>木</li>
-            <li>金</li>
-            <li>土</li>
-            <li>日</li>
-          </ul>
+          <table>
+            <thead className={ 'calender-picker__week' }>
+              <tr>
+                <td>{'月'}</td>
+                <td>{'火'}</td>
+                <td>{'水'}</td>
+                <td>{'木'}</td>
+                <td>{'金'}</td>
+                <td>{'土'}</td>
+                <td>{'日'}</td>
+              </tr>
+            </thead>
 
-          <tbody className={ 'calender-picker__month__grid' }>
-            {thisList}
-          </tbody>
+            <tbody className={ 'calender-picker__month__grid' }>
+              { thisList }
+            </tbody>
+          </table>
         </div>
-
         <div className={ 'calender-picker__month' }>
           <div className={ 'calender-picker__caption' }>
-              <strong>{thisMonth[1][0].month + 1}月</strong>
+            <strong>{ (month + 1) + '月'}</strong>
           </div>
-          <ul className={ 'calender-picker__week' }>
-            <li>月</li>
-            <li>火</li>
-            <li>水</li>
-            <li>木</li>
-            <li>金</li>
-            <li>土</li>
-            <li>日</li>
-          </ul>
+          
+          <table>
+            <thead className={ 'calender-picker__week' }>
+              <tr>
+                <td>{'月'}</td>
+                <td>{'火'}</td>
+                <td>{'水'}</td>
+                <td>{'木'}</td>
+                <td>{'金'}</td>
+                <td>{'土'}</td>
+                <td>{'日'}</td>
+              </tr>
+            </thead>
 
-          <tbody className={ 'calender-picker__month__grid' }>
-            { nextList }
-          </tbody>
+            <tbody className={ 'calender-picker__month__grid' }>
+              { nextList }
+            </tbody>
+          </table>
         </div>
-
       </div>
     </div>
   )
