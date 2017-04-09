@@ -1,6 +1,6 @@
 import React, { PropTypes, Component } from 'react'
 import moment from 'moment'
-import style  from './style.css'
+import STYLE  from './style'
 import {}     from './calc'
 
 /**
@@ -126,12 +126,12 @@ export default class CalenderPicker extends Component {
       { week.map(({ day, month }, j) => {
 
         const key = `month-day-${month}-${day}`
-        const style = isHovering(key) ? { ...style.day, ...style.day$hover } : style.day
+        const tdStyle = isHovering(key) ? { ...STYLE.day, ...STYLE.day$hover } : STYLE.day
 
         return (<td
           className={ CLASS_PREFIX + 'day' }
           key={ `${month}-${i}-day-${j}` }
-          style={ style }
+          style={ tdStyle }
           onMouseEnter={ hoverOn(key) }
           onMouseLeave={ hoverOn(false) }
         >
@@ -145,17 +145,17 @@ export default class CalenderPicker extends Component {
 
     // generate each style for buttons
     const stylePrev = isHovering('button-prev') ?
-      { ...style.navButton, ...style.navPrev, ...style.navButton$hover } :
-      { ...style.navButton, ...style.navPrev }
+      { ...STYLE.navButton, ...STYLE.navPrev, ...STYLE.navButton$hover } :
+      { ...STYLE.navButton, ...STYLE.navPrev }
     const styleNext = isHovering('button-next') ?
-      { ...style.navButton, ...style.navNext, ...style.navButton$hover } :
-      { ...style.navButton, ...style.navNext }
+      { ...STYLE.navButton, ...STYLE.navNext, ...STYLE.navButton$hover } :
+      { ...STYLE.navButton, ...STYLE.navNext }
 
     // ここ以下どうにかする
     return (
       <div className={ 'calender-wrapper' }>
-        <div className={ CLASS_PREFIX + 'container' } style={ style.container }>
-          <div className={ CLASS_PREFIX + 'nav__wrap' } style={ style.navWrap }>
+        <div className={ CLASS_PREFIX + 'container' } style={ STYLE.container }>
+          <div className={ CLASS_PREFIX + 'nav__wrap' } style={ STYLE.navWrap }>
             <span
               className={ CLASS_PREFIX + 'nav__button', CLASS_PREFIX + 'nav__prev' }
               style={ stylePrev }
@@ -170,24 +170,24 @@ export default class CalenderPicker extends Component {
             >{'→'}</span>
           </div>
 
-          <div className={ CLASS_PREFIX + 'month' } style={ style.month }>
-            <div className={ CLASS_PREFIX + 'caption' } style={ style.caption }>
+          <div className={ CLASS_PREFIX + 'month' } style={ STYLE.month }>
+            <div className={ CLASS_PREFIX + 'caption' } style={ STYLE.caption }>
               <strong>{ (month) + '月' }</strong>
             </div>
             <table>
-              <thead className={ CLASS_PREFIX + 'week' } style={ style.week }>
+              <thead className={ CLASS_PREFIX + 'week' } style={ STYLE.week }>
                 <tr>
-                  <td className={ CLASS_PREFIX + 'week-label' } style={ style.weekLabel }>{'月'}</td>
-                  <td className={ CLASS_PREFIX + 'week-label' } style={ style.weekLabel }>{'火'}</td>
-                  <td className={ CLASS_PREFIX + 'week-label' } style={ style.weekLabel }>{'水'}</td>
-                  <td className={ CLASS_PREFIX + 'week-label' } style={ style.weekLabel }>{'木'}</td>
-                  <td className={ CLASS_PREFIX + 'week-label' } style={ style.weekLabel }>{'金'}</td>
-                  <td className={ CLASS_PREFIX + 'week-label' } style={ style.weekLabel }>{'土'}</td>
-                  <td className={ CLASS_PREFIX + 'week-label' } style={ style.weekLabel }>{'日'}</td>
+                  <td className={ CLASS_PREFIX + 'week-label' } style={ STYLE.weekLabel }>{'月'}</td>
+                  <td className={ CLASS_PREFIX + 'week-label' } style={ STYLE.weekLabel }>{'火'}</td>
+                  <td className={ CLASS_PREFIX + 'week-label' } style={ STYLE.weekLabel }>{'水'}</td>
+                  <td className={ CLASS_PREFIX + 'week-label' } style={ STYLE.weekLabel }>{'木'}</td>
+                  <td className={ CLASS_PREFIX + 'week-label' } style={ STYLE.weekLabel }>{'金'}</td>
+                  <td className={ CLASS_PREFIX + 'week-label' } style={ STYLE.weekLabel }>{'土'}</td>
+                  <td className={ CLASS_PREFIX + 'week-label' } style={ STYLE.weekLabel }>{'日'}</td>
                 </tr>
               </thead>
 
-              <tbody className={ CLASS_PREFIX + 'month__grid' } style={ style.monthGrid }>
+              <tbody className={ CLASS_PREFIX + 'month__grid' } style={ STYLE.monthGrid }>
                 { thisList }
               </tbody>
 

@@ -1,12 +1,9 @@
 // webpack.config.js
 
-// import webpack from 'webpack'
-import path from 'path'
-
 export default {
   entry: './preview.jsx',
   output: {
-    path: path.join(__dirname, 'lib'),
+    path: __dirname,
     filename: 'bundle.js'
   },
   devtool: 'source-map',
