@@ -1,5 +1,12 @@
-import React from 'react'
+import React, { PropTypes, Component } from 'react'
 import moment from 'moment'
+import style from './style.css.js'
+
+/**
+ * internal classname prefix
+ * @type {string}
+ */
+export const CLASS_PREFIX =  'calender-picker__'
 
 /**
  * reply 2017 holiday
@@ -63,104 +70,115 @@ const getMonthCalendar = (year, month) => {
  * @param  {object}         props props
  * @return {ReactComponent} render a calender
  */
-export default props => {
+export default class CalenderPicker extends Component {
 
-  const date = moment(props.date)
-  const type = props.type
+  static propTypes = {
+    date: PropTypes.string,
+    type: PropTypes.string,
+  }
 
-  const month = date.month() + 1
-  const year = date.year()
+  static defaultProps = {
+    date: '',
+    type: 'link'
+  }
 
   /**
-   * wrap element with button or anchor
-   * @param  {Element} elem DOMElement
-   * @return {Element}      DOMElement
+   * render
+   * @param {object} state components state
+   * @return {ReactComponent} render a calender picker
    */
-  const wrap = elem => type === 'button' ? <button>{ elem }</button> : <a href={ '#' }>{ elem }</a>
+  render() {
+    /**
+     * check if a element with key id hovered
+     * @param  {string}  id  given id
+     * @return {boolean}     whether hoverring
+     */
+    const isHovering = id => this.state ? this.state.hovering === id : false
 
-//  console.log(getMonthCalendar(2017, 4))
-  const thisMonth = getMonthCalendar(year, month)
-  let thisList = []
-  for (var tr in thisMonth){
-    thisList.push(<tr>
-      <td className="calender-picker__day">{ wrap(thisMonth[tr][0].day) }</td>
-      <td className="calender-picker__day">{ wrap(thisMonth[tr][1].day) }</td>
-      <td className="calender-picker__day">{ wrap(thisMonth[tr][2].day) }</td>
-      <td className="calender-picker__day">{ wrap(thisMonth[tr][3].day) }</td>
-      <td className="calender-picker__day">{ wrap(thisMonth[tr][4].day) }</td>
-      <td className="calender-picker__day">{ wrap(thisMonth[tr][5].day) }</td>
-      <td className="calender-picker__day">{ wrap(thisMonth[tr][6].day) }</td>
+    /**
+     * create callback to set hoverirng state
+     * @param  {string|boolean} id giving id or false to cancel it
+     * @return {function} callback to set state
+     */
+    const hoverOn = id => () => this.setState({ hovering: id })
+
+    // parse props
+    const date = moment(this.props.date)
+    const type = this.props.type
+
+    const month = date.month() + 1
+    const year = date.year()
+
+  //  console.log(getMonthCalendar(2017, 4))
+    const thisMonth = getMonthCalendar(year, month)
+
+    const thisList = thisMonth.map((week, i) => <tr key={ `${month}-${i}` }>
+      { week.map(({ day, month }, j) => {
+        const key = `month-day-${month}-${day}`
+        return (<td
+          className={ CLASS_PREFIX + 'day' }
+          key={ `${month}-${i}-day-${j}` }
+          style={ isHovering(key) ? { ...style.day, ...style.day$hover } : style.day }
+          onMouseEnter={ hoverOn(key) }
+          onMouseLeave={ hoverOn(false) }
+        >
+          { type === 'button' ?
+            <button>{ day }</button> :
+            <a href={ `http://example/${year}/${month}/${day}` }>{ day }</a>
+          }
+        </td>)
+      }) }
     </tr>)
-  }
 
-  const nextMonth = getMonthCalendar(year, month + 1)
-  let nextList = []
-  for (var tr in nextMonth){
-    nextList.push(<tr>
-      <td className="calender-picker__day">{ wrap(nextMonth[tr][0].day) }</td>
-      <td className="calender-picker__day">{ wrap(nextMonth[tr][1].day) }</td>
-      <td className="calender-picker__day">{ wrap(nextMonth[tr][2].day) }</td>
-      <td className="calender-picker__day">{ wrap(nextMonth[tr][3].day) }</td>
-      <td className="calender-picker__day">{ wrap(nextMonth[tr][4].day) }</td>
-      <td className="calender-picker__day">{ wrap(nextMonth[tr][5].day) }</td>
-      <td className="calender-picker__day">{ wrap(nextMonth[tr][6].day) }</td>
-    </tr>)
-  }
-  //　ここ以下どうにかする
-  return (
-    <div className={ 'calender-wrapper' }>
-      <div className={ 'calender-picker__container' }>
-        <div className={ 'calender-picker__navigation' }>
-          <span　className={ 'calender-picker__navigation__button calender-picker__navigation__prev' }>{'←'}</span>
-          <span　className={ 'calender-picker__navigation__button calender-picker__navigation__next' }>{'→'}</span>
-        </div>
-
-        <div className={ 'calender-picker__month' }>
-          <div className={ 'calender-picker__caption' }>
-            <strong>{ (month) + '月'}</strong>
-          </div>
-          <table>
-            <thead className={ 'calender-picker__week' }>
-              <tr>
-                <td>{'月'}</td>
-                <td>{'火'}</td>
-                <td>{'水'}</td>
-                <td>{'木'}</td>
-                <td>{'金'}</td>
-                <td>{'土'}</td>
-                <td>{'日'}</td>
-              </tr>
-            </thead>
-
-            <tbody className={ 'calender-picker__month__grid' }>
-              { thisList }
-            </tbody>
-          </table>
-        </div>
-        <div className={ 'calender-picker__month' }>
-          <div className={ 'calender-picker__caption' }>
-            <strong>{ (month + 1) + '月'}</strong>
+    // ここ以下どうにかする
+    return (
+      <div className={ 'calender-wrapper' }>
+        <div className={ CLASS_PREFIX + 'container' } style={ style.container }>
+          <div className={ CLASS_PREFIX + 'nav__wrap' } style={ style.navWrap }>
+            <span
+              className={ CLASS_PREFIX + 'nav__button', CLASS_PREFIX + 'nav__prev' }
+              style={ isHovering('button-prev') ?
+                { ...style.navButton, ...style.navPrev, ...style.navButton$hover } :
+                { ...style.navButton, ...style.navPrev } }
+              onMouseEnter={ hoverOn('button-prev') }
+              onMouseLeave={ hoverOn(false) }
+            >{'←'}</span>
+            <span
+              className={ CLASS_PREFIX + 'nav__button', CLASS_PREFIX + 'nav__next' }
+              style={ isHovering('button-next') ?
+                { ...style.navButton, ...style.navNext, ...style.navButton$hover } :
+                { ...style.navButton, ...style.navNext } }
+              onMouseEnter={ hoverOn('button-next') }
+              onMouseLeave={ hoverOn(false) }
+            >{'→'}</span>
           </div>
 
-          <table>
-            <thead className={ 'calender-picker__week' }>
-              <tr>
-                <td>{'月'}</td>
-                <td>{'火'}</td>
-                <td>{'水'}</td>
-                <td>{'木'}</td>
-                <td>{'金'}</td>
-                <td>{'土'}</td>
-                <td>{'日'}</td>
-              </tr>
-            </thead>
+          <div className={ CLASS_PREFIX + 'month' } style={ style.month }>
+            <div className={ CLASS_PREFIX + 'caption' } style={ style.caption }>
+              <strong>{ (month) + '月'}</strong>
+            </div>
+            <table>
+              <thead className={ CLASS_PREFIX + 'week' } style={ style.week }>
+                <tr>
+                  <td className={ CLASS_PREFIX + 'week-label' } style={ style.weekLabel }>{'月'}</td>
+                  <td className={ CLASS_PREFIX + 'week-label' } style={ style.weekLabel }>{'火'}</td>
+                  <td className={ CLASS_PREFIX + 'week-label' } style={ style.weekLabel }>{'水'}</td>
+                  <td className={ CLASS_PREFIX + 'week-label' } style={ style.weekLabel }>{'木'}</td>
+                  <td className={ CLASS_PREFIX + 'week-label' } style={ style.weekLabel }>{'金'}</td>
+                  <td className={ CLASS_PREFIX + 'week-label' } style={ style.weekLabel }>{'土'}</td>
+                  <td className={ CLASS_PREFIX + 'week-label' } style={ style.weekLabel }>{'日'}</td>
+                </tr>
+              </thead>
 
-            <tbody className={ 'calender-picker__month__grid' }>
-              { nextList }
-            </tbody>
-          </table>
+              <tbody className={ CLASS_PREFIX + 'month__grid' } style={ style.monthGrid }>
+                { thisList }
+              </tbody>
+
+            </table>
+          </div>
+
         </div>
       </div>
-    </div>
-  )
+    )
+  }
 }
