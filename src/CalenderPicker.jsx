@@ -76,7 +76,7 @@ export default props => {
    * @param  {Element} elem DOMElement
    * @return {Element}      DOMElement
    */
-  const wrap = elem => type === 'button' ? <button>{ elem }</button> : <a>{ elem }</a>
+  const wrap = elem => type === 'button' ? <button>{ elem }</button> : <a href={ '#' }>{ elem }</a>
 
 //  console.log(getMonthCalendar(2017, 4))
   const thisMonth = getMonthCalendar(year, month)
