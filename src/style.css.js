@@ -19,12 +19,12 @@ export default {
     'padding'  : '15px 5px 20px',
   },
 
-  navigationWrap: {
+  navWrap: {
 
   },
 
-  // navigation button generic style
-  navigationButton: {
+  // nav button generic style
+  navButton: {
     position     : 'absolute',
     display      : 'block',
     width        : '40px',
@@ -38,17 +38,16 @@ export default {
     transition   : '.2s',
   },
 
-  '.calender-picker__navigation__button:hover': {
-    'border': '1px solid #c4c4c4',
-    'color': '#c4c4c4',
-
+  navButton$hover: {
+    'border' : '1px solid #c4c4c4',
+    'color'  : '#c4c4c4',
   },
 
-  navigationPrev: {
+  navPrev: {
     left: '20px',
   },
 
-  navigationNext: {
+  navNext: {
     right: '20px',
   },
 
@@ -91,15 +90,10 @@ export default {
     border    : '1px solid #e4e7e7',
     boxSizing : 'border-box',
     textAlign : 'center',
-    cursor    : 'pointer',
-    $hover    : {
-      background : '#37c5ab',
-      color      : '#fff',
-    }
+    cursor    : 'pointer'
   },
-
-  '.calender-picker__day:hover': {
-    background: '#37c5ab',
-    color: '#fff',
-  },
+  day$hover    : {
+    background : '#37c5ab',
+    color      : '#fff',
+  }
 }

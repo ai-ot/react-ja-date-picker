@@ -6,14 +6,16 @@
 
 ## 使い方
 
+### static import
+
 ```javascript
-// ライブラリをインポートしてコンポーネントとして使う
 import 'CalenderPicker' from 'calender-picker'
 ```
 
-```shell
-# CSSはビルドプロセスに組み込むなりしてほしい（改善方法を検討中）
-cp ./node_modules/calender-picker/lib/CalnderPicker.css ./style/vendor
+### commonJS
+
+```javascript
+const CalenderPicker = require('calender-picker')
 ```
 
 ## 開発
