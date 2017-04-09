@@ -5,6 +5,7 @@
 
 export default {
 
+  // 不要なら消す
   '.clearfix:after': {
     'content': ' ',
     'display': 'table',
@@ -19,9 +20,8 @@ export default {
     'padding'  : '15px 5px 20px',
   },
 
-  navWrap: {
-
-  },
+  // wrapper for navigations
+  navWrap: {},
 
   // nav button generic style
   navButton: {
@@ -38,25 +38,23 @@ export default {
     transition   : '.2s',
   },
 
+  // navButton:hover
   navButton$hover: {
     'border' : '1px solid #c4c4c4',
     'color'  : '#c4c4c4',
   },
 
-  navPrev: {
-    left: '20px',
-  },
+  navPrev: { left  : '20px' },
+  navNext: { right : '20px' },
 
-  navNext: {
-    right: '20px',
-  },
-
+  // month wrapper
   month: {
     width   : '50%',
     // background: 'pink',
     display : 'inline-block',
   },
 
+  // caption text as date
   caption: {
     textAlign : 'center',
     padding   : '5px 0',

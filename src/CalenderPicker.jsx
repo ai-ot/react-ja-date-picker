@@ -100,7 +100,7 @@ export default class CalenderPicker extends Component {
      * @param  {string|boolean} id giving id or false to cancel it
      * @return {function} callback to set state
      */
-    const hoverOn = id => () => this.setState({ hovering: id })
+    const hoverOn = id => () => this.setState({ ...this.state, ...{ hovering: id } })
 
     // parse props
     const date = moment(this.props.date)
@@ -115,6 +115,7 @@ export default class CalenderPicker extends Component {
     const thisList = thisMonth.map((week, i) => <tr key={ `${month}-${i}` }>
       { week.map(({ day, month }, j) => {
         const key = `month-day-${month}-${day}`
+
         return (<td
           className={ CLASS_PREFIX + 'day' }
           key={ `${month}-${i}-day-${j}` }
@@ -122,9 +123,9 @@ export default class CalenderPicker extends Component {
           onMouseEnter={ hoverOn(key) }
           onMouseLeave={ hoverOn(false) }
         >
-          { type === 'button' ?
-            <button>{ day }</button> :
-            <a href={ `http://example/${year}/${month}/${day}` }>{ day }</a>
+          { type === 'link' ?
+            <a href={ `http://example/${year}/${month}/${day}` }>{ day }</a> :
+            <button>{ day }</button>
           }
         </td>)
       }) }
