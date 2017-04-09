@@ -7,7 +7,7 @@
     "lib"
   ],
   "scripts": {
-    "build": "NODE_ENV=production babel ./src --out-dir lib --source-maps inline && cp ./src/*.css ./lib/",
+    "build": "NODE_ENV=production babel ./src --out-dir lib --source-maps inline",
     "start": "webpack-dev-server --progress --colors --hot --inline --watch",
     "lint": "eslint .",
     "test": "npm run lint && mocha"

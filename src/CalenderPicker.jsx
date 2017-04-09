@@ -1,5 +1,12 @@
 import React from 'react'
 import moment from 'moment'
+import style from './CalenderPicker.css.js'
+
+/**
+ * internal classname prefix
+ * @type {string}
+ */
+export const CLASS_PREFIX =  'calender-picker__'
 
 /**
  * reply 2017 holiday
@@ -83,13 +90,13 @@ export default props => {
   let thisList = []
   for (var tr in thisMonth){
     thisList.push(<tr>
-      <td className="calender-picker__day">{ wrap(thisMonth[tr][0].day) }</td>
-      <td className="calender-picker__day">{ wrap(thisMonth[tr][1].day) }</td>
-      <td className="calender-picker__day">{ wrap(thisMonth[tr][2].day) }</td>
-      <td className="calender-picker__day">{ wrap(thisMonth[tr][3].day) }</td>
-      <td className="calender-picker__day">{ wrap(thisMonth[tr][4].day) }</td>
-      <td className="calender-picker__day">{ wrap(thisMonth[tr][5].day) }</td>
-      <td className="calender-picker__day">{ wrap(thisMonth[tr][6].day) }</td>
+      <td className={ CLASS_PREFIX + 'day' } style={ style.day }>{ wrap(thisMonth[tr][0].day) }</td>
+      <td className={ CLASS_PREFIX + 'day' } style={ style.day }>{ wrap(thisMonth[tr][1].day) }</td>
+      <td className={ CLASS_PREFIX + 'day' } style={ style.day }>{ wrap(thisMonth[tr][2].day) }</td>
+      <td className={ CLASS_PREFIX + 'day' } style={ style.day }>{ wrap(thisMonth[tr][3].day) }</td>
+      <td className={ CLASS_PREFIX + 'day' } style={ style.day }>{ wrap(thisMonth[tr][4].day) }</td>
+      <td className={ CLASS_PREFIX + 'day' } style={ style.day }>{ wrap(thisMonth[tr][5].day) }</td>
+      <td className={ CLASS_PREFIX + 'day' } style={ style.day }>{ wrap(thisMonth[tr][6].day) }</td>
     </tr>)
   }
 
@@ -97,53 +104,54 @@ export default props => {
   let nextList = []
   for (var tr in nextMonth){
     nextList.push(<tr>
-      <td className="calender-picker__day">{ wrap(nextMonth[tr][0].day) }</td>
-      <td className="calender-picker__day">{ wrap(nextMonth[tr][1].day) }</td>
-      <td className="calender-picker__day">{ wrap(nextMonth[tr][2].day) }</td>
-      <td className="calender-picker__day">{ wrap(nextMonth[tr][3].day) }</td>
-      <td className="calender-picker__day">{ wrap(nextMonth[tr][4].day) }</td>
-      <td className="calender-picker__day">{ wrap(nextMonth[tr][5].day) }</td>
-      <td className="calender-picker__day">{ wrap(nextMonth[tr][6].day) }</td>
+      <td className={ CLASS_PREFIX + 'day' } style={ style.day }>{ wrap(nextMonth[tr][0].day) }</td>
+      <td className={ CLASS_PREFIX + 'day' } style={ style.day }>{ wrap(nextMonth[tr][1].day) }</td>
+      <td className={ CLASS_PREFIX + 'day' } style={ style.day }>{ wrap(nextMonth[tr][2].day) }</td>
+      <td className={ CLASS_PREFIX + 'day' } style={ style.day }>{ wrap(nextMonth[tr][3].day) }</td>
+      <td className={ CLASS_PREFIX + 'day' } style={ style.day }>{ wrap(nextMonth[tr][4].day) }</td>
+      <td className={ CLASS_PREFIX + 'day' } style={ style.day }>{ wrap(nextMonth[tr][5].day) }</td>
+      <td className={ CLASS_PREFIX + 'day' } style={ style.day }>{ wrap(nextMonth[tr][6].day) }</td>
     </tr>)
   }
-  //　ここ以下どうにかする
+  // ここ以下どうにかする
   return (
     <div className={ 'calender-wrapper' }>
-      <div className={ 'calender-picker__container' }>
-        <div className={ 'calender-picker__navigation' }>
-          <span　className={ 'calender-picker__navigation__button calender-picker__navigation__prev' }>{'←'}</span>
-          <span　className={ 'calender-picker__navigation__button calender-picker__navigation__next' }>{'→'}</span>
+      <div className={ CLASS_PREFIX + 'container' } style={ style.container }>
+        <div className={ CLASS_PREFIX + 'navigation__wrap' } style={ style.navigationWrap }>
+          <span className={ CLASS_PREFIX + 'navigation__button', CLASS_PREFIX + 'navigation__prev' } style={ { ...style.navigationButton, ...style.navigationPrev } }>{'←'}</span>
+          <span className={ CLASS_PREFIX + 'navigation__button', CLASS_PREFIX + 'navigation__next' } style={ { ...style.navigationButton, ...style.navigationNext } }>{'→'}</span>
         </div>
 
-        <div className={ 'calender-picker__month' }>
-          <div className={ 'calender-picker__caption' }>
+        <div className={ CLASS_PREFIX + 'month' } style={ style.month }>
+          <div className={ CLASS_PREFIX + 'caption' } style={ style.caption }>
             <strong>{ (month) + '月'}</strong>
           </div>
           <table>
-            <thead className={ 'calender-picker__week' }>
+            <thead className={ CLASS_PREFIX + 'week' } style={ style.week }>
               <tr>
-                <td>{'月'}</td>
-                <td>{'火'}</td>
-                <td>{'水'}</td>
-                <td>{'木'}</td>
-                <td>{'金'}</td>
-                <td>{'土'}</td>
-                <td>{'日'}</td>
+                <td className={ CLASS_PREFIX + 'week-label' } style={ style.weekLabel }>{'月'}</td>
+                <td className={ CLASS_PREFIX + 'week-label' } style={ style.weekLabel }>{'火'}</td>
+                <td className={ CLASS_PREFIX + 'week-label' } style={ style.weekLabel }>{'水'}</td>
+                <td className={ CLASS_PREFIX + 'week-label' } style={ style.weekLabel }>{'木'}</td>
+                <td className={ CLASS_PREFIX + 'week-label' } style={ style.weekLabel }>{'金'}</td>
+                <td className={ CLASS_PREFIX + 'week-label' } style={ style.weekLabel }>{'土'}</td>
+                <td className={ CLASS_PREFIX + 'week-label' } style={ style.weekLabel }>{'日'}</td>
               </tr>
             </thead>
 
-            <tbody className={ 'calender-picker__month__grid' }>
+            <tbody className={ CLASS_PREFIX + 'month__grid' } style={ style.monthGrid }>
               { thisList }
             </tbody>
           </table>
         </div>
-        <div className={ 'calender-picker__month' }>
-          <div className={ 'calender-picker__caption' }>
+
+        <div className={ CLASS_PREFIX + 'month' }>
+          <div className={ CLASS_PREFIX + 'caption' }>
             <strong>{ (month + 1) + '月'}</strong>
           </div>
 
           <table>
-            <thead className={ 'calender-picker__week' }>
+            <thead className={ CLASS_PREFIX + 'week' }>
               <tr>
                 <td>{'月'}</td>
                 <td>{'火'}</td>
@@ -155,7 +163,7 @@ export default props => {
               </tr>
             </thead>
 
-            <tbody className={ 'calender-picker__month__grid' }>
+            <tbody className={ CLASS_PREFIX + 'month__grid' }>
               { nextList }
             </tbody>
           </table>

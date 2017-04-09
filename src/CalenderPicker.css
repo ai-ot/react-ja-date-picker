@@ -8,18 +8,18 @@
      clear:both;
  }
 
-.calender-picker__container {
+/*.calender-picker__container {
   width: 618px;
   position: relative;
   border: 1px solid #e4e7e7;
   padding: 15px 5px 20px;
-}
+}*/
 
-.calender-picker__navigation {
+/*.calender-picker__navigation {
 
-}
+}*/
 
-.calender-picker__navigation__button {
+/*.calender-picker__navigation__button {
   position: absolute;
   display: block;
   width: 40px;
@@ -31,63 +31,63 @@
   color: #e4e7e7;
   cursor: pointer;
   transition: .2s;
-}
+}*/
 
 .calender-picker__navigation__button:hover {
   border: 1px solid #c4c4c4;
   color: #c4c4c4;
 
 }
-
+/*
 .calender-picker__navigation__prev {
   left: 20px;
 }
 
 .calender-picker__navigation__next {
   right: 20px;
-}
+}*/
 
-.calender-picker__month {
+/*.calender-picker__month {
   width: 50%;
   /*background: pink;*/
-  display: inline-block;
-}
+  /*display: inline-block;*/*/
+/*}*/
 
-.calender-picker__caption {
+/*.calender-picker__caption {
   text-align: center;
   padding: 5px 0;
-}
+/*}*/
 
-.calender-picker__week {
+/*.calender-picker__week {
   margin: 10px 0;
   padding: 0;
   text-align: center;
-}
+}*/
 
-.calender-picker__week td{
+/*.calender-picker__week td{
   list-style: none;
   display: inline-block;
-  width: 40px;
-  text-align: center;
+  width: 40px;*/
+  /*text-align: center;*/
   /*background: lightblue;*/
-}
+/*}*/
 
-.calender-picker__month__grid {
+/*.calender-picker__month__grid {
   display: table;
   /*background: lightgreen;*/
-  border-collapse: collapse;
-  margin: 0 auto;
-}
+  /*border-collapse: collapse;*/
+  /*margin: 0 auto;*/*/
+/*}*/
 
-.calender-picker__day {
+/*.calender-picker__day {*/
   /*display: table-cell;*/
-  width: 40px;
-  height: 40px;
+  /*width: 40px;*/
+  /*height: 40px;
   border: 1px solid #e4e7e7;
   box-sizing: border-box;
   text-align: center;
   cursor: pointer;
-}
+}*/
 
 .calender-picker__day:hover {
   background: #37c5ab;
