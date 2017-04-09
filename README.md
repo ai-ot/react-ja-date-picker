@@ -7,7 +7,7 @@
 ## 使い方
 
 ```javascript
-# ライブラリをインポートしてコンポーネントとして使う
+// ライブラリをインポートしてコンポーネントとして使う
 import 'CalenderPicker' from 'calender-picker'
 ```
 
