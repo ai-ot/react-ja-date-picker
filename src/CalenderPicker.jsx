@@ -157,13 +157,13 @@ export default class CalenderPicker extends Component {
         <div className={ CLASS_PREFIX + 'container' } style={ STYLE.container }>
           <div className={ CLASS_PREFIX + 'nav__wrap' } style={ STYLE.navWrap }>
             <span
-              className={ CLASS_PREFIX + 'nav__button', CLASS_PREFIX + 'nav__prev' }
+              className={ CLASS_PREFIX + 'nav__button ' + CLASS_PREFIX + 'nav__prev' }
               style={ stylePrev }
               onMouseEnter={ hoverOn('button-prev') }
               onMouseLeave={ hoverOn(false) }
             >{'←'}</span>
             <span
-              className={ CLASS_PREFIX + 'nav__button', CLASS_PREFIX + 'nav__next' }
+              className={ CLASS_PREFIX + 'nav__button ' + CLASS_PREFIX + 'nav__next' }
               style={ styleNext }
               onMouseEnter={ hoverOn('button-next') }
               onMouseLeave={ hoverOn(false) }
