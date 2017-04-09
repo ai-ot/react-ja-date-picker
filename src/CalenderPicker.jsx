@@ -1,6 +1,7 @@
 import React, { PropTypes, Component } from 'react'
 import moment from 'moment'
-import style from './style.css.js'
+import style  from './style.css'
+import {}     from './calc'
 
 /**
  * internal classname prefix
@@ -9,7 +10,7 @@ import style from './style.css.js'
 export const CLASS_PREFIX =  'calender-picker__'
 
 /**
- * reply 2017 holiday
+ * generate 2017 holiday
  * @return {array<string>} holidays
  */
 const getHolidays = () => {
@@ -66,17 +67,24 @@ const getMonthCalendar = (year, month) => {
 }
 
 /**
- * Calender Component
- * @param  {object}         props props
- * @return {ReactComponent} render a calender
+ * Define Calender Picker
+ * @return {ReactComponent} React Component
  */
 export default class CalenderPicker extends Component {
 
+  /**
+   * props type check
+   * @type {Object}
+   */
   static propTypes = {
     date: PropTypes.string,
     type: PropTypes.string,
   }
 
+  /**
+   * default values of props
+   * @type {Object}
+   */
   static defaultProps = {
     date: '',
     type: 'link'
@@ -84,12 +92,13 @@ export default class CalenderPicker extends Component {
 
   /**
    * render
-   * @param {object} state components state
+   * @param  {object} state components state
    * @return {ReactComponent} render a calender picker
    */
   render() {
+
     /**
-     * check if a element with key id hovered
+     * check if a element with certain id is being hovered
      * @param  {string}  id  given id
      * @return {boolean}     whether hoverring
      */
@@ -97,7 +106,7 @@ export default class CalenderPicker extends Component {
 
     /**
      * create callback to set hoverirng state
-     * @param  {string|boolean} id giving id or false to cancel it
+     * @param  {string|boolean} id giving id, or false to cancel it
      * @return {function} callback to set state
      */
     const hoverOn = id => () => this.setState({ ...this.state, ...{ hovering: id } })
@@ -106,6 +115,7 @@ export default class CalenderPicker extends Component {
     const date = moment(this.props.date)
     const type = this.props.type
 
+    // obtain date info
     const month = date.month() + 1
     const year = date.year()
 
@@ -114,12 +124,14 @@ export default class CalenderPicker extends Component {
 
     const thisList = thisMonth.map((week, i) => <tr key={ `${month}-${i}` }>
       { week.map(({ day, month }, j) => {
+
         const key = `month-day-${month}-${day}`
+        const style = isHovering(key) ? { ...style.day, ...style.day$hover } : style.day
 
         return (<td
           className={ CLASS_PREFIX + 'day' }
           key={ `${month}-${i}-day-${j}` }
-          style={ isHovering(key) ? { ...style.day, ...style.day$hover } : style.day }
+          style={ style }
           onMouseEnter={ hoverOn(key) }
           onMouseLeave={ hoverOn(false) }
         >
@@ -131,6 +143,14 @@ export default class CalenderPicker extends Component {
       }) }
     </tr>)
 
+    // generate each style for buttons
+    const stylePrev = isHovering('button-prev') ?
+      { ...style.navButton, ...style.navPrev, ...style.navButton$hover } :
+      { ...style.navButton, ...style.navPrev }
+    const styleNext = isHovering('button-next') ?
+      { ...style.navButton, ...style.navNext, ...style.navButton$hover } :
+      { ...style.navButton, ...style.navNext }
+
     // ここ以下どうにかする
     return (
       <div className={ 'calender-wrapper' }>
@@ -138,17 +158,13 @@ export default class CalenderPicker extends Component {
           <div className={ CLASS_PREFIX + 'nav__wrap' } style={ style.navWrap }>
             <span
               className={ CLASS_PREFIX + 'nav__button', CLASS_PREFIX + 'nav__prev' }
-              style={ isHovering('button-prev') ?
-                { ...style.navButton, ...style.navPrev, ...style.navButton$hover } :
-                { ...style.navButton, ...style.navPrev } }
+              style={ stylePrev }
               onMouseEnter={ hoverOn('button-prev') }
               onMouseLeave={ hoverOn(false) }
             >{'←'}</span>
             <span
               className={ CLASS_PREFIX + 'nav__button', CLASS_PREFIX + 'nav__next' }
-              style={ isHovering('button-next') ?
-                { ...style.navButton, ...style.navNext, ...style.navButton$hover } :
-                { ...style.navButton, ...style.navNext } }
+              style={ styleNext }
               onMouseEnter={ hoverOn('button-next') }
               onMouseLeave={ hoverOn(false) }
             >{'→'}</span>
@@ -156,7 +172,7 @@ export default class CalenderPicker extends Component {
 
           <div className={ CLASS_PREFIX + 'month' } style={ style.month }>
             <div className={ CLASS_PREFIX + 'caption' } style={ style.caption }>
-              <strong>{ (month) + '月'}</strong>
+              <strong>{ (month) + '月' }</strong>
             </div>
             <table>
               <thead className={ CLASS_PREFIX + 'week' } style={ style.week }>

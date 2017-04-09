@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { getMonthCalendar } from '../src/lib'
+import { getMonthCalendar } from '../src/calc'
 
 
 describe('Test of getMonthCalendar', () => {
