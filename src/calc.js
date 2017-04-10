@@ -3,32 +3,8 @@
  * @file
  */
 
-import moment from 'moment'
-
-/**
- * generate 2017 holiday
- * @return {array<string>} holidays
- */
-const getHolidays = () => {
-  return [
-    '2017-01-01',
-    '2017-01-02',
-    '2017-02-11',
-    '2017-03-20',
-    '2017-04-29',
-    '2017-05-03',
-    '2017-05-04',
-    '2017-05-05',
-    '2017-07-17',
-    '2017-08-11',
-    '2017-09-18',
-    '2017-09-23',
-    '2017-10-09',
-    '2017-11-03',
-    '2017-11-23',
-    '2017-12-23',
-  ]
-}
+import moment           from 'moment'
+import { getHolidays }  from './config'
 
 
 /**
@@ -55,7 +31,7 @@ export const getMonthCalendar = (year, month) => {
         month: idx.month() + 1,
         active: (idx.month() + 1 == month),
         weekday: weekdays[idx.weekday()],
-        isHoliday: holidays.indexOf(idx.format('YYYY-MM-DD')) == 0
+        isHoliday: holidays.indexOf(idx.format('YYYY-MM-DD')) > 0
       })
       idx.add(1, 'days')
     }
