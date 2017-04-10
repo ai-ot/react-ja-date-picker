@@ -6,16 +6,33 @@
 
 ## 使い方
 
+ブラウザの場合は[Babel](https://babeljs.io/)を使って[Browserify](http://browserify.org/)や[webpack](https://webpack.github.io/)で読み込める形に変換してください。
+
 ### static import
 
 ```javascript
-import 'CalenderPicker' from 'calender-picker'
+import React          from 'react'
+import { render }     from 'react-dom'
+import CalenderPicker from 'calender-picker'
+
+render(
+  <CalenderPicker />,
+  document.getElementById('app')
+)
+
 ```
 
 ### commonJS
 
 ```javascript
+const React          = require('react')
+const render         = require('react-dom').render
 const CalenderPicker = require('calender-picker')
+
+render(
+  react.createElement(CalenderPicker),
+  document.getElementById
+)
 ```
 
 ## 開発
@@ -47,12 +64,12 @@ $ npm start     # プレビュー
 - `date:string`をプロパティにとり、指定しない場合はデフォルトで本日になります。パースできなかった場合はエラーになります
 - `calenderType:string`をプロパティにとり、値に応じてリンクモードとボタンモードの2つのモードで動作します。どちらかのモードをデフォルトにします
   + リンクモードでは、それぞれの日付は`a`タグの中にレンダリングされます
-  + リンクモードにおいては、`linkFormat:string|function`プロパティによって、aタグのリンク先のURL等を指定できます.
+  + リンクモードにおいては、`linkFormat:string|function`プロパティによって、aタグのリンク先のURL等を指定できます
       - 文字列でフォーマットを指定するか、コールバックで指定するかのどちらか、あるいは両方の入力を許容します
   + ボタンモードでは、それぞれの日付は`button`タグの中にレンダリングされます
   + ボタンモードにおいては、`onSelect:function`プロパティによってコールバックを指定できます
   + コールバックには、選択された年、月、日の値とカレンダーピッカーを閉じるコールバックが渡されます
-
+- `style:object`をプロパティにとり、デフォルトのスタイルを上書きできます。(NOTE: `style`がReactに予約されているプロパティかもしれないので、意図しない動作をしないかどうかを調査する必要があります)
 ### 実装例
 
 #### リンクモード

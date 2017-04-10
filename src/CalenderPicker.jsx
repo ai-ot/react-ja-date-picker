@@ -67,7 +67,7 @@ const getMonthCalendar = (year, month) => {
 }
 
 /**
- * Define Calender Picker
+ * Define Calender Picker Component
  * @return {ReactComponent} React Component
  */
 export default class CalenderPicker extends Component {
@@ -119,9 +119,33 @@ export default class CalenderPicker extends Component {
     const month = date.month() + 1
     const year = date.year()
 
-  //  console.log(getMonthCalendar(2017, 4))
+    // console.log(getMonthCalendar(2017, 4))
+
+    /**
+     * 当月の日の情報をまとめたオブジェクトを出力する
+     * @type {array<array<{day:number,month:number,active:boolean,weekday:string,isHoliday:boolean}>>}
+     */
     const thisMonth = getMonthCalendar(year, month)
 
+    // NOTE:
+    // classNameプロパティとstyleプロパティは動的に生成したいです。こんな感じ
+    // ```
+    // const cssProps = (slug, hover) => ({
+    //  className: CLASS_PREFIX + slug,
+    //  style: hover && isHovering(slug) ?
+    //    { ...STYLE[slug], ...STYLE[slug].$hover } :
+    //    STYLE[slug],
+    //  onMouseEnter: hover ? hoverOn(slug)  : false,
+    //  onMouseLeave: hover ? hoverOn(false) : false
+    // })
+    //
+    // return <element ...cssProps('element', true) />
+    // ```
+
+    /**
+     * 当月の日をリストアップして出力する
+     * @type {array<ReactComponent>}
+     */
     const thisList = thisMonth.map((week, i) => <tr key={ `${month}-${i}` }>
       { week.map(({ day, month }, j) => {
 
@@ -135,7 +159,7 @@ export default class CalenderPicker extends Component {
           onMouseEnter={ hoverOn(key) }
           onMouseLeave={ hoverOn(false) }
         >
-          { type === 'link' ?
+          { type === 'link' ?　// aタグとボタンタグを条件に応じて出力する
             <a
                style={ STYLE.link }
                href={ `http://example/${year}/${month}/${day}` }>{ day }</a> :
@@ -147,9 +171,17 @@ export default class CalenderPicker extends Component {
     </tr>)
 
     // generate each style for buttons
+    /**
+     * ホバーしているかどうかに基づいて、先月に移動するボタンのクラスをオブジェクトの形式で生成する
+     * @type {object}
+     */
     const stylePrev = isHovering('button-prev') ?
       { ...STYLE.navButton, ...STYLE.navPrev, ...STYLE.navButton$hover } :
       { ...STYLE.navButton, ...STYLE.navPrev }
+      /**
+       * ホバーしているかどうかに基づいて、来月に移動するボタンのクラスをオブジェクトの形式で生成する
+       * @type {object}
+       */
     const styleNext = isHovering('button-next') ?
       { ...STYLE.navButton, ...STYLE.navNext, ...STYLE.navButton$hover } :
       { ...STYLE.navButton, ...STYLE.navNext }
