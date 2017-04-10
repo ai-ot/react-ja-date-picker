@@ -137,9 +137,12 @@ export default class CalenderPicker extends Component {
           onMouseEnter={ hoverOn(key) }
           onMouseLeave={ hoverOn(false) }
         >
-          { type === 'link' ? // aタグとボタンタグを条件に応じて出力する
-            <a href={ `http://example/${year}/${month}/${day}` }>{ day }</a> :
-            <button>{ day }</button>
+          { type === 'link' ?　// aタグとボタンタグを条件に応じて出力する
+            <a
+               style={ STYLE.link }
+               href={ `http://example/${year}/${month}/${day}` }>{ day }</a> :
+            <button
+              style={ STYLE.button }>{ day }</button>
           }
         </td>)
       }) }
@@ -161,7 +164,6 @@ export default class CalenderPicker extends Component {
       { ...STYLE.navButton, ...STYLE.navNext, ...STYLE.navButton$hover } :
       { ...STYLE.navButton, ...STYLE.navNext }
 
-    // ここ以下どうにかする
     return (
       <div className={ 'calender-wrapper' }>
         <div className={ CLASS_PREFIX + 'container' } style={ STYLE.container }>
@@ -184,7 +186,7 @@ export default class CalenderPicker extends Component {
 
           <div className={ CLASS_PREFIX + 'month' } style={ STYLE.month }>
             <div className={ CLASS_PREFIX + 'caption' } style={ STYLE.caption }>
-              <strong>{ `${year} 年 ${month} 月` }</strong>
+              <strong>{ (year) + '年' + (month) + '月' }</strong>
             </div>
             <table>
               <thead className={ CLASS_PREFIX + 'week' } style={ STYLE.week }>
