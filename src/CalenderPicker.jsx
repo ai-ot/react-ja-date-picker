@@ -96,7 +96,6 @@ export default class CalenderPicker extends Component {
     const month = date.month() + 1
     const year = date.year()
 
-    // console.log(getMonthCalendar(2017, 4))
 
     /**
      * 当月の日の情報をまとめたオブジェクトを出力する
@@ -185,7 +184,7 @@ export default class CalenderPicker extends Component {
 
           <div className={ CLASS_PREFIX + 'month' } style={ STYLE.month }>
             <div className={ CLASS_PREFIX + 'caption' } style={ STYLE.caption }>
-              <strong>{ (month) + '月' }</strong>
+              <strong>{ `${year} 年 ${month} 月` }</strong>
             </div>
             <table>
               <thead className={ CLASS_PREFIX + 'week' } style={ STYLE.week }>
