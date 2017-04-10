@@ -1,19 +1,19 @@
 import React, { PropTypes, Component } from 'react'
 import moment from 'moment'
 import STYLE  from './style'
-import { getMonthCalendar }     from './calc'
+import { getMonthCalendar } from './calc'
 
 /**
  * internal classname prefix
  * @type {string}
  */
-export const CLASS_PREFIX =  'calender-picker__'
+export const CLASS_PREFIX =  'react-ja-date-picker__'
 
 /**
  * Define Calender Picker Component
  * @return {ReactComponent} React Component
  */
-export default class CalenderPicker extends Component {
+export default class DatePicker extends Component {
 
   /**
    * props type check

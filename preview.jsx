@@ -5,13 +5,13 @@
 
 import React          from 'react'
 import { render }     from 'react-dom'
-import CalenderPicker from './src/CalenderPicker.jsx'
+import DatePicker from './src/DatePicker.jsx'
 
 render(
   <div>
-    <CalenderPicker date={ '2017-12-1' } />
-    <CalenderPicker date={ '2018-1-1' } type={ 'link' } />
-    <CalenderPicker date={ '2018-2-1' } type={ 'button' } />
+    <DatePicker date={ '2017-12-1' } />
+    <DatePicker date={ '2018-1-1' } type={ 'link' } />
+    <DatePicker date={ '2018-2-1' } type={ 'button' } />
   </div>,
   document.getElementById('app')
 )

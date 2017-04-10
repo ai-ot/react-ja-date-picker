@@ -1,8 +1,8 @@
 {
-  "name": "calender-picker",
+  "name": "react-ja-date-picker",
   "version": "0.0.0",
   "description": "カレンダーピッカーのReactコンポーネント",
-  "main": "lib/CalenderPicker.js",
+  "main": "lib/DatePicker.js",
   "files": [
     "lib"
   ],

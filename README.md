@@ -3,6 +3,7 @@
 [![Build Status](https://travis-ci.org/ai-ot/react-ja-date-picker.svg?branch=master)](https://travis-ci.org/ai-ot/react-ja-date-picker)
 
 カレンダーピッカーです。
+このコンポーネントは現在開発中です。
 
 [DEMO](https://ai-ot.github.io/react-ja-date-picker/)
 
@@ -15,10 +16,10 @@
 ```javascript
 import React          from 'react'
 import { render }     from 'react-dom'
-import CalenderPicker from 'calender-picker'
+import DatePicker from 'react-ja-date-picker'
 
 render(
-  <CalenderPicker />,
+  <DatePicker />,
   document.getElementById('app')
 )
 
@@ -29,10 +30,10 @@ render(
 ```javascript
 const React          = require('react')
 const render         = require('react-dom').render
-const CalenderPicker = require('calender-picker')
+const DatePicker = require('react-ja-date-picker')
 
 render(
-  react.createElement(CalenderPicker),
+  react.createElement(DatePicker),
   document.getElementById('app')
 )
 ```
@@ -40,15 +41,15 @@ render(
 ## 開発
 
 ```shell
-$ git clone git@bitbucket.org:ai-ot/calender-picker.git
-$ cd calender-picker
-$ yarn
+$ git clone git@github.com:ai-ot/react-ja-date-picker.git
+$ cd react-ja-date-picker
+$ npm install
 $ npm test      # テスト実行
 $ npm run build # ビルド実行
 $ npm start     # プレビュー
 ```
 
-## 要件
+## Specification (just a Note)
 
 ### デザイン
 
@@ -77,7 +78,7 @@ $ npm start     # プレビュー
 #### リンクモード
 
 ```html
-<CalenderPicker
+<DatePicker
   calenderType={ 'link' }
   className={ 'some-class' }
   date={ '2017/12/31' }
@@ -88,7 +89,7 @@ $ npm start     # プレビュー
 #### ボタンモード
 
 ```html
-<CalenderPicker
+<DatePicker
   calenderType={ 'button' }
   className={ 'some-class' }
   date={ '2017/12/31' }
