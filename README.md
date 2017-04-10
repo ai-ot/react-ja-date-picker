@@ -1,6 +1,6 @@
 # Calender Picker
 
-[![CircleCI](https://circleci.com/bb/ai-ot/calender-picker.svg?style=svg&circle-token=7d65bdcc898b13dacd1af9bf47ffdfacc25dcfae)](https://circleci.com/bb/ai-ot/calender-picker)
+[![Build Status](https://travis-ci.org/ai-ot/react-ja-date-picker.svg?branch=master)](https://travis-ci.org/ai-ot/react-ja-date-picker)
 
 カレンダーピッカーです。
 
