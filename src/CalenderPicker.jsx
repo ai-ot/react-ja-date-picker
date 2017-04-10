@@ -20,9 +20,8 @@ export default class CalenderPicker extends Component {
    * @type {Object}
    */
   static propTypes = {
-    month: PropTypes.number,
-    type:  PropTypes.string,
-    year:  PropTypes.number,
+    date: PropTypes.string,
+    type: PropTypes.string,
   }
 
   /**
@@ -30,9 +29,8 @@ export default class CalenderPicker extends Component {
    * @type {Object}
    */
   static defaultProps = {
-    month: 4,
+    date: '',
     type: 'link',
-    year: 2017,
   }
 
   /**
@@ -42,9 +40,10 @@ export default class CalenderPicker extends Component {
    */
   constructor(props) {
     super(props)
+    let [year, month, day] = this.props.date.split('/')
     this.state = {
-      year: props.year,
-      month: props.month,
+      year: year,
+      month: month
     }
   }
 

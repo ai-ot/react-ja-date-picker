@@ -9,9 +9,9 @@ import CalenderPicker from './src/CalenderPicker.jsx'
 
 render(
   <div>
-    <CalenderPicker month={ 12 } year={ 2017 } />
-    <CalenderPicker month={ 1 } year={ 2018 } type={ 'link' } />
-    <CalenderPicker month={ 2 } year={ 2018 } type={ 'button' } />
+    <CalenderPicker date={ '2017/12/1' } />
+    <CalenderPicker date={ '2018/1/1' } type={ 'link' } />
+    <CalenderPicker date={ '2018/2/1' } type={ 'button' } />
   </div>,
   document.getElementById('app')
 )
