@@ -5,23 +5,28 @@ node_js:
 cache:
   yarn: true
   directories:
-    - "~/.cache/yarn"
+  - "~/.cache/yarn"
 
 before_script:
-- "npm run build"
+- npm run build
 
 script:
-- "npm run lint"
+- npm run lint
 
 after_success:
-- "npm run deploy"
+- npm run deploy
 
 deploy:
   provider: npm
-  api_key: "YOUR_API_KEY"
+  api_key:
+    secure: hroFBp/vMUKqoS0iRHslalZDg557bJyWyjLQUw9HoGAMZCgHjo3iBdxvcpwzz1BLn4PL/GQdcQaT09mqu6qMY/NdzCMy+H08AoOHUCvWMBLevxrfTG6E8XYiB/RH4ZTyA5IW/8Ev7QROq1EAoJ59ZwlxpFp94NXCRHQdcE7yL0dFCc1eObH9XzCtC9gsEwntWIpZa1CYYpO5AmfbQv90c5FkAxuFvJiUPMA5X4OyKec3VIDZiQSTKr/hrcOu+KAgoToLSReqNFDFaal/wtm0b2p2/GNaWFAgv7kPf5P2wU5wpx/BsJtuUNbZkVK+5DwpfOhbdPZG+qcZeu/4g9UunufPVo5ej3OtMbjTBsZP20d3e5VUKaKc0ZATpEns1kKxu8Fmj3w/87HjCfZNtPUh5+U9tUPdWRojWhD4YDyQMRKgQVbI/Npp9Zswi6I4w2N4TqC9BxvbbQ9bBGfmoL3go6MyxDMl5JoVE+BfLyL1ltPYC8dGIJuDU0BdL8ZZd+yTY3tvQfMnvjNndaBQk57eU/EaaMAGNGqnFgx5e8LoIJ/pNnu1Qp1cSRdOeQ8YUhFqG/xSXPVxjRsppq5MRnFYt/cl+9IwOJ4x7ChwaevcJOEn4JEtlmenRjf3C83AfkG60sxppi0ehFptaemvTzOU2PxVtpl9Q73qean/k7npe6E=
+    on:
+      tags: true
+    skip_cleanup: true
 
 env:
   global:
   - GIT_USER: Travis CI
   - GIT_EMAIL: ai-ot@users.noreply.github.com
   - GH_REF: github.com/ai-ot/react-ja-date-picker.git
+  - secure: Dy+rIwOZMh6ZVMMJf/5Mz4N9LX0ycYbMwVI8pWwVl4YL/R0Zfx9etaGdhqWD5w3u/bn/tH6trT9P8FuNIII24gbS5tlbVO+iz5ZCPI+pzfNn1P8t9FfpoU6GyNwWwsKjX6/s148TRQzv7MJpsWZZuEMvhMahGSY7OqXho0tB1f2HrKt8j0DvpJ7I+HHBPq14r3e++gYxtvLthOrY8V7ZDyfJkmmwIhvlu1qze6TwYIwleyERmF6DmF2IrsnQ1FBlU/k6KlZPyLIBQStAydPUwLcvrtznKRO05hRKY7OKx7gsy9Gxy67ZynH2cyjNeBoYfptyeZp6dbS10KvsomMofke3hfbYra9GYlaEL/tHmKVilmPR3zhyou+lgIY1fEY8jZUfPRmA5AXGDFah6vN6905Hn5TN8CqbmKchyUUTBRUcjDxuvpI+nKHqbgAxv9l8nn5N2mUU9r5YLhX/xLBETh1AeBZhPB8JTYRfJP4bU/PL2XFkyVWbz8RKp2/QOhnzYWtn93tC35Ritd0CrMYXWferJ3dUj884OCaQHSJRkTLkJiDwaYjGDM29bfUEMhumQ3J4ghMcS0BgmyzyoyyoASy/oheaH9FmrCUjHwTAWRSf3/coh92ricuVsKts+ZvNUzJ6hYwNrVvZS3/BBt8dFXqjGRxzNPwuRKouzqn/rMY=

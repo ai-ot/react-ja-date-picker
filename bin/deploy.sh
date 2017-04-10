@@ -15,8 +15,11 @@ if [[ "master" != "$TRAVIS_BRANCH" ]]; then
 fi
 
 # deploy sample pages to gh-pages
-
-rm -rf .git
+npm run build
+mkdir gh_page_contents
+pushd gh_page_contents
+cp ../bundle.js ./
+cp ../index.html ./
 
 git init
 git config user.name $GIT_USER
@@ -25,3 +28,6 @@ git config user.email $GIT_EMAIL
 git add .
 git commit --quiet -m "Deploy from Travis CI [no ci]"
 git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:gh-pages > /dev/null 2>&1
+
+popd
+rmdir gh_page_contents
