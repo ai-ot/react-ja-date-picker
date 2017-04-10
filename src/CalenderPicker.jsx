@@ -20,8 +20,9 @@ export default class CalenderPicker extends Component {
    * @type {Object}
    */
   static propTypes = {
-    date: PropTypes.string,
-    type: PropTypes.string,
+    month: PropTypes.number,
+    type:  PropTypes.string,
+    year:  PropTypes.number,
   }
 
   /**
@@ -29,8 +30,22 @@ export default class CalenderPicker extends Component {
    * @type {Object}
    */
   static defaultProps = {
-    date: '',
-    type: 'link'
+    month: 4,
+    type: 'link',
+    year: 2017,
+  }
+
+  /**
+   * state constractor
+   * @param  {[type]} props [Props]
+   * @return {[type]}       [description]
+   */
+  constructor(props) {
+    super(props)
+    this.state = {
+      year: props.year,
+      month: props.month,
+    }
   }
 
   /**
@@ -39,7 +54,6 @@ export default class CalenderPicker extends Component {
    * @return {ReactComponent} render a calender picker
    */
   render() {
-
     /**
      * check if a element with certain id is being hovered
      * @param  {string}  id  given id
@@ -54,8 +68,28 @@ export default class CalenderPicker extends Component {
      */
     const hoverOn = id => () => this.setState({ ...this.state, ...{ hovering: id } })
 
+    /**
+     * change next month
+     * @return {[type]} [change state]
+     */
+    const nextMonth = () => {
+      const nYear = (this.state.month + 1 > 12 ? this.state.year + 1 : this.state.year)
+      const nMonth = (this.state.month + 1) % 12
+      this.setState({ year: nYear, month: nMonth })
+    }
+
+    /**
+     * change prev month
+     * @return {[type]} [description]
+     */
+    const prevMonth = () => {
+      const nYear = (this.state.month - 1 == 0 ? this.state.year - 1 : this.state.year)
+      const nMonth = (this.state.month - 1 == 0 ? 12 : this.state.month - 1)
+      this.setState({ year: nYear, month: nMonth })
+    }
+
     // parse props
-    const date = moment(this.props.date)
+    const date = moment(`${this.state.year}-${this.state.month}-1`)
     const type = this.props.type
 
     // obtain date info
@@ -136,12 +170,14 @@ export default class CalenderPicker extends Component {
             <span
               className={ CLASS_PREFIX + 'nav__button ' + CLASS_PREFIX + 'nav__prev' }
               style={ stylePrev }
+              onClick={ prevMonth }
               onMouseEnter={ hoverOn('button-prev') }
               onMouseLeave={ hoverOn(false) }
             >{'←'}</span>
             <span
               className={ CLASS_PREFIX + 'nav__button ' + CLASS_PREFIX + 'nav__next' }
               style={ styleNext }
+              onClick={ nextMonth }
               onMouseEnter={ hoverOn('button-next') }
               onMouseLeave={ hoverOn(false) }
             >{'→'}</span>
