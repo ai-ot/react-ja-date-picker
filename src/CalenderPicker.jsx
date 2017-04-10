@@ -90,13 +90,15 @@ export default class CalenderPicker extends Component {
      * @type {array<ReactComponent>}
      */
     const thisList = thisMonth.map((week, i) => <tr key={ `${month}-${i}` }>
-      { week.map(({ day, month, active }, j) => {
+      { week.map(({ day, month, active, isHoliday }, j) => {
 
         const key = `month-day-${month}-${day}`
         const tdStyle = isHovering(key) ? { ...STYLE.day, ...STYLE.day$hover } : STYLE.day
 
         return (<td
-          className={ `${CLASS_PREFIX + 'day'} ${CLASS_PREFIX + (active ? 'active' : 'not-active')}` }
+          className={ `${CLASS_PREFIX + 'day'} 
+            ${CLASS_PREFIX + (active ? 'active' : 'not-active')}
+            ${CLASS_PREFIX + (isHoliday ? 'is-holiday' : 'is-weekday')}` }
           key={ `${month}-${i}-day-${j}` }
           style={ tdStyle }
           onMouseEnter={ hoverOn(key) }
