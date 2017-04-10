@@ -34,16 +34,17 @@ export default class CalenderPicker extends Component {
   }
 
   /**
-   * state constractor
-   * @param  {[type]} props [Props]
-   * @return {[type]}       [description]
+   * initializ state
+   * @param  {Props} props given props
+   * @return {void}
    */
   constructor(props) {
     super(props)
-    let [year, month, day] = this.props.date.split('/')
+    const date = moment(this.props.date)
     this.state = {
-      year: year,
-      month: month
+      year     : date.year(),
+      month    : date.month(),
+      hovering : false,
     }
   }
 
@@ -69,7 +70,7 @@ export default class CalenderPicker extends Component {
 
     /**
      * change next month
-     * @return {[type]} [change state]
+     * @return {void}
      */
     const nextMonth = () => {
       const nYear = (this.state.month + 1 > 12 ? this.state.year + 1 : this.state.year)
@@ -79,7 +80,7 @@ export default class CalenderPicker extends Component {
 
     /**
      * change prev month
-     * @return {[type]} [description]
+     * @return {void}
      */
     const prevMonth = () => {
       const nYear = (this.state.month - 1 == 0 ? this.state.year - 1 : this.state.year)
@@ -128,7 +129,7 @@ export default class CalenderPicker extends Component {
         const tdStyle = isHovering(key) ? { ...STYLE.day, ...STYLE.day$hover } : STYLE.day
 
         return (<td
-          className={ `${CLASS_PREFIX + 'day'} 
+          className={ `${CLASS_PREFIX + 'day'}
             ${CLASS_PREFIX + (active ? 'active' : 'not-active')}
             ${CLASS_PREFIX + (isHoliday ? 'is-holiday' : 'is-weekday')}` }
           key={ `${month}-${i}-day-${j}` }
@@ -136,12 +137,12 @@ export default class CalenderPicker extends Component {
           onMouseEnter={ hoverOn(key) }
           onMouseLeave={ hoverOn(false) }
         >
-          { type === 'link' ?　// aタグとボタンタグを条件に応じて出力する
+          { type === 'link' ? // aタグとボタンタグを条件に応じて出力する
             <a
-               style={ STYLE.link }
-               href={ `http://example/${year}/${month}/${day}` }>{ day }</a> :
-            <button
-              style={ STYLE.button }>{ day }</button>
+              href={ `http://example/${year}/${month}/${day}` }
+              style={ STYLE.link }
+            >{ day }</a> :
+            <button style={ STYLE.button }>{ day }</button>
           }
         </td>)
       }) }
