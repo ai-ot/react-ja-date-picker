@@ -1,7 +1,8 @@
 import React, { PropTypes, Component } from 'react'
 import moment from 'moment'
-import STYLE  from './style'
+import DEFAULT_STYLE  from './style'
 import { getMonthCalendar } from './calc'
+import { normalizeStyle }   from './lib'
 
 /**
  * internal classname prefix
@@ -20,8 +21,8 @@ export default class DatePicker extends Component {
    * @type {Object}
    */
   static propTypes = {
-    date: PropTypes.string,
-    type: PropTypes.string,
+    date  : PropTypes.string,
+    type  : PropTypes.string,
   }
 
   /**
@@ -29,8 +30,8 @@ export default class DatePicker extends Component {
    * @type {Object}
    */
   static defaultProps = {
-    date: '',
-    type: 'link',
+    date  : '',
+    type  : 'link',
   }
 
   /**
@@ -91,6 +92,9 @@ export default class DatePicker extends Component {
     // parse props
     const type = this.props.type
 
+    // parse style object
+    const STYLE = normalizeStyle(DEFAULT_STYLE)
+
     // obtain date info
     const { year, month } = this.state
 
@@ -106,7 +110,7 @@ export default class DatePicker extends Component {
     // const cssProps = (slug, hover) => ({
     //  className: CLASS_PREFIX + slug,
     //  style: hover && isHovering(slug) ?
-    //    { ...STYLE[slug], ...STYLE[slug].$hover } :
+    //    { ...STYLE[slug], ...STYLE[`${slug}:hover`] } :
     //    STYLE[slug],
     //  onMouseEnter: hover ? hoverOn(slug)  : false,
     //  onMouseLeave: hover ? hoverOn(false) : false
@@ -123,7 +127,7 @@ export default class DatePicker extends Component {
       { week.map(({ day, month, active, isHoliday }, j) => {
 
         const key = `month-day-${month}-${day}`
-        const tdStyle = isHovering(key) ? { ...STYLE.day, ...STYLE.day$hover } : STYLE.day
+        const tdStyle = isHovering(key) ? { ...STYLE.day, ...STYLE['day:hover'] } : STYLE.day
 
         return (<td
           className={ `${CLASS_PREFIX + 'day'}
@@ -155,14 +159,14 @@ export default class DatePicker extends Component {
      * @type {object}
      */
     const stylePrev = isHovering('button-prev') ?
-      { ...STYLE.navButton, ...STYLE.navPrev, ...STYLE.navButton$hover } :
+      { ...STYLE.navButton, ...STYLE.navPrev, ...STYLE['navButton:hover'] } :
       { ...STYLE.navButton, ...STYLE.navPrev }
       /**
        * ホバーしているかどうかに基づいて、来月に移動するボタンのクラスをオブジェクトの形式で生成する
        * @type {object}
        */
     const styleNext = isHovering('button-next') ?
-      { ...STYLE.navButton, ...STYLE.navNext, ...STYLE.navButton$hover } :
+      { ...STYLE.navButton, ...STYLE.navNext, ...STYLE['navButton:hover'] } :
       { ...STYLE.navButton, ...STYLE.navNext }
 
     return (

@@ -5,9 +5,7 @@
  * [ルール]
  * - プロパティ名は Lower Camel Case で記述(ex. 'background-color' => 'backgroundColor')
  * [制約]
- * - 擬似クラス(:hoverなど)は、className$hover のようにプロパティを作成する
- * - ただし、コンポーネント側でスタイルを振り分ける処理が必要
- * - なお、このルールは、以下のルールが使えるようにリファクタリングする予定
+ * - 擬似クラス(:hoverなど)は、className.$hover のようにプロパティを作成する
  *   {
  *     className: {
  *        someProp: 'value',
@@ -22,11 +20,11 @@ export default {
 
   // calender container
   container: {
-    'width'    : '326px',
-    'position' : 'relative',
-    'border'   : '1px solid #e4e7e7',
-    'padding'  : '20px',
-    'boxSizing': 'border-box'
+    width     : '326px',
+    position  : 'relative',
+    border    : '1px solid #e4e7e7',
+    padding   : '20px',
+    boxSizing : 'border-box',
   },
 
   // wrapper for navigations
@@ -45,12 +43,11 @@ export default {
     color        : '#e4e7e7',
     cursor       : 'pointer',
     transition   : '.2s',
-  },
 
-  // navButton:hover
-  navButton$hover: {
-    'border' : '1px solid #c4c4c4',
-    'color'  : '#c4c4c4',
+    '&:hover': {
+      'border' : '1px solid #c4c4c4',
+      'color'  : '#c4c4c4',
+    }
   },
 
   navPrev: { left  : '20px' },
@@ -95,25 +92,25 @@ export default {
     border    : '1px solid #e4e7e7',
     boxSizing : 'border-box',
     textAlign : 'center',
-    cursor    : 'pointer'
-  },
+    cursor    : 'pointer',
 
-  day$hover    : {
-    background : '#37c5ab',
-    color      : '#fff',
+    '&:hover'    : {
+      background : '#37c5ab',
+      color      : '#fff',
+    },
   },
 
   link: {
-    textDecoration: 'none',
-    color: 'inherit'
+    textDecoration : 'none',
+    color          : 'inherit'
   },
 
   button: {
-    border: '0',
-    background: 'transparent',
-    padding: '0',
-    fontSize: 'inherit',
-    color: 'inherit',
-    cursor: 'pointer'
+    border     : '0',
+    background : 'transparent',
+    padding    : '0',
+    fontSize   : 'inherit',
+    color      : 'inherit',
+    cursor     : 'pointer'
   }
 }

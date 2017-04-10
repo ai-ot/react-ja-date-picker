@@ -1,13 +1,14 @@
 import { expect } from 'chai'
 import { normalizeStyle } from '../src/lib'
 
-describe('Test of normalizeStyle', () => {
+describe.only('Test of normalizeStyle', () => {
   it('should create slug$hover type object', () => {
     const actual = normalizeStyle({
       slug: {
         someProp1: 'val1',
         someProp2: 'val2',
-        $hover: {
+
+        '&:hover': {
           someProp2: 'val2_',
           someProp3: 'val3',
         }
@@ -18,7 +19,7 @@ describe('Test of normalizeStyle', () => {
         someProp1: 'val1',
         someProp2: 'val2',
       },
-      slug$hover: {
+      'slug:hover': {
         someProp1: 'val1',
         someProp2: 'val2_',
         someProp3: 'val3',

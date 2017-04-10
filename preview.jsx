@@ -9,9 +9,9 @@ import DatePicker from './src/DatePicker.jsx'
 
 render(
   <div>
-    <DatePicker date={ '2017-12-1' } />
-    <DatePicker date={ '2018-1-1' } type={ 'link' } />
-    <DatePicker date={ '2018-2-1' } type={ 'button' } />
+    <DatePicker date={ '2017-12-01' } />
+    <DatePicker date={ '2018-01-01' } type={ 'link' } />
+    <DatePicker date={ '2018-02-01' } type={ 'button' } />
   </div>,
   document.getElementById('app')
 )

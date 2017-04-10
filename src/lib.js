@@ -8,10 +8,11 @@ export const normalizeStyle = style => {
 
   Object.keys(style).forEach(slug => {
     Object.keys(style[slug]).forEach(prop => {
-      if (prop[0] === '$') {
-        style[slug + prop] = { ...style[slug], ...style[slug][prop] }
+      if (prop === '&:hover') {
+        const newProp = ':hover'
+        style[slug + newProp] = { ...style[slug], ...style[slug][prop] }
         delete style[slug][prop]
-        delete style[slug + prop][prop]
+        delete style[slug + newProp][prop]
       }
     })
   })
