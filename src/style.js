@@ -12,7 +12,7 @@
  *     className: {
  *        someProp: 'value',
  *        $hover: {
- *          someProp: 'overwrited'
+ *          someProp: 'overwritten'
  *        }
  *     }
  *   }
