@@ -27,15 +27,16 @@
     "comma-spacing": ["error", { "before": false, "after": true }],
     "indent": ["error", 2, { "SwitchCase": 1 }],
     "jsx-quotes": ["error", "prefer-double"],
-    "valid-jsdoc": ["error"],
     "key-spacing": ["off"],
     "keyword-spacing": ["error"],
     "linebreak-style": ["error", "unix"],
-    "no-dupe-args": ["error"],
     "no-console": ["warn"],
     "no-const-assign": ["error"],
+    "no-dupe-args": ["error"],
+    "no-trailing-spaces": ["error"],
     "no-unused-vars": ["error"],
     "object-curly-spacing": ["error", "always"],
+    "valid-jsdoc": ["error"],
     "require-jsdoc": ["error", {
       "require": {
         "FunctionDeclaration": true,

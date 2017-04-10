@@ -1,30 +1,29 @@
 import { expect } from 'chai'
 import { normalizeStyle } from '../src/lib'
 
-describe.skip('Test of normalizeStyle', () => {
+describe('Test of normalizeStyle', () => {
   it('should create slug$hover type object', () => {
     const actual = normalizeStyle({
       slug: {
-        someProp1: 'val0',
+        someProp1: 'val1',
+        someProp2: 'val2',
         $hover: {
-          someProp1: 'val1',
-          someProp2: 'val3'
+          someProp2: 'val2_',
+          someProp3: 'val3',
         }
       }
     })
-    expect(actual.slug.slug$hover.someProp1).toEqual('val1')
-    expect(actual.slug.slug$hover.someProp2).toEqual('val2')
-  })
-
-  it('should erase $hover object', () => {
-    const actual = normalizeStyle({
+    const expected = {
       slug: {
-        someProp: 'val1',
-        $hover: {
-          someProp: 'val2'
-        }
+        someProp1: 'val1',
+        someProp2: 'val2',
+      },
+      slug$hover: {
+        someProp1: 'val1',
+        someProp2: 'val2_',
+        someProp3: 'val3',
       }
-    })
-    expect(actual.slug.$hover).toBe.Undefined()
+    }
+    expect(actual).to.deep.equal(expected)
   })
 })

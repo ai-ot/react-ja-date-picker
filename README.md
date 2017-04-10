@@ -38,15 +38,21 @@ render(
 )
 ```
 
-## 開発
+## development
 
 ```shell
 $ git clone git@github.com:ai-ot/react-ja-date-picker.git
 $ cd react-ja-date-picker
 $ npm install
-$ npm test      # テスト実行
-$ npm run build # ビルド実行
-$ npm start     # プレビュー
+$ npm test  
+$ npm run build
+$ npm start
+```
+
+## release (for commiters)
+
+```shell
+$ npm version patch
 ```
 
 ## Specification (just a Note)
