@@ -1,0 +1,27 @@
+language: node_js
+node_js:
+- '7'
+
+cache:
+  yarn: true
+  directories:
+    - "~/.cache/yarn"
+
+before_script:
+- "npm run build"
+
+script:
+- "npm run lint"
+
+after_success:
+- "npm run deploy"
+
+deploy:
+  provider: npm
+  api_key: "YOUR_API_KEY"
+
+env:
+  global:
+  - GIT_USER: Travis CI
+  - GIT_EMAIL: ai-ot@users.noreply.github.com
+  - GH_REF: github.com/ai-ot/react-ja-date-picker.git
