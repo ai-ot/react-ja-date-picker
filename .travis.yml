@@ -11,7 +11,7 @@ before_script:
 - npm run build
 
 script:
-- npm run lint
+- npm test
 
 after_success:
 - npm run deploy
@@ -21,9 +21,9 @@ deploy:
   email: "ai-ot@users.noreply.github.com"
   api_key:
     secure: hroFBp/vMUKqoS0iRHslalZDg557bJyWyjLQUw9HoGAMZCgHjo3iBdxvcpwzz1BLn4PL/GQdcQaT09mqu6qMY/NdzCMy+H08AoOHUCvWMBLevxrfTG6E8XYiB/RH4ZTyA5IW/8Ev7QROq1EAoJ59ZwlxpFp94NXCRHQdcE7yL0dFCc1eObH9XzCtC9gsEwntWIpZa1CYYpO5AmfbQv90c5FkAxuFvJiUPMA5X4OyKec3VIDZiQSTKr/hrcOu+KAgoToLSReqNFDFaal/wtm0b2p2/GNaWFAgv7kPf5P2wU5wpx/BsJtuUNbZkVK+5DwpfOhbdPZG+qcZeu/4g9UunufPVo5ej3OtMbjTBsZP20d3e5VUKaKc0ZATpEns1kKxu8Fmj3w/87HjCfZNtPUh5+U9tUPdWRojWhD4YDyQMRKgQVbI/Npp9Zswi6I4w2N4TqC9BxvbbQ9bBGfmoL3go6MyxDMl5JoVE+BfLyL1ltPYC8dGIJuDU0BdL8ZZd+yTY3tvQfMnvjNndaBQk57eU/EaaMAGNGqnFgx5e8LoIJ/pNnu1Qp1cSRdOeQ8YUhFqG/xSXPVxjRsppq5MRnFYt/cl+9IwOJ4x7ChwaevcJOEn4JEtlmenRjf3C83AfkG60sxppi0ehFptaemvTzOU2PxVtpl9Q73qean/k7npe6E=
-    on:
-      tags: true
-    skip_cleanup: true
+  on:
+    tags: true
+  skip_cleanup: true
 
 env:
   global:

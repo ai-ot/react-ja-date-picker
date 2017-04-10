@@ -7,10 +7,10 @@
     "lib"
   ],
   "scripts": {
-    "build": "NODE_ENV=production babel ./src --out-dir lib --source-maps inline",
+    "build": "NODE_ENV=production babel ./src --out-dir ./lib --source-maps inline",
     "build:preview": "webpack -p",
     "start": "webpack-dev-server --progress --colors --hot --inline --watch",
-    "lint": "eslint .",
+    "lint": "eslint . --ext=jsx --ext=js",
     "test": "npm run lint && mocha",
     "deploy": "./bin/deploy.sh"
   },
@@ -27,7 +27,6 @@
     "chai": "^3.5.0",
     "enzyme": "^2.8.0",
     "eslint": "^3.19.0",
-    "eslint-plugin-flowtype": "^2.30.4",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.10.3",

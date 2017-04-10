@@ -43,17 +43,17 @@ export default class CalenderPicker extends Component {
     const date = moment(this.props.date)
     this.state = {
       year     : date.year(),
-      month    : date.month(),
+      month    : date.month() + 1,
       hovering : false,
     }
   }
 
   /**
    * render
-   * @param  {object} state components state
    * @return {ReactComponent} render a calender picker
    */
   render() {
+
     /**
      * check if a element with certain id is being hovered
      * @param  {string}  id  given id
@@ -89,13 +89,10 @@ export default class CalenderPicker extends Component {
     }
 
     // parse props
-    const date = moment(`${this.state.year}-${this.state.month}-1`)
     const type = this.props.type
 
     // obtain date info
-    const month = date.month() + 1
-    const year = date.year()
-
+    const { year, month } = this.state
 
     /**
      * 当月の日の情報をまとめたオブジェクトを出力する
@@ -139,10 +136,14 @@ export default class CalenderPicker extends Component {
         >
           { type === 'link' ? // aタグとボタンタグを条件に応じて出力する
             <a
+              className={ CLASS_PREFIX + 'day' }
               href={ `http://example/${year}/${month}/${day}` }
               style={ STYLE.link }
             >{ day }</a> :
-            <button style={ STYLE.button }>{ day }</button>
+            <button
+              className={ CLASS_PREFIX + 'day' }
+              style={ STYLE.button }
+            >{ day }</button>
           }
         </td>)
       }) }
@@ -168,20 +169,20 @@ export default class CalenderPicker extends Component {
       <div className={ 'calender-wrapper' }>
         <div className={ CLASS_PREFIX + 'container' } style={ STYLE.container }>
           <div className={ CLASS_PREFIX + 'nav__wrap' } style={ STYLE.navWrap }>
-            <span
+            <button
               className={ CLASS_PREFIX + 'nav__button ' + CLASS_PREFIX + 'nav__prev' }
               style={ stylePrev }
               onClick={ prevMonth }
               onMouseEnter={ hoverOn('button-prev') }
               onMouseLeave={ hoverOn(false) }
-            >{'←'}</span>
-            <span
+            >{'←'}</button>
+            <button
               className={ CLASS_PREFIX + 'nav__button ' + CLASS_PREFIX + 'nav__next' }
               style={ styleNext }
               onClick={ nextMonth }
               onMouseEnter={ hoverOn('button-next') }
               onMouseLeave={ hoverOn(false) }
-            >{'→'}</span>
+            >{'→'}</button>
           </div>
 
           <div className={ CLASS_PREFIX + 'month' } style={ STYLE.month }>

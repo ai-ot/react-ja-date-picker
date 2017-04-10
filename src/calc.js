@@ -14,11 +14,10 @@ import { getHolidays }  from './config'
  * @return {array<{day:number, month:number, active:boolean, weekday:string, isHoliday:boolean}>} day information object
  */
 export const getMonthCalendar = (year, month) => {
-  const first = moment(`${year}-${month}-01`)
   const weekdays = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
   const monthDays = []
   const holidays = getHolidays()
-  const idx = moment(`${year}-${month}-01`)
+  const idx = moment([year, month - 1, 1])
   idx.subtract(idx.weekday() - 1, 'days').calendar()
 
   // 第1週から第6週までをイテレート
@@ -37,14 +36,4 @@ export const getMonthCalendar = (year, month) => {
     }
   }
   return monthDays
-}
-
-/**
- * 何か素敵な日付計算の関数
- * @param  {[type]} arg [description]
- * @return {[type]}     [description]
- */
-export const calculateAwesome = arg => {
-  // do something awesome
-  return 'something'
 }

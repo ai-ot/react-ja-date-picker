@@ -1,8 +1,7 @@
 import { expect } from 'chai'
 import { normalizeStyle } from '../src/lib'
 
-
-describe('Test of normalizeStyle', () => {
+describe.skip('Test of normalizeStyle', () => {
   it('should create slug$hover type object', () => {
     const actual = normalizeStyle({
       slug: {
