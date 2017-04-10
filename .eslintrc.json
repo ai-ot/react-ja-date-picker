@@ -9,7 +9,8 @@
   "plugins": [
     "import",
     "jsx-a11y",
-    "react"
+    "react",
+    "mocha"
   ],
   "parser": "babel-eslint",
   "parserOptions": {
@@ -63,6 +64,17 @@
     "space-unary-ops": ["error"],
     "space-infix-ops": ["error", { "int32Hint": false }],
     "sort-imports": ["off"],
+    "mocha/no-exclusive-tests": ["error"],
+    "mocha/no-skipped-tests": ["error"],
+    "mocha/no-pending-tests": ["warn"],
+    "mocha/handle-done-callback": ["error"],
+    "mocha/no-global-tests": ["error"],
+    "mocha/no-return-and-callback": ["error"],
+    "mocha/no-sibling-hooks": ["error"],
+    "mocha/no-hooks-for-single-case": ["warn"],
+    "mocha/no-top-level-hooks": ["error"],
+    "mocha/no-identical-title": ["error"],
+    "mocha/no-nested-tests": ["error"],
     "react/no-array-index-key": ["off"],
     "react/no-children-prop": ["error"],
     "react/no-danger": ["error"],

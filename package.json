@@ -11,7 +11,7 @@
     "build:preview": "webpack -p",
     "start": "webpack-dev-server --progress --colors --hot --inline --watch",
     "lint": "eslint . --ext=jsx --ext=js",
-    "test": "npm run lint && mocha",
+    "test": "mocha",
     "deploy": "./bin/deploy.sh",
     "postversion": "git push origin $(git tag -l | tail -n1)"
   },
@@ -29,6 +29,7 @@
     "eslint": "^3.19.0",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-mocha": "^4.9.0",
     "eslint-plugin-react": "^6.10.3",
     "mocha": "^3.2.0",
     "react": "^15.4.2",
@@ -39,5 +40,23 @@
   },
   "dependencies": {
     "moment": "^2.18.1"
-  }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ai-ot/react-ja-date-picker.git"
+  },
+  "keywords": [
+    "react",
+    "datepicker",
+    "japanese"
+  ],
+  "author": "ai-ot",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ai-ot/react-ja-date-picker/issues"
+  },
+  "homepage": "https://github.com/ai-ot/react-ja-date-picker#readme"
 }

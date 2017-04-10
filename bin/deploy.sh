@@ -14,7 +14,7 @@ if [[ "master" != "$TRAVIS_BRANCH" ]]; then
   exit
 fi
 
-# build preview env
+# build preview document
 npm run build:preview
 mkdir gh_page_contents
 pushd gh_page_contents
