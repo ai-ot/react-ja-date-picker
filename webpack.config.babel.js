@@ -1,5 +1,3 @@
-// webpack.config.js
-
 export default {
   entry: './preview.jsx',
   output: {

@@ -14,11 +14,12 @@ if [[ "master" != "$TRAVIS_BRANCH" ]]; then
   exit
 fi
 
-# deploy sample pages to gh-pages
-npm run build
+# build preview env
+npm run build:preview
 mkdir gh_page_contents
 pushd gh_page_contents
 cp ../bundle.js ./
+cp ../bundle.js.map ./
 cp ../index.html ./
 
 git init
