@@ -5,19 +5,13 @@
 
 export default {
 
-  // 不要なら消す
-  '.clearfix:after': {
-    'content': ' ',
-    'display': 'table',
-    'clear': 'both',
-  },
-
   // calender container
   container: {
-    'width'    : '618px',
+    'width'    : '326px',
     'position' : 'relative',
     'border'   : '1px solid #e4e7e7',
-    'padding'  : '15px 5px 20px',
+    'padding'  : '20px',
+    'boxSizing': 'border-box'
   },
 
   // wrapper for navigations
@@ -49,7 +43,7 @@ export default {
 
   // month wrapper
   month: {
-    width   : '50%',
+    width   : '100%',
     // background: 'pink',
     display : 'inline-block',
   },
@@ -71,18 +65,16 @@ export default {
     display   : 'inline-block',
     width     : '40px',
     textAlign : 'center',
-    // background: 'lightblue'
+    boxSizing: 'border-box'
   },
 
   monthGrid: {
     display        : 'table',
-    // background : 'lightgreen',
     borderCollapse : 'collapse',
     margin         : '0 auto',
   },
 
   day: {
-    // display: 'table-cell,'
     width     : '40px',
     height    : '40px',
     border    : '1px solid #e4e7e7',
@@ -90,8 +82,23 @@ export default {
     textAlign : 'center',
     cursor    : 'pointer'
   },
+
   day$hover    : {
     background : '#37c5ab',
     color      : '#fff',
+  },
+
+  link: {
+    textDecoration: 'none',
+    color: 'inherit'
+  },
+
+  button: {
+    border: '0',
+    background: 'transparent',
+    padding: '0',
+    fontSize: 'inherit',
+    color: 'inherit',
+    cursor: 'pointer'
   }
 }
