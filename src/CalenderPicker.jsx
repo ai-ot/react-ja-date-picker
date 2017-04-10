@@ -1,70 +1,13 @@
 import React, { PropTypes, Component } from 'react'
 import moment from 'moment'
 import STYLE  from './style'
-import {}     from './calc'
+import { getMonthCalendar }     from './calc'
 
 /**
  * internal classname prefix
  * @type {string}
  */
 export const CLASS_PREFIX =  'calender-picker__'
-
-/**
- * generate 2017 holiday
- * @return {array<string>} holidays
- */
-const getHolidays = () => {
-  return [
-    '2017-01-01',
-    '2017-01-02',
-    '2017-02-11',
-    '2017-03-20',
-    '2017-04-29',
-    '2017-05-03',
-    '2017-05-04',
-    '2017-05-05',
-    '2017-07-17',
-    '2017-08-11',
-    '2017-09-18',
-    '2017-09-23',
-    '2017-10-09',
-    '2017-11-03',
-    '2017-11-23',
-    '2017-12-23',
-  ]
-}
-
-/**
- * 指定した月のカレンダーを返してくれます
- * @param  {number} year  year
- * @param  {number} month month
- * @return {array<{day:number, month:number, active:boolean, weekday:string, isHoliday:boolean}>} day information object
- */
-const getMonthCalendar = (year, month) => {
-  const first = moment(`${year}-${month}-01`)
-  const weekdays = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
-  const monthDays = []
-  const holidays = getHolidays()
-  const idx = moment(`${year}-${month}-01`)
-  idx.subtract(idx.weekday() - 1, 'days').calendar()
-
-  // 第1週から第6週までをイテレート
-  for (var i = 0 ; i < 6 ; i++ ) {
-    monthDays.push([])
-    // 日曜から土曜までをいてレート
-    for (var j = 0 ; j < 7 ; j++ ) {
-      monthDays[i].push({
-        day: idx.date(),
-        month: idx.month() + 1,
-        active: (idx.month() + 1 == month),
-        weekday: weekdays[idx.weekday()],
-        isHoliday: holidays.indexOf(idx.format('YYYY-MM-DD')) == 0
-      })
-      idx.add(1, 'days')
-    }
-  }
-  return monthDays
-}
 
 /**
  * Define Calender Picker Component
@@ -87,7 +30,22 @@ export default class CalenderPicker extends Component {
    */
   static defaultProps = {
     date: '',
-    type: 'link'
+    type: 'link',
+  }
+
+  /**
+   * initializ state
+   * @param  {Props} props given props
+   * @return {void}
+   */
+  constructor(props) {
+    super(props)
+    const date = moment(this.props.date)
+    this.state = {
+      year     : date.year(),
+      month    : date.month(),
+      hovering : false,
+    }
   }
 
   /**
@@ -96,7 +54,6 @@ export default class CalenderPicker extends Component {
    * @return {ReactComponent} render a calender picker
    */
   render() {
-
     /**
      * check if a element with certain id is being hovered
      * @param  {string}  id  given id
@@ -111,15 +68,34 @@ export default class CalenderPicker extends Component {
      */
     const hoverOn = id => () => this.setState({ ...this.state, ...{ hovering: id } })
 
+    /**
+     * change next month
+     * @return {void}
+     */
+    const nextMonth = () => {
+      const nYear = (this.state.month + 1 > 12 ? this.state.year + 1 : this.state.year)
+      const nMonth = (this.state.month + 1) % 12
+      this.setState({ year: nYear, month: nMonth })
+    }
+
+    /**
+     * change prev month
+     * @return {void}
+     */
+    const prevMonth = () => {
+      const nYear = (this.state.month - 1 == 0 ? this.state.year - 1 : this.state.year)
+      const nMonth = (this.state.month - 1 == 0 ? 12 : this.state.month - 1)
+      this.setState({ year: nYear, month: nMonth })
+    }
+
     // parse props
-    const date = moment(this.props.date)
+    const date = moment(`${this.state.year}-${this.state.month}-1`)
     const type = this.props.type
 
     // obtain date info
     const month = date.month() + 1
     const year = date.year()
 
-    // console.log(getMonthCalendar(2017, 4))
 
     /**
      * 当月の日の情報をまとめたオブジェクトを出力する
@@ -147,24 +123,26 @@ export default class CalenderPicker extends Component {
      * @type {array<ReactComponent>}
      */
     const thisList = thisMonth.map((week, i) => <tr key={ `${month}-${i}` }>
-      { week.map(({ day, month }, j) => {
+      { week.map(({ day, month, active, isHoliday }, j) => {
 
         const key = `month-day-${month}-${day}`
         const tdStyle = isHovering(key) ? { ...STYLE.day, ...STYLE.day$hover } : STYLE.day
 
         return (<td
-          className={ CLASS_PREFIX + 'day' }
+          className={ `${CLASS_PREFIX + 'day'}
+            ${CLASS_PREFIX + (active ? 'active' : 'not-active')}
+            ${CLASS_PREFIX + (isHoliday ? 'is-holiday' : 'is-weekday')}` }
           key={ `${month}-${i}-day-${j}` }
           style={ tdStyle }
           onMouseEnter={ hoverOn(key) }
           onMouseLeave={ hoverOn(false) }
         >
-          { type === 'link' ?　// aタグとボタンタグを条件に応じて出力する
+          { type === 'link' ? // aタグとボタンタグを条件に応じて出力する
             <a
-               style={ STYLE.link }
-               href={ `http://example/${year}/${month}/${day}` }>{ day }</a> :
-            <button
-              style={ STYLE.button }>{ day }</button>
+              href={ `http://example/${year}/${month}/${day}` }
+              style={ STYLE.link }
+            >{ day }</a> :
+            <button style={ STYLE.button }>{ day }</button>
           }
         </td>)
       }) }
@@ -193,12 +171,14 @@ export default class CalenderPicker extends Component {
             <span
               className={ CLASS_PREFIX + 'nav__button ' + CLASS_PREFIX + 'nav__prev' }
               style={ stylePrev }
+              onClick={ prevMonth }
               onMouseEnter={ hoverOn('button-prev') }
               onMouseLeave={ hoverOn(false) }
             >{'←'}</span>
             <span
               className={ CLASS_PREFIX + 'nav__button ' + CLASS_PREFIX + 'nav__next' }
               style={ styleNext }
+              onClick={ nextMonth }
               onMouseEnter={ hoverOn('button-next') }
               onMouseLeave={ hoverOn(false) }
             >{'→'}</span>
