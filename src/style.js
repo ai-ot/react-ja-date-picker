@@ -1,11 +1,26 @@
 /*
  * カレンダーピッカーのCSS
  * https://facebook.github.io/react/docs/dom-elements.html#style
+ * 
+ * [ルール]
+ * - プロパティ名は Lower Camel Case で記述(ex. 'background-color' => 'backgroundColor')
+ * [制約]
+ * - 擬似クラス(:hoverなど)は、className$hover のようにプロパティを作成する
+ * - ただし、コンポーネント側でスタイルを振り分ける処理が必要
+ * - なお、このルールは、以下のルールが使えるようにリファクタリングする予定
+ *   {
+ *     className: {
+ *        someProp: 'value',
+ *        $hover: {
+ *          someProp: 'overwrited'
+ *        }
+ *     }
+ *   }
  */
 
 export default {
 
-  // 不要なら消す
+  // これは不要なら消す
   '.clearfix:after': {
     'content': ' ',
     'display': 'table',
