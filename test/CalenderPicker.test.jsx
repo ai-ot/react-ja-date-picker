@@ -11,19 +11,30 @@ import CalenderPicker, { CLASS_PREFIX } from '../src/CalenderPicker.jsx'
 const getClass = word => '.' + CLASS_PREFIX + word
 
 describe('Test of CalenderPicker Component', () => {
+  const CLASS_PREFIX =  'calender-picker__'
 
   it('should render .calender-wrapper', () => {
     const wrapper = shallow(<CalenderPicker />)
-    expect(wrapper.find(getClass('calender-wrapper'))).to.have.length(1)
+    expect(wrapper.find('.calender-wrapper')).to.have.length(1)
   })
 
   it('should render 7 day label component', () => {
     const wrapper = shallow(<CalenderPicker />)
-    expect(wrapper.find(getClass('day-label'))).to.have.length(7)
+    expect(wrapper.find('.' + CLASS_PREFIX + 'week-label')).to.have.length(7)
   })
 
   it('should render 31 days for December', () => {
     const wrapper = shallow(<CalenderPicker date={ '2017/12/1' } />)
-    expect(wrapper.find(getClass('day'))).to.be.length(31)
+    expect(wrapper.find('.' + CLASS_PREFIX + 'active')).to.be.length(31)
+  })
+
+  it('should render 28 days for Febrary', () => {
+    const wrapper = shallow(<CalenderPicker date={ '2017/2/1' } />)
+    expect(wrapper.find('.' + CLASS_PREFIX + 'active')).to.be.length(28)
+  })
+
+  it('should render 29 days for Febrary in leap year', () => {
+    const wrapper = shallow(<CalenderPicker date={ '2016/2/1' } />)
+    expect(wrapper.find('.' + CLASS_PREFIX + 'active')).to.be.length(29)
   })
 })
