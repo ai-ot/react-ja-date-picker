@@ -31,4 +31,4 @@ git commit --quiet -m "Deploy from Travis CI [no ci]"
 git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:gh-pages > /dev/null 2>&1
 
 popd
-rmdir gh_page_contents
+rmdir -rf gh_page_contents

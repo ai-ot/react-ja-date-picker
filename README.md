@@ -4,6 +4,8 @@
 
 カレンダーピッカーです。
 
+[DEMO](https://ai-ot.github.io/react-ja-date-picker/)
+
 ## 使い方
 
 ブラウザの場合は[Babel](https://babeljs.io/)を使って[Browserify](http://browserify.org/)や[webpack](https://webpack.github.io/)で読み込める形に変換してください。
@@ -31,7 +33,7 @@ const CalenderPicker = require('calender-picker')
 
 render(
   react.createElement(CalenderPicker),
-  document.getElementById
+  document.getElementById('app')
 )
 ```
 
