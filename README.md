@@ -1,4 +1,4 @@
-# Calender Picker
+# Calender Picker (beta)
 
 [![Build Status](https://travis-ci.org/ai-ot/react-ja-date-picker.svg?branch=master)](https://travis-ci.org/ai-ot/react-ja-date-picker)
 
@@ -11,11 +11,11 @@
 
 ブラウザの場合は[Babel](https://babeljs.io/)を使って[Browserify](http://browserify.org/)や[webpack](https://webpack.github.io/)で読み込める形に変換してください。
 
-### static import
+### static import with JSX
 
-```javascript
-import React          from 'react'
-import { render }     from 'react-dom'
+```jsx
+import React      from 'react'
+import { render } from 'react-dom'
 import DatePicker from 'react-ja-date-picker'
 
 render(
@@ -28,8 +28,8 @@ render(
 ### commonJS
 
 ```javascript
-const React          = require('react')
-const render         = require('react-dom').render
+const React      = require('react')
+const render     = require('react-dom').render
 const DatePicker = require('react-ja-date-picker')
 
 render(

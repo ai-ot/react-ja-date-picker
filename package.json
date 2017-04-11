@@ -53,7 +53,23 @@
     "datepicker",
     "japanese"
   ],
-  "author": "ai-ot",
+  "author": "",
+  "contributors": [
+    {
+      "name" : "kamataryo",
+      "email" : "mugil.cephalus+npmjs.com@gmail.com"
+    },
+    {
+      "name": "",
+      "email": "",
+      "url": ""
+    },
+    {
+      "name": "",
+      "email": "",
+      "url": ""
+    }
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/ai-ot/react-ja-date-picker/issues"
