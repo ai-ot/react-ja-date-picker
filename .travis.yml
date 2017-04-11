@@ -15,7 +15,7 @@ script:
 - npm test
 
 after_success:
-- npm run deploy
+- npm run deploy:demo
 
 deploy:
   provider: npm
