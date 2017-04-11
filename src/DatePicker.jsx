@@ -2,7 +2,7 @@ import React, { PropTypes, Component } from 'react'
 import moment from 'moment'
 import DEFAULT_STYLE  from './style'
 import { getMonthCalendar } from './calc'
-import { normalizeStyle }   from './lib'
+import { normalizeStyle, strFormat }   from './lib'
 import { weekLabels } from './config'
 
 /**
@@ -23,7 +23,8 @@ export default class DatePicker extends Component {
    */
   static propTypes = {
     date     : PropTypes.string,
-    type     : PropTypes.string,
+    format   : PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+    type     : PropTypes.oneOf(['link', 'button']),
     onSelect : PropTypes.func,
   }
 
@@ -33,6 +34,7 @@ export default class DatePicker extends Component {
    */
   static defaultProps = {
     date     : '',
+    format   : '#',
     type     : 'link',
     onSelect : x => x,
   }
@@ -44,7 +46,8 @@ export default class DatePicker extends Component {
    */
   constructor(props) {
     super(props)
-    const date = moment(this.props.date)
+    const tmp = moment(this.props.date)
+    const date = tmp.isValid() ? tmp : moment()
     this.state = {
       year     : date.year(),
       month    : date.month() + 1,
@@ -93,8 +96,13 @@ export default class DatePicker extends Component {
     }
 
     // parse props
-    const type = this.props.type
+    const type     = this.props.type
     const onSelect = this.props.onSelect
+    const format   = this.props.format
+
+    const getURL = typeof format === 'function' ?
+      (year, month, day) => format(year, month, day) : // use it
+      (year, month, day) => strFormat(format, year, month, day) // use embedded
 
     // parse style object
     const STYLE = normalizeStyle(DEFAULT_STYLE)
@@ -149,13 +157,13 @@ export default class DatePicker extends Component {
           { type === 'link' ? // aタグとボタンタグを条件に応じて出力する
             <a
               className={ CLASS_PREFIX + 'day' }
-              href={ `http://example/${year}/${month}/${day}` }
+              href={ getURL(year, month, day) }
               style={ STYLE.link }
             >{ day }</a> :
             <button
               className={ CLASS_PREFIX + 'day' }
               style={ STYLE.button }
-              onClick={ onSelect }
+              onClick={ () => onSelect(year, month, day) }
               onMouseEnter={ false }
             >{ day }</button>
           }

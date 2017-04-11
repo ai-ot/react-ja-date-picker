@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { normalizeStyle } from '../src/lib'
+import { normalizeStyle, strFormat } from '../src/lib'
 
 describe('Test of normalizeStyle', () => {
   it('should create slug$hover type object', () => {
@@ -26,5 +26,13 @@ describe('Test of normalizeStyle', () => {
       }
     }
     expect(actual).to.deep.equal(expected)
+  })
+})
+
+
+describe('Test of format', () => {
+  it('should format text', () => {
+    expect(strFormat('http://example.com/{0}/{1}/{2}', 2017, 12, 10))
+      .to.equal('http://example.com/2017/12/10')
   })
 })

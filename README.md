@@ -1,4 +1,4 @@
-# Calender Picker (beta)
+# Calender Picker (alpha)
 
 [![Build Status](https://travis-ci.org/ai-ot/react-ja-date-picker.svg?branch=master)](https://travis-ci.org/ai-ot/react-ja-date-picker)
 
