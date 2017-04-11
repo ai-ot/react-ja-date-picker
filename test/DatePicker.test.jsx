@@ -14,7 +14,7 @@ const getClass = word => '.' + CLASS_PREFIX + word
 describe('Test of DatePicker Component', () => {
 
   describe('Test of prev and next button', () => {
-    it.only('should render 2 buttons', () => {
+    it('should render 2 buttons', () => {
       const wrapper = shallow(<DatePicker />)
       expect(wrapper.find(getClass('nav-button'))).to.have.length(2)
     })
