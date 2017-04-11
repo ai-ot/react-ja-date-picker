@@ -108,43 +108,20 @@ export default class DatePicker extends Component {
      */
     const thisMonth = getMonthCalendar(year, month)
 
-    // /**
-    //  * generate className, style and eventHandler attributes
-    //  * @param  {array<string>} slugs    slugs for css and element detection
-    //  * @param  {array<string>} handlers array of adapting handlers
-    //  * @return {object} props
-    //  */
-    // const cascadeStyle = (slugs, handlers = []) => ({
-    //   className: slugs
-    //     .map(slug => CLASS_PREFIX + slug)
-    //     .join(' '),
-    //   style: slugs.reduce((prev, slug) => {
-    //     if (slug === this.state.hovering + ':hover') {
-    //
-    //     }
-    //     return { ...prev, ...style[slug]) } // cascade styles
-    //   }, {}),
-    //   // handlers.includes('hover') && isHovering(slug) ?
-    //     // STYLE[`${slug}:hover`] : STYLE[slug],
-    //   onMouseEnter: handlers.includes('hover') ? hoverOn(slug)  : false,
-    //   onMouseLeave: handlers.includes('hover') ? hoverOn(false) : false
-    // })
-
-
-    // return <Element { ...cascadeStyle(['button', 'button:hover', ['hover']]) } />
-
     /**
      * render week labels as date picker table head component
      * @type {array<ReactComponent>}
      */
     const headRow = <tr>
-      { weekLabels.map(label => <td
+      <th scope={ 'row' } style={ { display: 'none' } }>{ '週' }</th>
+      { weekLabels.map(label => <th
         className={ CLASS_PREFIX + 'week-label' }
         key={ 'weeklabel-' + label }
+        scope={ 'col' }
         style={ STYLE.weekLabel }
       >
         { label }
-      </td>
+      </th>
       ) }
     </tr>
 
@@ -153,6 +130,7 @@ export default class DatePicker extends Component {
      * @type {array<ReactComponent>}
      */
     const bodyRow = thisMonth.map((week, i) => <tr key={ `${month}-${i}` }>
+      <th scope={ 'row' } style={ { display: 'none' } }>{ '第' + i + '週' }</th>
       { week.map(({ day, month, active, isHoliday }) => {
 
         const key = `month-day-${month}-${day}`
@@ -203,6 +181,7 @@ export default class DatePicker extends Component {
 
     return (
       <div className={ CLASS_PREFIX + 'container' } style={ STYLE.container }>
+
         <div className={ CLASS_PREFIX + 'nav__wrap' } style={ STYLE.navWrap }>
           <button
             className={ CLASS_PREFIX + 'nav-button ' + CLASS_PREFIX + 'nav-prev' }
