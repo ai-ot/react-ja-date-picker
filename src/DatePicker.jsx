@@ -1,9 +1,12 @@
-import React, { PropTypes, Component } from 'react'
+import React, { Component } from 'react'
+import PropTypes            from 'prop-types'
+
 import moment from 'moment'
-import DEFAULT_STYLE  from './style'
-import { getMonthCalendar } from './calc'
+
+import DEFAULT_STYLE                   from './style'
+import { getMonthCalendar }            from './calc'
 import { normalizeStyle, strFormat }   from './lib'
-import { weekLabels } from './config'
+import { weekLabels }                  from './config'
 
 /**
  * internal classname prefix
