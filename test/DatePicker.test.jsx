@@ -12,9 +12,28 @@ const getClass = word => '.' + CLASS_PREFIX + word
 
 describe('Test of DatePicker Component', () => {
 
-  it('should render .calender-wrapper', () => {
-    const wrapper = shallow(<DatePicker />)
-    expect(wrapper.find('.calender-wrapper')).to.have.length(1)
+  describe('Test of prev and next button', () => {
+    it('should render 2 buttons', () => {
+      const wrapper = shallow(<DatePicker />)
+      expect(wrapper.find(getClass('nav-button'))).to.have.length(2)
+    })
+    it('should render prev and next button', () => {
+      const wrapper = shallow(<DatePicker />)
+      expect(wrapper.find(getClass('nav-prev'))).to.have.length(1)
+      expect(wrapper.find(getClass('nav-next'))).to.have.length(1)
+    })
+
+    it('should toggle month foward', () => {
+      const wrapper = shallow(<DatePicker date={ '2017-05-01' } />)
+      wrapper.find(getClass('nav-prev')).simulate('click')
+      expect(wrapper.find(getClass('caption')).text()).to.contains('2017年4月')
+    })
+
+    it('should toggle month backward', () => {
+      const wrapper = shallow(<DatePicker date={ '2017-05-01' } />)
+      wrapper.find(getClass('nav-next')).simulate('click')
+      expect(wrapper.find(getClass('caption')).text()).to.contains('2017年6月')
+    })
   })
 
   it('should render 7 day label component', () => {

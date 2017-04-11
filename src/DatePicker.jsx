@@ -191,41 +191,39 @@ export default class DatePicker extends Component {
       { ...STYLE.navButton,          ...STYLE.navNext }
 
     return (
-      <div className={ 'calender-wrapper' }>
-        <div className={ CLASS_PREFIX + 'container' } style={ STYLE.container }>
-          <div className={ CLASS_PREFIX + 'nav__wrap' } style={ STYLE.navWrap }>
-            <button
-              className={ CLASS_PREFIX + 'nav__button ' + CLASS_PREFIX + 'nav__prev' }
-              style={ stylePrev }
-              onClick={ moveBackward }
-              onMouseEnter={ hoverOn('button-prev') }
-              onMouseLeave={ hoverOn(false) }
-            >{ '←' }</button>
-            <button
-              className={ CLASS_PREFIX + 'nav__button ' + CLASS_PREFIX + 'nav__next' }
-              style={ styleNext }
-              onClick={ moveFoward }
-              onMouseEnter={ hoverOn('button-next') }
-              onMouseLeave={ hoverOn(false) }
-            >{ '→' }</button>
-          </div>
-
-          <div className={ CLASS_PREFIX + 'month' } style={ STYLE.month }>
-
-            <table>
-
-              <caption className={ CLASS_PREFIX + 'caption' } style={ STYLE.caption }>
-                <strong>{ `${year}年${month}月` }</strong>
-              </caption>
-
-              <thead className={ CLASS_PREFIX + 'week' } style={ STYLE.week }>{ headRow }</thead>
-
-              <tbody className={ CLASS_PREFIX + 'month-grid' } style={ STYLE.monthGrid }>{ bodyRow }</tbody>
-
-            </table>
-          </div>
-
+      <div className={ CLASS_PREFIX + 'container' } style={ STYLE.container }>
+        <div className={ CLASS_PREFIX + 'nav__wrap' } style={ STYLE.navWrap }>
+          <button
+            className={ CLASS_PREFIX + 'nav-button ' + CLASS_PREFIX + 'nav-prev' }
+            style={ stylePrev }
+            onClick={ moveBackward }
+            onMouseEnter={ hoverOn('button-prev') }
+            onMouseLeave={ hoverOn(false) }
+          >{ '←' }</button>
+          <button
+            className={ CLASS_PREFIX + 'nav-button ' + CLASS_PREFIX + 'nav-next' }
+            style={ styleNext }
+            onClick={ moveFoward }
+            onMouseEnter={ hoverOn('button-next') }
+            onMouseLeave={ hoverOn(false) }
+          >{ '→' }</button>
         </div>
+
+        <div className={ CLASS_PREFIX + 'month' } style={ STYLE.month }>
+
+          <table>
+
+            <caption className={ CLASS_PREFIX + 'caption' } style={ STYLE.caption }>
+              <strong>{ `${year}年${month}月` }</strong>
+            </caption>
+
+            <thead className={ CLASS_PREFIX + 'week' } style={ STYLE.week }>{ headRow }</thead>
+
+            <tbody className={ CLASS_PREFIX + 'month-grid' } style={ STYLE.monthGrid }>{ bodyRow }</tbody>
+
+          </table>
+        </div>
+
       </div>
     )
   }
