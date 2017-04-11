@@ -22,8 +22,9 @@ export default class DatePicker extends Component {
    * @type {Object}
    */
   static propTypes = {
-    date : PropTypes.string,
-    type : PropTypes.string,
+    date     : PropTypes.string,
+    type     : PropTypes.string,
+    onSelect : PropTypes.func,
   }
 
   /**
@@ -31,8 +32,9 @@ export default class DatePicker extends Component {
    * @type {Object}
    */
   static defaultProps = {
-    date : '',
-    type : 'link',
+    date     : '',
+    type     : 'link',
+    onSelect : x => x,
   }
 
   /**
@@ -92,6 +94,7 @@ export default class DatePicker extends Component {
 
     // parse props
     const type = this.props.type
+    const onSelect = this.props.onSelect
 
     // parse style object
     const STYLE = normalizeStyle(DEFAULT_STYLE)
@@ -134,9 +137,16 @@ export default class DatePicker extends Component {
      * render week labels as date picker table head component
      * @type {array<ReactComponent>}
      */
-    const headRow = <tr>{ weekLabels.map(label => {
-      <td className={ CLASS_PREFIX + 'week-label' } style={ STYLE.weekLabel }>{ label }</td>
-    }) }</tr>
+    const headRow = <tr>
+      { weekLabels.map(label => <td
+        className={ CLASS_PREFIX + 'week-label' }
+        key={ 'weeklabel-' + label }
+        style={ STYLE.weekLabel }
+      >
+        { label }
+      </td>
+      ) }
+    </tr>
 
     /**
      * render date picker table body component
@@ -167,6 +177,7 @@ export default class DatePicker extends Component {
             <button
               className={ CLASS_PREFIX + 'day' }
               style={ STYLE.button }
+              onClick={ onSelect }
               onMouseEnter={ false }
             >{ day }</button>
           }
