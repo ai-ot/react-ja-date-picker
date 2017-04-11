@@ -3,6 +3,7 @@ import moment from 'moment'
 import DEFAULT_STYLE  from './style'
 import { getMonthCalendar } from './calc'
 import { normalizeStyle }   from './lib'
+import { weekLabels } from './config'
 
 /**
  * internal classname prefix
@@ -21,8 +22,8 @@ export default class DatePicker extends Component {
    * @type {Object}
    */
   static propTypes = {
-    date  : PropTypes.string,
-    type  : PropTypes.string,
+    date : PropTypes.string,
+    type : PropTypes.string,
   }
 
   /**
@@ -30,8 +31,8 @@ export default class DatePicker extends Component {
    * @type {Object}
    */
   static defaultProps = {
-    date  : '',
-    type  : 'link',
+    date : '',
+    type : 'link',
   }
 
   /**
@@ -73,7 +74,7 @@ export default class DatePicker extends Component {
      * change next month
      * @return {void}
      */
-    const nextMonth = () => {
+    const moveFoward = () => {
       const nYear = (this.state.month + 1 > 12 ? this.state.year + 1 : this.state.year)
       const nMonth = (this.state.month + 1) % 12
       this.setState({ year: nYear, month: nMonth })
@@ -83,7 +84,7 @@ export default class DatePicker extends Component {
      * change prev month
      * @return {void}
      */
-    const prevMonth = () => {
+    const moveBackward = () => {
       const nYear = (this.state.month - 1 == 0 ? this.state.year - 1 : this.state.year)
       const nMonth = (this.state.month - 1 == 0 ? 12 : this.state.month - 1)
       this.setState({ year: nYear, month: nMonth })
@@ -104,37 +105,56 @@ export default class DatePicker extends Component {
      */
     const thisMonth = getMonthCalendar(year, month)
 
-    // NOTE:
-    // classNameプロパティとstyleプロパティは動的に生成したいです。こんな感じ
-    // ```
-    // const cssProps = (slug, hover) => ({
-    //  className: CLASS_PREFIX + slug,
-    //  style: hover && isHovering(slug) ?
-    //    { ...STYLE[slug], ...STYLE[`${slug}:hover`] } :
-    //    STYLE[slug],
-    //  onMouseEnter: hover ? hoverOn(slug)  : false,
-    //  onMouseLeave: hover ? hoverOn(false) : false
-    // })
+    // /**
+    //  * generate className, style and eventHandler attributes
+    //  * @param  {array<string>} slugs    slugs for css and element detection
+    //  * @param  {array<string>} handlers array of adapting handlers
+    //  * @return {object} props
+    //  */
+    // const cascadeStyle = (slugs, handlers = []) => ({
+    //   className: slugs
+    //     .map(slug => CLASS_PREFIX + slug)
+    //     .join(' '),
+    //   style: slugs.reduce((prev, slug) => {
+    //     if (slug === this.state.hovering + ':hover') {
     //
-    // return <element ...cssProps('element', true) />
-    // ```
+    //     }
+    //     return { ...prev, ...style[slug]) } // cascade styles
+    //   }, {}),
+    //   // handlers.includes('hover') && isHovering(slug) ?
+    //     // STYLE[`${slug}:hover`] : STYLE[slug],
+    //   onMouseEnter: handlers.includes('hover') ? hoverOn(slug)  : false,
+    //   onMouseLeave: handlers.includes('hover') ? hoverOn(false) : false
+    // })
+
+
+    // return <Element { ...cascadeStyle(['button', 'button:hover', ['hover']]) } />
 
     /**
-     * 当月の日をリストアップして出力する
+     * render week labels as date picker table head component
      * @type {array<ReactComponent>}
      */
-    const thisList = thisMonth.map((week, i) => <tr key={ `${month}-${i}` }>
-      { week.map(({ day, month, active, isHoliday }, j) => {
+    const headRow = <tr>{ weekLabels.map(label => {
+      <td className={ CLASS_PREFIX + 'week-label' } style={ STYLE.weekLabel }>{ label }</td>
+    }) }</tr>
+
+    /**
+     * render date picker table body component
+     * @type {array<ReactComponent>}
+     */
+    const bodyRow = thisMonth.map((week, i) => <tr key={ `${month}-${i}` }>
+      { week.map(({ day, month, active, isHoliday }) => {
 
         const key = `month-day-${month}-${day}`
-        const tdStyle = isHovering(key) ? { ...STYLE.day, ...STYLE['day:hover'] } : STYLE.day
 
         return (<td
-          className={ `${CLASS_PREFIX + 'day'}
-            ${CLASS_PREFIX + (active ? 'active' : 'not-active')}
-            ${CLASS_PREFIX + (isHoliday ? 'is-holiday' : 'is-weekday')}` }
-          key={ `${month}-${i}-day-${j}` }
-          style={ tdStyle }
+          className={ [
+            'day',
+            (active    ? 'active'     : 'not-active'),
+            (isHoliday ? 'is-holiday' : 'is-weekday'),
+          ].map(slug => CLASS_PREFIX + slug).join(' ') }
+          key={ key }
+          style={ isHovering(key) ? STYLE['day:hover'] : STYLE.day }
           onMouseEnter={ hoverOn(key) }
           onMouseLeave={ hoverOn(false) }
         >
@@ -147,6 +167,7 @@ export default class DatePicker extends Component {
             <button
               className={ CLASS_PREFIX + 'day' }
               style={ STYLE.button }
+              onMouseEnter={ false }
             >{ day }</button>
           }
         </td>)
@@ -159,15 +180,15 @@ export default class DatePicker extends Component {
      * @type {object}
      */
     const stylePrev = isHovering('button-prev') ?
-      { ...STYLE.navButton, ...STYLE.navPrev, ...STYLE['navButton:hover'] } :
-      { ...STYLE.navButton, ...STYLE.navPrev }
+      { ...STYLE['navButton:hover'], ...STYLE.navPrev } :
+      { ...STYLE.navButton,          ...STYLE.navPrev }
       /**
        * ホバーしているかどうかに基づいて、来月に移動するボタンのクラスをオブジェクトの形式で生成する
        * @type {object}
        */
     const styleNext = isHovering('button-next') ?
-      { ...STYLE.navButton, ...STYLE.navNext, ...STYLE['navButton:hover'] } :
-      { ...STYLE.navButton, ...STYLE.navNext }
+      { ...STYLE['navButton:hover'], ...STYLE.navNext } :
+      { ...STYLE.navButton,          ...STYLE.navNext }
 
     return (
       <div className={ 'calender-wrapper' }>
@@ -176,39 +197,30 @@ export default class DatePicker extends Component {
             <button
               className={ CLASS_PREFIX + 'nav__button ' + CLASS_PREFIX + 'nav__prev' }
               style={ stylePrev }
-              onClick={ prevMonth }
+              onClick={ moveBackward }
               onMouseEnter={ hoverOn('button-prev') }
               onMouseLeave={ hoverOn(false) }
-            >{'←'}</button>
+            >{ '←' }</button>
             <button
               className={ CLASS_PREFIX + 'nav__button ' + CLASS_PREFIX + 'nav__next' }
               style={ styleNext }
-              onClick={ nextMonth }
+              onClick={ moveFoward }
               onMouseEnter={ hoverOn('button-next') }
               onMouseLeave={ hoverOn(false) }
-            >{'→'}</button>
+            >{ '→' }</button>
           </div>
 
           <div className={ CLASS_PREFIX + 'month' } style={ STYLE.month }>
-            <div className={ CLASS_PREFIX + 'caption' } style={ STYLE.caption }>
-              <strong>{ (year) + '年' + (month) + '月' }</strong>
-            </div>
-            <table>
-              <thead className={ CLASS_PREFIX + 'week' } style={ STYLE.week }>
-                <tr>
-                  <td className={ CLASS_PREFIX + 'week-label' } style={ STYLE.weekLabel }>{'月'}</td>
-                  <td className={ CLASS_PREFIX + 'week-label' } style={ STYLE.weekLabel }>{'火'}</td>
-                  <td className={ CLASS_PREFIX + 'week-label' } style={ STYLE.weekLabel }>{'水'}</td>
-                  <td className={ CLASS_PREFIX + 'week-label' } style={ STYLE.weekLabel }>{'木'}</td>
-                  <td className={ CLASS_PREFIX + 'week-label' } style={ STYLE.weekLabel }>{'金'}</td>
-                  <td className={ CLASS_PREFIX + 'week-label' } style={ STYLE.weekLabel }>{'土'}</td>
-                  <td className={ CLASS_PREFIX + 'week-label' } style={ STYLE.weekLabel }>{'日'}</td>
-                </tr>
-              </thead>
 
-              <tbody className={ CLASS_PREFIX + 'month__grid' } style={ STYLE.monthGrid }>
-                { thisList }
-              </tbody>
+            <table>
+
+              <caption className={ CLASS_PREFIX + 'caption' } style={ STYLE.caption }>
+                <strong>{ `${year}年${month}月` }</strong>
+              </caption>
+
+              <thead className={ CLASS_PREFIX + 'week' } style={ STYLE.week }>{ headRow }</thead>
+
+              <tbody className={ CLASS_PREFIX + 'month-grid' } style={ STYLE.monthGrid }>{ bodyRow }</tbody>
 
             </table>
           </div>

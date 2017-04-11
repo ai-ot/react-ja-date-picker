@@ -5,13 +5,16 @@
  * [ルール]
  * - プロパティ名は Lower Camel Case で記述(ex. 'background-color' => 'backgroundColor')
  * [制約]
- * - 擬似クラス(:hoverなど)は、className.$hover のようにプロパティを作成する
+ * - 擬似クラス(:hoverなど)は、className:hover のようにプロパティを作成する
  *   {
  *     className: {
  *        someProp: 'value',
- *        $hover: {
+ *        '&:hover': {
  *          someProp: 'overwritten'
  *        }
+ *     },
+ *     className:hover {
+ *       someProp: 'overwritten'
  *     }
  *   }
  */
