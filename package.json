@@ -1,6 +1,6 @@
 {
   "name": "react-ja-date-picker",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "カレンダーピッカーのReactコンポーネント",
   "main": "lib/DatePicker.js",
   "files": [
@@ -56,8 +56,8 @@
   "author": "",
   "contributors": [
     {
-      "name" : "kamataryo",
-      "email" : "mugil.cephalus+npmjs.com@gmail.com"
+      "name": "kamataryo",
+      "email": "mugil.cephalus+npmjs.com@gmail.com"
     },
     {
       "name": "",
