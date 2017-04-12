@@ -19,7 +19,12 @@ export const normalizeStyle = style => {
   return style
 }
 
-export const strFormat = function() {
-  const [ format, ...args ] = arguments
-  return format.replace(/\{(\w+)\}/g, (j, i) => args[i])
+/**
+ * formatter
+ * @param  {string} format str including {word}
+ * @param  {object} args   give varables in { word: 'value' }
+ * @return {string}        formatted text
+ */
+export const strFormat = (format, args) => {
+  return format.replace(/\{(\w+)\}/g, (x, matched) => args[matched])
 }

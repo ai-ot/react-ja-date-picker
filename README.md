@@ -1,6 +1,7 @@
 # Calender Picker (alpha)
 
 [![Build Status](https://travis-ci.org/ai-ot/react-ja-date-picker.svg?branch=master)](https://travis-ci.org/ai-ot/react-ja-date-picker)
+[![npm](https://img.shields.io/npm/v/react-ja-date-picker.svg)](https://www.npmjs.com/package/react-ja-date-picker)
 
 カレンダーピッカーです。
 このコンポーネントは現在開発中です。
@@ -9,7 +10,7 @@
 
 ## 使い方
 
-ブラウザの場合は[Babel](https://babeljs.io/)を使って[Browserify](http://browserify.org/)、[webpack](https://webpack.github.io/)、[rollup](https://rollupjs.org/)などでバンドルして使うといいかもしれません。
+ブラウザの場合は[Browserify](http://browserify.org/)、[webpack](https://webpack.github.io/)、[rollup](https://rollupjs.org/)などを使ってスクリプトにバンドルしてください。
 
 ### static import with JSX
 
@@ -88,7 +89,7 @@ $ npm version patch
   calenderType={ 'link' }
   className={ 'some-class' }
   date={ '2017/12/31' }
-  linkFormat={ 'http://example.com/{{year}}/{{month}}/{{day}}' }
+  linkFormat={ 'http://example.com/{year}/{month}/{day}' }
 />
 ```
 
