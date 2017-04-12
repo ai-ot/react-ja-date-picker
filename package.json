@@ -8,9 +8,9 @@
   ],
   "scripts": {
     "build": "NODE_ENV=production babel ./src --out-dir ./lib --source-maps inline",
-    "postinstall": "cp node_modules/normalize.css/normalize.css ./demo/vendor",
-    "build:preview": "webpack -p",
-    "start": "webpack-dev-server --progress --colors --hot --inline --watch",
+    "prepreview": "cp node_modules/normalize.css/normalize.css ./demo/vendor",
+    "build:preview": "npm run prepreview && webpack -p",
+    "start": "npm run prepreview && webpack-dev-server --progress --colors --hot --inline --watch",
     "lint": "eslint . --ext=jsx --ext=js",
     "test": "mocha",
     "deploy:demo": "./bin/travis-deploy.sh",
