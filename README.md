@@ -88,7 +88,7 @@ $ npm version patch
 <DatePicker
   calenderType={ 'link' }
   className={ 'some-class' }
-  date={ '2017/12/31' }
+  date={ '2017-12-31' }
   linkFormat={ 'http://example.com/{year}/{month}/{day}' }
 />
 ```
@@ -99,7 +99,7 @@ $ npm version patch
 <DatePicker
   calenderType={ 'button' }
   className={ 'some-class' }
-  date={ '2017/12/31' }
+  date={ '2017-12-31' }
   onSelect={ (year, month, day, closeMe) => {
     alert(`${year}/${month}/${day}を選択しました`)
     closeMe()
