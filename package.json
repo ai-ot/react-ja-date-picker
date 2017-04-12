@@ -1,6 +1,6 @@
 {
   "name": "react-ja-date-picker",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "description": "カレンダーピッカーのReactコンポーネント",
   "main": "lib/DatePicker.js",
   "files": [
@@ -45,9 +45,9 @@
     "moment": "^2.18.1"
   },
   "peerDependencies": {
-  "react": "^0.15.0",
-  "react-dom": "^0.15.0",
-  "prop-types": "^15.5.0"
+    "react": "^0.15.0",
+    "react-dom": "^0.15.0",
+    "prop-types": "^15.5.0"
   },
   "directories": {
     "test": "test"
