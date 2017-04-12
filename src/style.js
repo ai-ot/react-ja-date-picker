@@ -42,10 +42,10 @@ export default {
     border       : '1px solid #e4e7e7',
     borderRadius : '3px',
     textAlign    : 'center',
-    lineHeight   : '30px',
     color        : '#e4e7e7',
     cursor       : 'pointer',
     transition   : '.2s',
+    background : 'transparent',
 
     '&:hover': {
       'border' : '1px solid #c4c4c4',
