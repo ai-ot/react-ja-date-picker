@@ -14,26 +14,26 @@ import DatePicker from '../src/DatePicker.jsx'
  * @param  {number} day   selected say
  * @return {void}
  */
-const alertDate = (year, month, day) => alert(`${year}/${month}/${day}`)
 
 render(
-  <div>
-    <h2>{ 'default' }</h2>
-    <DatePicker />
+  <DatePicker />,
+  document.getElementById('calendar-default')
+)
 
-    <h2>{ 'Link' }</h2>
-    <DatePicker
-      date={ '2018-01-01' }
-      format={ 'http://example.com/{0}/{1}/{2}' }
-      type={ 'link' }
-    />
+render(
+  <DatePicker
+    date={ '2018-01-01' }
+    format={ 'http://example.com/{0}/{1}/{2}' }
+    type={ 'link' }
+  />,
+  document.getElementById('calendar-link')
+)
 
-    <h2>{ 'button' }</h2>
-    <DatePicker
-      date={ '2018-02-01' }
-      type={ 'button' }
-      onSelect={ alertDate }
-    />
-  </div>,
-  document.getElementById('app')
+render(
+  <DatePicker
+    date={ '2018-02-01' }
+    type={ 'button' }
+    onSelect={ (year, month, day) => alert(`${year}/${month}/${day}`) }
+  />,
+  document.getElementById('calendar-button')
 )
