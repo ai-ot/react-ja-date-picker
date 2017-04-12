@@ -68,7 +68,6 @@ export default class DatePicker extends Component {
    * @return {ReactComponent} render a calender picker
    */
   render() {
-
     /**
      * check if a element with certain id is being hovered
      * @param  {string}  id  given id
@@ -193,7 +192,7 @@ export default class DatePicker extends Component {
             >{ day }</a> :
             <button
               className={ CLASS_PREFIX + 'day' }
-              style={ isFocusing(`${year}-${month}-${day}`) ? STYLE['button:focus'] : STYLE.button }
+              style={ isFocusing(`${year}-${month}-${day}`) ? STYLE['day:focus'] : STYLE.day }
               onBlur={ focusOn(false) }
               onClick={ () => onSelect(year, month, day) }
               onFocus={ focusOn(`${year}-${month}-${day}`) }

@@ -102,17 +102,25 @@ export default {
     ':hover' : {
       background : '#37c5ab',
       color      : '#fff',
+    },
+
+    ':focus' : {
+      color: 'red', //sample
     }
   },
 
   link: {
     textDecoration : 'none',
     color          : 'inherit',
+
+    ':focus' : {
+      color: 'red', // sample
+    }
   },
 
   button: {
     border     : '0',
-    background : 'transparent',
+    background : 'white',
     outline    : 'none',
     padding    : '0',
     fontSize   : 'inherit',
@@ -120,9 +128,5 @@ export default {
     cursor     : 'pointer',
     width      : '100%',
     height     : '100%',
-
-    ':focus' : {
-      backgroundColor: 'red',
-    }
   }
 }
