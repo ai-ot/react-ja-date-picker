@@ -1,5 +1,6 @@
 /*
- * カレンダーピッカーのCSS
+ * CSS in JS
+ *
  * https://facebook.github.io/react/docs/dom-elements.html#style
  * 
  * [ルール]
@@ -47,7 +48,7 @@ export default {
     cursor       : 'pointer',
     transition   : '.2s',
 
-    '&:hover': {
+    ':hover': {
       'border' : '1px solid #c4c4c4',
       'color'  : '#c4c4c4',
     }
@@ -97,15 +98,17 @@ export default {
     textAlign : 'center',
     cursor    : 'pointer',
 
-    '&:hover'    : {
+    ':hover' : {
       background : '#37c5ab',
       color      : '#fff',
-    },
+    }
   },
 
   link: {
     textDecoration : 'none',
-    color          : 'inherit'
+    color          : 'inherit',
+
+    ':focus' : {}
   },
 
   button: {

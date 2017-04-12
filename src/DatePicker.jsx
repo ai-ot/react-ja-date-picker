@@ -55,6 +55,7 @@ export default class DatePicker extends Component {
       year     : date.year(),
       month    : date.month() + 1,
       hovering : false,
+      focusing : false,
     }
   }
 
@@ -72,11 +73,25 @@ export default class DatePicker extends Component {
     const isHovering = id => this.state ? this.state.hovering === id : false
 
     /**
+     * check if a elelment with certain id is being focused
+     * @param  {string}  id given id
+     * @return {boolean}    whether focusing
+     */
+    const isFocusing = id => this.state ? this.state.focusing === id : false
+
+    /**
      * create callback to set hoverirng state
      * @param  {string|boolean} id giving id, or false to cancel it
      * @return {function} callback to set state
      */
     const hoverOn = id => () => this.setState({ ...this.state, ...{ hovering: id } })
+
+    /**
+     * create callback to set focusing state
+     * @param  {string|boolean} id giving id, or false to cancel it
+     * @return {function} callback to set state
+     */
+    const focusOn = id => () => this.setState({ ...this.state, ...{ focusing: id } })
 
     /**
      * change next month
@@ -117,7 +132,7 @@ export default class DatePicker extends Component {
     // parse style object
     const STYLE = normalizeStyle(DEFAULT_STYLE)
 
-    // obtain date info
+    // parse state
     const { year, month } = this.state
 
     /**
@@ -168,12 +183,16 @@ export default class DatePicker extends Component {
             <a
               className={ CLASS_PREFIX + 'day' }
               href={ getURL(year, month, day) }
-              style={ STYLE.link }
+              style={ isFocusing(`${year}-${month}-${day}`) ? STYLE['link:focus'] : STYLE.link }
+              onBlur={ focusOn(false) }
+              onFocus={ focusOn(`${year}-${month}-${day}`) }
             >{ day }</a> :
             <button
               className={ CLASS_PREFIX + 'day' }
-              style={ STYLE.button }
+              style={ isFocusing(`${year}-${month}-${day}`) ? STYLE['button:focus'] : STYLE.button }
+              onBlur={ focusOn(false) }
               onClick={ () => onSelect(year, month, day) }
+              onFocus={ focusOn(`${year}-${month}-${day}`) }
               onMouseEnter={ false }
             >{ day }</button>
           }

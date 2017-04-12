@@ -6,13 +6,30 @@
  */
 export const normalizeStyle = style => {
 
+  // acceptable pseudo class
+  const pseudoClasses = ['hover', 'focus']
+  /**
+   * check if is a prop is pseudo class
+   * @param  {string}  prop propery. if isPseudoClass, it might be like :hover
+   * @return {boolean}      result
+   */
+  const isPseudoClass = prop => pseudoClasses.map(pseudoClass => `:${pseudoClass}`).includes(prop)
+
+  // normalize
   Object.keys(style).forEach(slug => {
     Object.keys(style[slug]).forEach(prop => {
-      if (prop === '&:hover') {
-        const newProp = ':hover'
-        style[slug + newProp] = { ...style[slug], ...style[slug][prop] }
+      if (isPseudoClass(prop)) {
+        style[slug + prop] = { ...style[slug], ...style[slug][prop] }
         delete style[slug][prop]
-        delete style[slug + newProp][prop]
+      }
+    })
+  })
+
+  // cleanup nested pseudo class
+  Object.keys(style).forEach(slug => {
+    Object.keys(style[slug]).forEach(prop => {
+      if (isPseudoClass(prop)) {
+        delete style[slug][prop]
       }
     })
   })
