@@ -1,7 +1,10 @@
+import path from 'path'
+
 export default {
-  entry: './preview.jsx',
+  entry: './demo/preview.jsx',
   output: {
-    path: __dirname,
+    path: path.join(__dirname, '/demo/'),
+    publicPath: '',
     filename: 'bundle.js'
   },
   devtool: 'source-map',
@@ -16,5 +19,10 @@ export default {
       }
     ]
   },
-  plugins: []
+  plugins: [],
+  devServer: {
+    contentBase: path.join(__dirname, '/demo/'),
+    compress: true,
+    port: 3000
+  }
 }

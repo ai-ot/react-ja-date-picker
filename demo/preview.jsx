@@ -5,7 +5,7 @@
 
 import React      from 'react'
 import { render } from 'react-dom'
-import DatePicker from './src/DatePicker.jsx'
+import DatePicker from '../src/DatePicker.jsx'
 
 /**
  * [alertDate description]

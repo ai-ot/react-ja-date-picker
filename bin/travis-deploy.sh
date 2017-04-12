@@ -16,11 +16,9 @@ fi
 
 # build preview document
 npm run build:preview
-mkdir gh_page_contents
-pushd gh_page_contents
-cp ../bundle.js ./
-cp ../bundle.js.map ./
-cp ../index.html ./
+
+pushd demo
+rm preview.jsx
 
 git init
 git config user.name $GIT_USER
@@ -31,4 +29,3 @@ git commit --quiet -m "Deploy from Travis CI [no ci]"
 git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:gh-pages > /dev/null 2>&1
 
 popd
-rm -rf gh_page_contents
