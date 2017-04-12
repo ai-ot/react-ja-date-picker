@@ -14,6 +14,7 @@
     "lint": "eslint . --ext=jsx --ext=js",
     "test": "mocha",
     "deploy:demo": "./bin/travis-deploy.sh",
+    "tokengen": "travis encrypt $([[ $(cat ~/.npmrc) =~ _authToken=(.*)$ ]] && echo ${BASH_REMATCH[1]}) --add deploy.api_key",
     "postversion": "git push origin master && git push origin $(git tag -l | tail -n1)"
   },
   "devDependencies": {

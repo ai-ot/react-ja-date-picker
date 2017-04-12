@@ -1,34 +1,28 @@
 language: node_js
 node_js:
-- "7"
-
+- '7'
 cache:
   yarn: true
   directories:
   - "~/.cache/yarn"
-
 before_script:
 - npm run build
-
 script:
 - npm run lint
 - npm test
-
 after_success:
 - npm run deploy:demo
-
 deploy:
   provider: npm
-  email: "ai-ot@users.noreply.github.com"
+  email: ai-ot@users.noreply.github.com
   api_key:
-    secure: hroFBp/vMUKqoS0iRHslalZDg557bJyWyjLQUw9HoGAMZCgHjo3iBdxvcpwzz1BLn4PL/GQdcQaT09mqu6qMY/NdzCMy+H08AoOHUCvWMBLevxrfTG6E8XYiB/RH4ZTyA5IW/8Ev7QROq1EAoJ59ZwlxpFp94NXCRHQdcE7yL0dFCc1eObH9XzCtC9gsEwntWIpZa1CYYpO5AmfbQv90c5FkAxuFvJiUPMA5X4OyKec3VIDZiQSTKr/hrcOu+KAgoToLSReqNFDFaal/wtm0b2p2/GNaWFAgv7kPf5P2wU5wpx/BsJtuUNbZkVK+5DwpfOhbdPZG+qcZeu/4g9UunufPVo5ej3OtMbjTBsZP20d3e5VUKaKc0ZATpEns1kKxu8Fmj3w/87HjCfZNtPUh5+U9tUPdWRojWhD4YDyQMRKgQVbI/Npp9Zswi6I4w2N4TqC9BxvbbQ9bBGfmoL3go6MyxDMl5JoVE+BfLyL1ltPYC8dGIJuDU0BdL8ZZd+yTY3tvQfMnvjNndaBQk57eU/EaaMAGNGqnFgx5e8LoIJ/pNnu1Qp1cSRdOeQ8YUhFqG/xSXPVxjRsppq5MRnFYt/cl+9IwOJ4x7ChwaevcJOEn4JEtlmenRjf3C83AfkG60sxppi0ehFptaemvTzOU2PxVtpl9Q73qean/k7npe6E=
+    secure: ei0jWQ7m2bl0wdcQpeYb2dn+Mslg+2sDK0Kk9++1qMaXsEM7a78cTXLegGTZDDDdda4UXnz3ct4ZlArnDVQYKk/4nidMfoH3AYJ8ynVX6SOy1Gr456xXehdGJO0zyhjkfJWEg0w7hP44E62B/h6JDX7qoEYmraLQo74jyf6pPc/NI4/zLz42YbqtxgC7UDr3In0aTsQMHY4HQXN8fs3deY3O8igvgp86Pa8ABM4Bgj9KZ0NIa6eVXadOzdCGQa4+DpjEeZB0NTsUm/oNu0oOYzNqAep6cs/dXl3qV+br+IouSVxZ3d3TtDeWsdSzFMxhRjtCjIhITJKjJTfi0HP88thhvzt4PeZTHNfsCUvDPwKU3I5xrngHrN6LkrIYvORelnjHYhU6j0ULzEl4swHy9dwWpfnbog7e6y7WnnUhs6L3RdoQsv9BZ7LYLPhxBkRKkIaRd8aLFBbv0Lj0U7nAUAN+18nVJqcbcIT5DzmTo7RgItWCieRdvmHJGS37b1EQaViigiuuOBzDA5LNynkPfJANcS5R02oKeptu0Xc5SNNWoJMVgXJdgbobbck6cRgwIww2LQ/dIpL0Qqb2+9Uxz0Mvjbn58Be/CJy+6mV4t51++y8CopBwqjW32hTlZoTcfSe7uCOYJ8jI+drm+2LzCRuYYaS56aCbHCoaN708KGE=
   on:
     tags: true
   skip_cleanup: true
-
 env:
   global:
   - GIT_USER: Travis CI
-  - GIT_EMAIL: "ai-ot@users.noreply.github.com"
+  - GIT_EMAIL: ai-ot@users.noreply.github.com
   - GH_REF: github.com/ai-ot/react-ja-date-picker.git
   - secure: Dy+rIwOZMh6ZVMMJf/5Mz4N9LX0ycYbMwVI8pWwVl4YL/R0Zfx9etaGdhqWD5w3u/bn/tH6trT9P8FuNIII24gbS5tlbVO+iz5ZCPI+pzfNn1P8t9FfpoU6GyNwWwsKjX6/s148TRQzv7MJpsWZZuEMvhMahGSY7OqXho0tB1f2HrKt8j0DvpJ7I+HHBPq14r3e++gYxtvLthOrY8V7ZDyfJkmmwIhvlu1qze6TwYIwleyERmF6DmF2IrsnQ1FBlU/k6KlZPyLIBQStAydPUwLcvrtznKRO05hRKY7OKx7gsy9Gxy67ZynH2cyjNeBoYfptyeZp6dbS10KvsomMofke3hfbYra9GYlaEL/tHmKVilmPR3zhyou+lgIY1fEY8jZUfPRmA5AXGDFah6vN6905Hn5TN8CqbmKchyUUTBRUcjDxuvpI+nKHqbgAxv9l8nn5N2mUU9r5YLhX/xLBETh1AeBZhPB8JTYRfJP4bU/PL2XFkyVWbz8RKp2/QOhnzYWtn93tC35Ritd0CrMYXWferJ3dUj884OCaQHSJRkTLkJiDwaYjGDM29bfUEMhumQ3J4ghMcS0BgmyzyoyyoASy/oheaH9FmrCUjHwTAWRSf3/coh92ricuVsKts+ZvNUzJ6hYwNrVvZS3/BBt8dFXqjGRxzNPwuRKouzqn/rMY=
