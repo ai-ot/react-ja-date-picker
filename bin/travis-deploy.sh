@@ -18,6 +18,7 @@ fi
 npm run build:preview
 
 pushd demo
+rm .gitignore
 rm preview.jsx
 
 git init
