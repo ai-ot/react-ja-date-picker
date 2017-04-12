@@ -9,7 +9,7 @@
 
 ## 使い方
 
-ブラウザの場合は[Babel](https://babeljs.io/)を使って[Browserify](http://browserify.org/)や[webpack](https://webpack.github.io/)で読み込める形に変換してください。
+ブラウザの場合は[Babel](https://babeljs.io/)を使って[Browserify](http://browserify.org/)、[webpack](https://webpack.github.io/)、[rollup](https://rollupjs.org/)などでバンドルして使うといいかもしれません。
 
 ### static import with JSX
 

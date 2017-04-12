@@ -4,7 +4,8 @@
   "description": "カレンダーピッカーのReactコンポーネント",
   "main": "lib/DatePicker.js",
   "files": [
-    "lib"
+    "lib",
+    "src"
   ],
   "scripts": {
     "build": "NODE_ENV=production babel ./src --out-dir ./lib --source-maps inline",
@@ -13,7 +14,7 @@
     "lint": "eslint . --ext=jsx --ext=js",
     "test": "mocha",
     "deploy:demo": "./bin/travis-deploy.sh",
-    "postversion": "git push origin $(git tag -l | tail -n1)"
+    "postversion": "git push origin master && git push origin $(git tag -l | tail -n1)"
   },
   "devDependencies": {
     "babel-cli": "^6.24.0",
@@ -35,13 +36,18 @@
     "prop-types": "^15.5.6",
     "react": "^15.5.3",
     "react-addons-test-utils": "^15.4.2",
-    "react-dom": "^15.5.3",
+    "react-dom": "^15.5.4",
     "sinon": "^2.1.0",
     "webpack": "^2.3.3",
     "webpack-dev-server": "^2.4.2"
   },
   "dependencies": {
     "moment": "^2.18.1"
+  },
+  "peerDependencies": {
+  "react": "^0.15.0",
+  "react-dom": "^0.15.0",
+  "prop-types": "^15.5.0"
   },
   "directories": {
     "test": "test"
