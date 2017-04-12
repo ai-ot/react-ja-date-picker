@@ -1,9 +1,10 @@
+
 /**
- * generate 2017 holiday
- * @return {array<string>} holidays
+ * Configrations
+ * @type {{holidays:array, weekLabels:{en:array,ja:array}}}
  */
-export const getHolidays = () => {
-  return [
+export default {
+  holidays: [
     '2017-01-01',
     '2017-01-02',
     '2017-02-11',
@@ -20,7 +21,9 @@ export const getHolidays = () => {
     '2017-11-03',
     '2017-11-23',
     '2017-12-23',
-  ]
+  ],
+  weekLabels: {
+    ja: ['月', '火', '水', '木', '金', '土', '日'],
+    en: ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'],
+  }
 }
-
-export const weekLabels = ['月', '火', '水', '木', '金', '土', '日']

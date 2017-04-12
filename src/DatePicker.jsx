@@ -3,10 +3,14 @@ import PropTypes            from 'prop-types'
 
 import moment from 'moment'
 
-import DEFAULT_STYLE                   from './style'
-import { getMonthCalendar }            from './calc'
-import { normalizeStyle, strFormat }   from './lib'
-import { weekLabels }                  from './config'
+import {
+  getMonthCalendar,
+  normalizeStyle,
+  strFormat,
+} from './calc'
+
+import DEFAULT_STYLE from './style'
+import config        from './config'
 
 /**
  * internal classname prefix
@@ -147,7 +151,7 @@ export default class DatePicker extends Component {
      */
     const headRow = <tr>
       <th scope={ 'row' } style={ { display: 'none' } }>{ '週' }</th>
-      { weekLabels.map(label => <th
+      { config.weekLabels.ja.map(label => <th
         className={ CLASS_PREFIX + 'week-label' }
         key={ 'weeklabel-' + label }
         scope={ 'col' }
