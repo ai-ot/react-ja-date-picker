@@ -52,25 +52,41 @@ export const normalizeStyle = style => {
    */
   const isPseudoClass = prop => pseudoClasses.map(pseudoClass => `:${pseudoClass}`).includes(prop)
 
-  // normalize
-  Object.keys(style).forEach(slug => {
-    Object.keys(style[slug]).forEach(prop => {
+  const result = {}
+
+
+  const slugs = Object.keys(style)
+
+  slugs.forEach(slug => {
+    result[slug] = {}
+
+    // prepare in case without those pseudo calsses
+    pseudoClasses.map(pseudoClass => `:${pseudoClass}`).forEach(prop => {
+      if (!style[slug][prop]) {
+        result[slug + prop] = { ...style[slug], ...style[slug][prop] }
+      }
+    })
+
+    // merge, flatten and spread nested properies
+    const props = Object.keys(style[slug])
+    props.forEach(prop => {
       if (isPseudoClass(prop)) {
-        style[slug + prop] = { ...style[slug], ...style[slug][prop] }
-        delete style[slug][prop]
+        result[slug + prop] = { ...style[slug], ...style[slug][prop] }
+      } else {
+        result[slug][prop] = style[slug][prop]
       }
     })
   })
 
   // cleanup nested pseudo class
-  Object.keys(style).forEach(slug => {
-    Object.keys(style[slug]).forEach(prop => {
+  Object.keys(result).forEach(slug => {
+    Object.keys(result[slug]).forEach(prop => {
       if (isPseudoClass(prop)) {
-        delete style[slug][prop]
+        delete result[slug][prop]
       }
     })
   })
-  return style
+  return result
 }
 
 /**

@@ -19,7 +19,7 @@ describe('Test of getMonthCalendar', () => {
 describe('Test of normalizeStyle', () => {
   it('should create slug:hover type object', () => {
     const actual = normalizeStyle({
-      slug: {
+      slug1: {
         someProp1: 'val1',
         someProp2: 'val2',
 
@@ -30,22 +30,34 @@ describe('Test of normalizeStyle', () => {
         ':focus': {
           someProp1: 'val1_overwriting',
         }
+      },
+      slug2: {
+        someProp1: 'val1',
       }
     })
     const expected = {
-      slug: {
+      slug1: {
         someProp1: 'val1',
         someProp2: 'val2',
       },
-      'slug:hover': {
+      'slug1:hover': {
         someProp1: 'val1',
         someProp2: 'val2_overwriting',
         someProp3: 'val3',
       },
-      'slug:focus': {
+      'slug1:focus': {
         someProp1: 'val1_overwriting',
         someProp2: 'val2'
-      }
+      },
+      slug2: {
+        someProp1: 'val1',
+      },
+      'slug2:hover': {
+        someProp1: 'val1',
+      },
+      'slug2:focus': {
+        someProp1: 'val1',
+      },
     }
     expect(actual).to.deep.equal(expected)
   })
