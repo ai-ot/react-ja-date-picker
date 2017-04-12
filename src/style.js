@@ -96,6 +96,7 @@ export default {
     boxSizing : 'border-box',
     textAlign : 'center',
     cursor    : 'pointer',
+    transition: '.2s',
 
     '&:hover'    : {
       background : '#37c5ab',
@@ -111,9 +112,12 @@ export default {
   button: {
     border     : '0',
     background : 'transparent',
+    outline    : 'none',
     padding    : '0',
     fontSize   : 'inherit',
     color      : 'inherit',
-    cursor     : 'pointer'
+    cursor     : 'pointer',
+    width      : '100%',
+    height     : '100%',
   }
 }
