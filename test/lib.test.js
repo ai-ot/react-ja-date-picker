@@ -32,7 +32,7 @@ describe('Test of normalizeStyle', () => {
 
 describe('Test of format', () => {
   it('should format text', () => {
-    expect(strFormat('http://example.com/{0}/{1}/{2}', 2017, 12, 10))
+    expect(strFormat('http://example.com/{year}/{month}/{day}', { year: 2017, month: 12, day: 10 }))
       .to.equal('http://example.com/2017/12/10')
   })
 })

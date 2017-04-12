@@ -103,9 +103,16 @@ export default class DatePicker extends Component {
     const onSelect = this.props.onSelect
     const format   = this.props.format
 
+    /**
+     * format prop overload with {string} or {function}
+     * @param  {number} year  year
+     * @param  {number} month month
+     * @param  {number} day day
+     * @return {function} get URL
+     */
     const getURL = typeof format === 'function' ?
-      (year, month, day) => format(year, month, day) : // use it
-      (year, month, day) => strFormat(format, year, month, day) // use embedded
+      (year, month, day) => format(year, month, day) : // use it as it is
+      (year, month, day) => strFormat(format, { year, month, day }) // use embedded
 
     // parse style object
     const STYLE = normalizeStyle(DEFAULT_STYLE)
