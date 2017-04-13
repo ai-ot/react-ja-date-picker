@@ -160,7 +160,7 @@ export default class DatePicker extends Component {
      * @type {array<ReactComponent>}
      */
     const headRow = <tr>
-      <th scope={ 'row' } style={ { display: 'none' } }>{ '週' }</th>
+      <th scope={ 'row' } style={ STYLE.srOnly }>{ '週' }</th>
       { config.weekLabels.ja.map(label => <th
         className={ CLASS_PREFIX + 'week-label' }
         key={ 'weeklabel-' + label }
@@ -183,7 +183,7 @@ export default class DatePicker extends Component {
      * @type {array<ReactComponent>}
      */
     const bodyRow = thisMonth.map((week, i) => <tr key={ `${month}-${i + 1}` }>
-      <th scope={ 'row' } style={ { display: 'none' } }>{ `第${i + 1}週` }</th>
+      <th scope={ 'row' } style={ STYLE.srOnly }>{ `第${i + 1}週` }</th>
       { week.map(({ day, month, active, isHoliday }) => {
 
         const key = `month-day-${month}-${day}`

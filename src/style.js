@@ -141,5 +141,9 @@ export default {
       color      : '#fff',
       outline    : 'none',
     }
+  },
+
+  srOnly: {
+    display: 'none',
   }
 }
