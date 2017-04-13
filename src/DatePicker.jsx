@@ -229,6 +229,12 @@ export default class DatePicker extends Component {
 
         const key = `month-day-${year}-${month}-${day}`
 
+        /**
+         * deprecated
+         * NOTE: これは、CSS-in-JSのようなものを試そうとした名残
+         * v2.0.0では廃止して外部のライブラリ導入を目指す
+         * @type {Object}
+         */
         const style = {
           ...STYLE.day, // 普通のやつ
           ...(active ? STYLE.active : STYLE.notActive),     // 活不活
