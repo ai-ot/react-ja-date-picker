@@ -7,6 +7,7 @@ import {
   getMonthCalendar,
   normalizeStyle,
   strFormat,
+  snake2camel,
 } from './calc'
 
 import DEFAULT_STYLE from './style'
@@ -68,13 +69,13 @@ export default class DatePicker extends Component {
 
   /**
    * generate static className and style objects
-   * @param  {array<string>|string} slugs your slug(s)
+   * @param  {array<string>|string} slugs your slug(s) in snake-case
    * @return {{className:string,style:cssInJs}} generated object
    */
   classStyle(slugs) {
     return ({
-      className : Array.isArray(slugs) ? slugs.map(slug => CLASS_PREFIX + slug).join(' ') : slugs,
-      style     : Array.isArray(slugs) ? slugs.reduce((prev, slug) => ({ ...prev, ...this.state.styles[slug] }), {}) : this.state.styles[slugs]
+      className : Array.isArray(slugs) ? slugs.map(slug => CLASS_PREFIX + slug).join(' ') : CLASS_PREFIX + slugs,
+      style     : Array.isArray(slugs) ? slugs.reduce((prev, slug) => ({ ...prev, ...this.state.styles[snake2camel(slug)] }), {}) : this.state.styles[snake2camel(slugs)]
     })
   }
 
@@ -176,13 +177,13 @@ export default class DatePicker extends Component {
     const headRow = <tr>
       <th
         scope={ 'row' }
-        { ...this.classStyle('srOnly') }
+        { ...this.classStyle('sr-only') }
       >{ '週' }</th>
 
       { config.weekLabels.ja.map(label => <th
         key={ 'weeklabel-' + label }
         scope={ 'col' }
-        { ...this.classStyle('weekLabel') }
+        { ...this.classStyle('week-label') }
       >{ label }</th>
       ) }
 
@@ -201,7 +202,7 @@ export default class DatePicker extends Component {
     const bodyRows = thisMonth.map((week, i) => <tr key={ `${month}-${i + 1}` }>
       <th
         scope={ 'row' }
-        { ...this.classStyle('srOnly') }
+        { ...this.classStyle('sr-only') }
       >{ `第${i + 1}週` }</th>
 
       { week.map(({ day, month, active, isHoliday }) => {
@@ -258,7 +259,7 @@ export default class DatePicker extends Component {
     return (
       <div { ...this.classStyle('container') }>
 
-        <div { ...this.classStyle('navWrap') }>
+        <div { ...this.classStyle('nav-wrap') }>
           <button
             className={ CLASS_PREFIX + 'nav-button ' + CLASS_PREFIX + 'nav-prev' }
             style={ stylePrev }
@@ -278,14 +279,13 @@ export default class DatePicker extends Component {
         <div { ...this.classStyle('month') }>
 
           <table>
-
             <caption { ...this.classStyle('caption') }>
               <strong>{ `${year}年${month}月` }</strong>
             </caption>
 
             <thead { ...this.classStyle('week') }>{ headRow }</thead>
 
-            <tbody { ...this.classStyle('monthGrid') }>{ bodyRows }</tbody>
+            <tbody { ...this.classStyle('month-grid') }>{ bodyRows }</tbody>
 
           </table>
         </div>

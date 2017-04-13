@@ -96,3 +96,19 @@ export const normalizeStyle = style => {
  */
 export const strFormat = (format, args) => format
   .replace(/\{(\w+)\}/g, (x, matched) => args[matched])
+
+/**
+ * convert camel case to snake case
+ * @param  {string} camel lowerCamelCaseString
+ * @return {string}       snake-case-string
+ */
+export const camel2snake = camel => camel
+  .replace(/[A-Z]/g, str => '-' + str.toLowerCase())
+
+/**
+ * convert snake case to camel case
+ * @param  {string} snake lowerCamelCaseString
+ * @return {string}       snake-case-string
+ */
+export const snake2camel = snake => snake
+  .replace(/-[a-zA-Z]/g, str => str[1].toUpperCase())
