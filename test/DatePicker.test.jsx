@@ -77,7 +77,7 @@ describe('1. DatePicker Component, ', () => {
 
     it('should render 1 holidays for December 2017', () => {
       const wrapper = shallow(<DatePicker date={ '2017-12-01' } />)
-      expect(wrapper.find(getClass('is-holiday'))).to.have.length(1)
+      expect(wrapper.find(getClass('holiday'))).to.have.length(1)
     })
 
     it('should call onSelect callback if type `buton` given', () => {
