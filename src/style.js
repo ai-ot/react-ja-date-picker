@@ -32,7 +32,7 @@ export default {
   },
 
   // wrapper for navigations
-  navWrap: {},
+  navigation: {},
 
   // nav button generic style
   navButton: {
@@ -58,8 +58,7 @@ export default {
   navPrev: { left  : '20px' },
   navNext: { right : '20px' },
 
-  // month wrapper
-  month: {
+  calender: {
     width   : '100%',
     // background: 'pink',
     display : 'inline-block',
@@ -67,11 +66,12 @@ export default {
 
   // caption text as date
   caption: {
-    textAlign : 'center',
-    padding   : '5px 0',
+    textAlign  : 'center',
+    fontWeight : 'bold',
+    padding    : '5px 0',
   },
 
-  week: {
+  weekLabels: {
     margin    : '10px 0',
     padding   : '0',
     textAlign : 'center',
@@ -85,7 +85,7 @@ export default {
     boxSizing: 'border-box'
   },
 
-  monthGrid: {
+  calenderGrid: {
     display        : 'table',
     borderCollapse : 'collapse',
     margin         : '0 auto',
@@ -109,6 +109,22 @@ export default {
       color: 'red', //sample
     }
   },
+
+  notActive: {
+    opacity: .2,
+  },
+  holiday: {
+    color: 'red',
+  },
+  sunday: {
+    color: 'red',
+  },
+  monday: {},
+  tuesday: {},
+  wednesday: {},
+  thurseday: {},
+  friday: {},
+  saturaday: {},
 
   link: {
     display        : 'block',

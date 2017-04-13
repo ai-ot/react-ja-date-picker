@@ -225,30 +225,38 @@ export default class DatePicker extends Component {
         { ...this.classStyle('sr-only') }
       >{ `第${i + 1}週` }</th>
 
-      { week.map(({ day, month, active, isHoliday }) => {
+      { week.map(({ day, month, active, weekday, isHoliday }) => {
 
-        const key = `month-day-${month}-${day}`
+        const key = `month-day-${year}-${month}-${day}`
+
+        const style = {
+          ...STYLE.day, // 普通のやつ
+          ...(active ? STYLE.active : STYLE.notActive),     // 活不活
+          ...(STYLE[weekday]),                 // 週日
+          ...(isHoliday ? STYLE.holiday : {}), // 祝日
+          ...(this.isHovering(key) ? STYLE['day:hover'] : {}), // ホバーしている時
+        }
 
         return (<td
           className={ [
             'day',
-            (active    ? 'active'     : 'not-active'),
-            (isHoliday ? 'is-holiday' : 'is-weekday'),
+            (active    ? 'active'  : 'not-active'),
+            (isHoliday ? 'holiday' : 'weekday'),
           ].map(slug => CLASS_PREFIX + slug).join(' ') }
           key={ key }
-          style={ this.isHovering(key) ? STYLE['day:hover'] : STYLE.day }
+          style={ style }
           { ...this.enableHover(key) }
         >{ type === 'link' ? // exports <a> or <button>
           <a
             className={ CLASS_PREFIX + 'day' }
             href={ this.getURL(year, month, day) }
-            style={ this.isFocusing(`${year}-${month}-${day}`) ? STYLE['link:focus'] : STYLE.link }
-            { ...this.enableFocus(`${year}-${month}-${day}`) }
+            style={ this.isFocusing(key) ? STYLE['link:focus'] : STYLE.link }
+            { ...this.enableFocus(key) }
           >{ day }</a> :
           <button
             className={ CLASS_PREFIX + 'day' }
-            style={ this.isFocusing(`${year}-${month}-${day}`) ? STYLE['day:focus'] : STYLE.day }
-            { ...this.enableFocus(`${year}-${month}-${day}`) }
+            style={ this.isFocusing(key) ? STYLE['day:focus'] : STYLE.day }
+            { ...this.enableFocus(key) }
             onClick={ () => onSelect(year, month, day) }
           >{ day }</button>
 
@@ -275,7 +283,8 @@ export default class DatePicker extends Component {
     return (
       <div { ...this.classStyle('container') }>
 
-        <div { ...this.classStyle('nav-wrap') }>
+        <nav { ...this.classStyle('navigation') }>
+
           <button
             className={ CLASS_PREFIX + 'nav-button ' + CLASS_PREFIX + 'nav-prev' }
             style={ stylePrev }
@@ -289,20 +298,20 @@ export default class DatePicker extends Component {
             { ...this.enableHover('button-next') }
           >{ '→' }</button>
 
-        </div>
+        </nav>
 
-        <div { ...this.classStyle('month') }>
+        <div { ...this.classStyle('calender') }>
 
           <table>
-            <caption { ...this.classStyle('caption') }>
-              <strong>{ `${year}年${month}月` }</strong>
-            </caption>
 
-            <thead { ...this.classStyle('week') }>{ headRow }</thead>
+            <caption { ...this.classStyle('caption') }>{ `${year}年${month}月` }</caption>
 
-            <tbody { ...this.classStyle('month-grid') }>{ bodyRows }</tbody>
+            <thead { ...this.classStyle('week-labels') }>{ headRow }</thead>
+
+            <tbody { ...this.classStyle('calender-grid') }>{ bodyRows }</tbody>
 
           </table>
+
         </div>
 
       </div>
