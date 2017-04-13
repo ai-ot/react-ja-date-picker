@@ -6,7 +6,7 @@
  * [ルール]
  * - プロパティ名は Lower Camel Case で記述(ex. 'background-color' => 'backgroundColor')
  * [制約]
- * - 擬似クラス(:hoverなど)は、className:hover のようにプロパティを作成する
+ * - 擬似クラス(:hoverなど)は、className:hover のようにプロパティを作成する。今の所、:hoverと:focus
  *   {
  *     className: {
  *        someProp: 'value',
@@ -103,6 +103,10 @@ export default {
     ':hover' : {
       background : '#37c5ab',
       color      : '#fff',
+    },
+
+    ':focus' : {
+      color: 'red', //sample
     }
   },
 
@@ -123,7 +127,7 @@ export default {
 
   button: {
     border     : '0',
-    background : 'transparent',
+    background : 'white',
     outline    : 'none',
     padding    : '0',
     fontSize   : 'inherit',

@@ -1,4 +1,4 @@
-# Calender Picker (alpha)
+# React ja Date Picker (alpha)
 
 [![Build Status](https://travis-ci.org/ai-ot/react-ja-date-picker.svg?branch=master)](https://travis-ci.org/ai-ot/react-ja-date-picker)
 [![npm](https://img.shields.io/npm/v/react-ja-date-picker.svg)](https://www.npmjs.com/package/react-ja-date-picker)
@@ -72,9 +72,9 @@ $ npm version patch
 ### API
 
 - `date:string`をプロパティにとり、指定しない場合はデフォルトで本日になります。パースできなかった場合はエラーになります
-- `calenderType:string`をプロパティにとり、値に応じてリンクモードとボタンモードの2つのモードで動作します。どちらかのモードをデフォルトにします
+- `type:string`をプロパティにとり、値に応じてリンクモードとボタンモードの2つのモードで動作します。どちらかのモードをデフォルトにします
   + リンクモードでは、それぞれの日付は`a`タグの中にレンダリングされます
-  + リンクモードにおいては、`linkFormat:string|function`プロパティによって、aタグのリンク先のURL等を指定できます
+  + リンクモードにおいては、`format:string|function`プロパティによって、aタグのリンク先のURL等を指定できます
       - 文字列でフォーマットを指定するか、コールバックで指定するかのどちらか、あるいは両方の入力を許容します
   + ボタンモードでは、それぞれの日付は`button`タグの中にレンダリングされます
   + ボタンモードにおいては、`onSelect:function`プロパティによってコールバックを指定できます
@@ -84,20 +84,20 @@ $ npm version patch
 
 #### リンクモード
 
-```html
+```jsx
 <DatePicker
-  calenderType={ 'link' }
+  type={ 'link' }
   className={ 'some-class' }
   date={ '2017-12-31' }
-  linkFormat={ 'http://example.com/{year}/{month}/{day}' }
+  format={ 'http://example.com/{year}/{month}/{day}' }
 />
 ```
 
 #### ボタンモード
 
-```html
+```jsx
 <DatePicker
-  calenderType={ 'button' }
+  type={ 'button' }
   className={ 'some-class' }
   date={ '2017-12-31' }
   onSelect={ (year, month, day, closeMe) => {

@@ -3,10 +3,14 @@ import PropTypes            from 'prop-types'
 
 import moment from 'moment'
 
-import DEFAULT_STYLE                   from './style'
-import { getMonthCalendar }            from './calc'
-import { normalizeStyle, strFormat }   from './lib'
-import { weekLabels }                  from './config'
+import {
+  getMonthCalendar,
+  normalizeStyle,
+  strFormat,
+} from './calc'
+
+import DEFAULT_STYLE from './style'
+import config        from './config'
 
 /**
  * internal classname prefix
@@ -64,7 +68,6 @@ export default class DatePicker extends Component {
    * @return {ReactComponent} render a calender picker
    */
   render() {
-
     /**
      * check if a element with certain id is being hovered
      * @param  {string}  id  given id
@@ -147,7 +150,7 @@ export default class DatePicker extends Component {
      */
     const headRow = <tr>
       <th scope={ 'row' } style={ { display: 'none' } }>{ '週' }</th>
-      { weekLabels.map(label => <th
+      { config.weekLabels.ja.map(label => <th
         className={ CLASS_PREFIX + 'week-label' }
         key={ 'weeklabel-' + label }
         scope={ 'col' }
@@ -189,7 +192,7 @@ export default class DatePicker extends Component {
             >{ day }</a> :
             <button
               className={ CLASS_PREFIX + 'day' }
-              style={ isFocusing(`${year}-${month}-${day}`) ? STYLE['button:focus'] : STYLE.button }
+              style={ isFocusing(`${year}-${month}-${day}`) ? STYLE['day:focus'] : STYLE.day }
               onBlur={ focusOn(false) }
               onClick={ () => onSelect(year, month, day) }
               onFocus={ focusOn(`${year}-${month}-${day}`) }
