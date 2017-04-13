@@ -6,7 +6,6 @@
 import moment from 'moment'
 import config from './config'
 
-
 /**
  * 指定した月のカレンダーを返してくれます
  * @param  {number} year  year

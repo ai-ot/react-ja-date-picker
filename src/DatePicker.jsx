@@ -48,6 +48,7 @@ export default class DatePicker extends Component {
 
   /**
    * initializ state
+   * @public
    * @param  {Props} props given props
    * @return {void}
    */
@@ -64,85 +65,95 @@ export default class DatePicker extends Component {
   }
 
   /**
+   * format prop overload with {string} or {function}
+   * @param  {number} year  year
+   * @param  {number} month month
+   * @param  {number} day day
+   * @return {string} the aimed URL string
+   */
+  getURL(year, month, day) {
+    const result = typeof this.props.format === 'function' ?
+      format(year, month, day) : // use it as it is
+      strFormat(this.props.format, { year, month, day }) // use embedded
+    return result
+  }
+
+  /**
+   * check if a element with certain id is being hovered
+   * @private
+   * @param  {string}  id  given id
+   * @return {boolean}     whether hoverring
+   */
+  isHovering(id) {
+    return this.state ? this.state.hovering === id : false
+  }
+
+  /**
+   * check if a elelment with certain id is being focused
+   * @private
+   * @param  {string}  id given id
+   * @return {boolean}    whether focusing
+   */
+  isFocusing(id) {
+    return this.state ? this.state.focusing === id : false
+  }
+
+  /**
+   * create callback to set hoverirng state
+   * @private
+   * @param  {string|boolean} id giving id, or false to cancel it
+   * @return {void}
+   */
+  hoverOn(id) {
+    this.setState({ ...this.state, ...{ hovering: id } })
+  }
+
+  /**
+   * create callback to set focusing state
+   * @param  {string|boolean} id giving id, or false to cancel it
+   * @return {void}
+   */
+  focusOn(id) {
+    this.setState({ ...this.state, ...{ focusing: id } })
+  }
+
+  /**
+   * change next month
+   * @private
+   * @return {void}
+   */
+  moveFoward() {
+    const nYear = (this.state.month + 1 > 12 ? this.state.year + 1 : this.state.year)
+    const nMonth = (this.state.month + 1) % 12
+    this.setState({ year: nYear, month: nMonth })
+  }
+
+  /**
+   * change prev month
+   * @private
+   * @return {void}
+   */
+  moveBackward() {
+    const nYear = (this.state.month - 1 == 0 ? this.state.year - 1 : this.state.year)
+    const nMonth = (this.state.month - 1 == 0 ? 12 : this.state.month - 1)
+    this.setState({ year: nYear, month: nMonth })
+  }
+
+  /**
    * render
    * @return {ReactComponent} render a calender picker
    */
   render() {
-    /**
-     * check if a element with certain id is being hovered
-     * @param  {string}  id  given id
-     * @return {boolean}     whether hoverring
-     */
-    const isHovering = id => this.state ? this.state.hovering === id : false
-
-    /**
-     * check if a elelment with certain id is being focused
-     * @param  {string}  id given id
-     * @return {boolean}    whether focusing
-     */
-    const isFocusing = id => this.state ? this.state.focusing === id : false
-
-    /**
-     * create callback to set hoverirng state
-     * @param  {string|boolean} id giving id, or false to cancel it
-     * @return {function} callback to set state
-     */
-    const hoverOn = id => () => this.setState({ ...this.state, ...{ hovering: id } })
-
-    /**
-     * create callback to set focusing state
-     * @param  {string|boolean} id giving id, or false to cancel it
-     * @return {function} callback to set state
-     */
-    const focusOn = id => () => this.setState({ ...this.state, ...{ focusing: id } })
-
-    /**
-     * change next month
-     * @return {void}
-     */
-    const moveFoward = () => {
-      const nYear = (this.state.month + 1 > 12 ? this.state.year + 1 : this.state.year)
-      const nMonth = (this.state.month + 1) % 12
-      this.setState({ year: nYear, month: nMonth })
-    }
-
-    /**
-     * change prev month
-     * @return {void}
-     */
-    const moveBackward = () => {
-      const nYear = (this.state.month - 1 == 0 ? this.state.year - 1 : this.state.year)
-      const nMonth = (this.state.month - 1 == 0 ? 12 : this.state.month - 1)
-      this.setState({ year: nYear, month: nMonth })
-    }
 
     // parse props
     const type     = this.props.type
     const onSelect = this.props.onSelect
-    const format   = this.props.format
-
-    /**
-     * format prop overload with {string} or {function}
-     * @param  {number} year  year
-     * @param  {number} month month
-     * @param  {number} day day
-     * @return {function} get URL
-     */
-    const getURL = typeof format === 'function' ?
-      (year, month, day) => format(year, month, day) : // use it as it is
-      (year, month, day) => strFormat(format, { year, month, day }) // use embedded
 
     // parse style object
     const STYLE = normalizeStyle(DEFAULT_STYLE)
 
     // parse state
     const { year, month } = this.state
-
-    /**
-     * 当月の日の情報をまとめたオブジェクトを出力する
-     * @type {array<array<{day:number,month:number,active:boolean,weekday:string,isHoliday:boolean}>>}
-     */
-    const thisMonth = getMonthCalendar(year, month)
 
     /**
      * render week labels as date picker table head component
@@ -162,11 +173,17 @@ export default class DatePicker extends Component {
     </tr>
 
     /**
+     * 当月の日の情報をまとめたオブジェクトを出力する
+     * @type {array<array<{day:number,month:number,active:boolean,weekday:string,isHoliday:boolean}>>}
+     */
+    const thisMonth = getMonthCalendar(year, month)
+
+    /**
      * render date picker table body component
      * @type {array<ReactComponent>}
      */
-    const bodyRow = thisMonth.map((week, i) => <tr key={ `${month}-${i}` }>
-      <th scope={ 'row' } style={ { display: 'none' } }>{ '第' + i + '週' }</th>
+    const bodyRow = thisMonth.map((week, i) => <tr key={ `${month}-${i + 1}` }>
+      <th scope={ 'row' } style={ { display: 'none' } }>{ `第${i + 1}週` }</th>
       { week.map(({ day, month, active, isHoliday }) => {
 
         const key = `month-day-${month}-${day}`
@@ -178,24 +195,24 @@ export default class DatePicker extends Component {
             (isHoliday ? 'is-holiday' : 'is-weekday'),
           ].map(slug => CLASS_PREFIX + slug).join(' ') }
           key={ key }
-          style={ isHovering(key) ? STYLE['day:hover'] : STYLE.day }
-          onMouseEnter={ hoverOn(key) }
-          onMouseLeave={ hoverOn(false) }
+          style={ this.isHovering(key) ? STYLE['day:hover'] : STYLE.day }
+          onMouseEnter={ () => this.hoverOn(key) }
+          onMouseLeave={ () => this.hoverOn(false) }
         >
           { type === 'link' ? // aタグとボタンタグを条件に応じて出力する
             <a
               className={ CLASS_PREFIX + 'day' }
-              href={ getURL(year, month, day) }
-              style={ isFocusing(`${year}-${month}-${day}`) ? STYLE['link:focus'] : STYLE.link }
-              onBlur={ focusOn(false) }
-              onFocus={ focusOn(`${year}-${month}-${day}`) }
+              href={ this.getURL(year, month, day) }
+              style={ this.isFocusing(`${year}-${month}-${day}`) ? STYLE['link:focus'] : STYLE.link }
+              onBlur={ () => this.focusOn(false) }
+              onFocus={ () => this.focusOn(`${year}-${month}-${day}`) }
             >{ day }</a> :
             <button
               className={ CLASS_PREFIX + 'day' }
-              style={ isFocusing(`${year}-${month}-${day}`) ? STYLE['day:focus'] : STYLE.day }
-              onBlur={ focusOn(false) }
+              style={ this.isFocusing(`${year}-${month}-${day}`) ? STYLE['day:focus'] : STYLE.day }
+              onBlur={ () => this.focusOn(false) }
               onClick={ () => onSelect(year, month, day) }
-              onFocus={ focusOn(`${year}-${month}-${day}`) }
+              onFocus={ () => this.focusOn(`${year}-${month}-${day}`) }
               onMouseEnter={ false }
             >{ day }</button>
           }
@@ -208,14 +225,14 @@ export default class DatePicker extends Component {
      * ホバーしているかどうかに基づいて、先月に移動するボタンのクラスをオブジェクトの形式で生成する
      * @type {object}
      */
-    const stylePrev = isHovering('button-prev') ?
+    const stylePrev = this.isHovering('button-prev') ?
       { ...STYLE['navButton:hover'], ...STYLE.navPrev } :
       { ...STYLE.navButton,          ...STYLE.navPrev }
       /**
        * ホバーしているかどうかに基づいて、来月に移動するボタンのクラスをオブジェクトの形式で生成する
        * @type {object}
        */
-    const styleNext = isHovering('button-next') ?
+    const styleNext = this.isHovering('button-next') ?
       { ...STYLE['navButton:hover'], ...STYLE.navNext } :
       { ...STYLE.navButton,          ...STYLE.navNext }
 
@@ -226,16 +243,16 @@ export default class DatePicker extends Component {
           <button
             className={ CLASS_PREFIX + 'nav-button ' + CLASS_PREFIX + 'nav-prev' }
             style={ stylePrev }
-            onClick={ moveBackward }
-            onMouseEnter={ hoverOn('button-prev') }
-            onMouseLeave={ hoverOn(false) }
+            onClick={ () => this.moveBackward() }
+            onMouseEnter={ () => this.hoverOn('button-prev') }
+            onMouseLeave={ () => this.hoverOn(false) }
           >{ '←' }</button>
           <button
             className={ CLASS_PREFIX + 'nav-button ' + CLASS_PREFIX + 'nav-next' }
             style={ styleNext }
-            onClick={ moveFoward }
-            onMouseEnter={ hoverOn('button-next') }
-            onMouseLeave={ hoverOn(false) }
+            onClick={ () => this.moveFoward }
+            onMouseEnter={ () => this.hoverOn('button-next') }
+            onMouseLeave={ () => this.hoverOn(false) }
           >{ '→' }</button>
         </div>
 
