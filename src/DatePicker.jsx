@@ -69,13 +69,38 @@ export default class DatePicker extends Component {
 
   /**
    * generate static className and style objects
-   * @param  {array<string>|string} slugs your slug(s) in snake-case
+   * @param  {array<string>|string} slug your slug in snake-case
    * @return {{className:string,style:cssInJs}} generated object
    */
-  classStyle(slugs) {
+  classStyle(slug) {
+    const result = {
+      className : CLASS_PREFIX + slug,
+      style     : this.state.styles[snake2camel(slug)]
+    }
+    return result
+  }
+
+  /**
+   * manage hover status
+   * @param  {string} id id
+   * @return {{onMouseEnter:function,onMouseLeave:function}}  eventHandlers
+   */
+  enableHover(id) {
     return ({
-      className : Array.isArray(slugs) ? slugs.map(slug => CLASS_PREFIX + slug).join(' ') : CLASS_PREFIX + slugs,
-      style     : Array.isArray(slugs) ? slugs.reduce((prev, slug) => ({ ...prev, ...this.state.styles[snake2camel(slug)] }), {}) : this.state.styles[snake2camel(slugs)]
+      onMouseEnter: () => this.hoverOn(id),
+      onMouseLeave: () => this.hoverOn(false)
+    })
+  }
+
+  /**
+   * manage focus status
+   * @param  {string} id id
+   * @return {{onBlur:function,onFocus:function}}  eventHandlers
+   */
+  enableFocus(id) {
+    return ({
+      onBlur  : () => this.focusOn(false),
+      onFocus : () => this.focusOn(id)
     })
   }
 
@@ -95,7 +120,6 @@ export default class DatePicker extends Component {
 
   /**
    * check if a element with certain id is being hovered
-   * @private
    * @param  {string}  id  given id
    * @return {boolean}     whether hoverring
    */
@@ -105,7 +129,6 @@ export default class DatePicker extends Component {
 
   /**
    * check if a elelment with certain id is being focused
-   * @private
    * @param  {string}  id given id
    * @return {boolean}    whether focusing
    */
@@ -115,7 +138,6 @@ export default class DatePicker extends Component {
 
   /**
    * create callback to set hoverirng state
-   * @private
    * @param  {string|boolean} id giving id, or false to cancel it
    * @return {void}
    */
@@ -134,7 +156,6 @@ export default class DatePicker extends Component {
 
   /**
    * change next month
-   * @private
    * @return {void}
    */
   moveMonthFoward() {
@@ -145,7 +166,6 @@ export default class DatePicker extends Component {
 
   /**
    * change prev month
-   * @private
    * @return {void}
    */
   moveMonthBackward() {
@@ -217,23 +237,19 @@ export default class DatePicker extends Component {
           ].map(slug => CLASS_PREFIX + slug).join(' ') }
           key={ key }
           style={ this.isHovering(key) ? STYLE['day:hover'] : STYLE.day }
-          onMouseEnter={ () => this.hoverOn(key) }
-          onMouseLeave={ () => this.hoverOn(false) }
+          { ...this.enableHover(key) }
         >{ type === 'link' ? // exports <a> or <button>
           <a
             className={ CLASS_PREFIX + 'day' }
             href={ this.getURL(year, month, day) }
             style={ this.isFocusing(`${year}-${month}-${day}`) ? STYLE['link:focus'] : STYLE.link }
-            onBlur={ () => this.focusOn(false) }
-            onFocus={ () => this.focusOn(`${year}-${month}-${day}`) }
+            { ...this.enableFocus(`${year}-${month}-${day}`) }
           >{ day }</a> :
           <button
             className={ CLASS_PREFIX + 'day' }
             style={ this.isFocusing(`${year}-${month}-${day}`) ? STYLE['day:focus'] : STYLE.day }
-            onBlur={ () => this.focusOn(false) }
+            { ...this.enableFocus(`${year}-${month}-${day}`) }
             onClick={ () => onSelect(year, month, day) }
-            onFocus={ () => this.focusOn(`${year}-${month}-${day}`) }
-            onMouseEnter={ false }
           >{ day }</button>
 
         }</td>)
@@ -264,16 +280,15 @@ export default class DatePicker extends Component {
             className={ CLASS_PREFIX + 'nav-button ' + CLASS_PREFIX + 'nav-prev' }
             style={ stylePrev }
             onClick={ () => this.moveMonthBackward() }
-            onMouseEnter={ () => this.hoverOn('button-prev') }
-            onMouseLeave={ () => this.hoverOn(false) }
+            { ...this.enableHover('button-prev') }
           >{ '←' }</button>
           <button
             className={ CLASS_PREFIX + 'nav-button ' + CLASS_PREFIX + 'nav-next' }
             style={ styleNext }
             onClick={ () => this.moveMonthFoward() }
-            onMouseEnter={ () => this.hoverOn('button-next') }
-            onMouseLeave={ () => this.hoverOn(false) }
+            { ...this.enableHover('button-next') }
           >{ '→' }</button>
+
         </div>
 
         <div { ...this.classStyle('month') }>
