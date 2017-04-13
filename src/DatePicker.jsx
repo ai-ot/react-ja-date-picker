@@ -250,7 +250,7 @@ export default class DatePicker extends Component {
           <button
             className={ CLASS_PREFIX + 'nav-button ' + CLASS_PREFIX + 'nav-next' }
             style={ styleNext }
-            onClick={ () => this.moveFoward }
+            onClick={ () => this.moveFoward() }
             onMouseEnter={ () => this.hoverOn('button-next') }
             onMouseLeave={ () => this.hoverOn(false) }
           >{ '→' }</button>

@@ -11,9 +11,9 @@ import DatePicker, { CLASS_PREFIX } from '../src/DatePicker.jsx'
  */
 const getClass = word => '.' + CLASS_PREFIX + word
 
-describe('Test of DatePicker Component', () => {
+describe('1. DatePicker Component, ', () => {
 
-  describe('Test of prev and next button', () => {
+  describe('1) prev and next button, ', () => {
     it('should render 2 buttons', () => {
       const wrapper = shallow(<DatePicker />)
       expect(wrapper.find(getClass('nav-button'))).to.have.length(2)
@@ -24,27 +24,27 @@ describe('Test of DatePicker Component', () => {
       expect(wrapper.find(getClass('nav-next'))).to.have.length(1)
     })
 
-    it('should toggle month foward', () => {
+    it('should toggle month backward', () => {
       const wrapper = shallow(<DatePicker date={ '2017-05-01' } />)
       wrapper.find(getClass('nav-prev')).simulate('click')
       expect(wrapper.find(getClass('caption')).text()).to.contains('2017年4月')
     })
 
-    it('should toggle month backward', () => {
+    it('should toggle month foward', () => {
       const wrapper = shallow(<DatePicker date={ '2017-05-01' } />)
       wrapper.find(getClass('nav-next')).simulate('click')
       expect(wrapper.find(getClass('caption')).text()).to.contains('2017年6月')
     })
   })
 
-  describe('Test of caption', () => {
+  describe('2) caption, ', () => {
     it('should render year年month月', () => {
       const wrapper = shallow(<DatePicker date={ '2017-12-01' } />)
       expect(wrapper.find(getClass('caption')).text()).to.contains('2017年12月')
     })
   })
 
-  describe('Test of day', () => {
+  describe('3) Test of day, ', () => {
     it('should render 7 day label component', () => {
       const wrapper = shallow(<DatePicker />)
       expect(wrapper.find(getClass('week-label'))).to.have.length(7)
