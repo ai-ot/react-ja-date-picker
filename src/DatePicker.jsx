@@ -18,6 +18,7 @@ import config        from './config'
  */
 export const CLASS_PREFIX =  'react-ja-date-picker__'
 
+
 /**
  * Define Calender Picker Component
  * @return {ReactComponent} React Component
@@ -59,9 +60,22 @@ export default class DatePicker extends Component {
     this.state = {
       year     : date.year(),
       month    : date.month() + 1,
+      styles   : normalizeStyle(DEFAULT_STYLE),
       hovering : false,
       focusing : false,
     }
+  }
+
+  /**
+   * generate static className and style objects
+   * @param  {array<string>|string} slugs your slug(s)
+   * @return {{className:string,style:cssInJs}} generated object
+   */
+  classStyle(slugs) {
+    return ({
+      className : Array.isArray(slugs) ? slugs.map(slug => CLASS_PREFIX + slug).join(' ') : slugs,
+      style     : Array.isArray(slugs) ? slugs.reduce((prev, slug) => ({ ...prev, ...this.state.styles[slug] }), {}) : this.state.styles[slugs]
+    })
   }
 
   /**
@@ -122,7 +136,7 @@ export default class DatePicker extends Component {
    * @private
    * @return {void}
    */
-  moveFoward() {
+  moveMonthFoward() {
     const nYear = (this.state.month + 1 > 12 ? this.state.year + 1 : this.state.year)
     const nMonth = (this.state.month + 1) % 12
     this.setState({ year: nYear, month: nMonth })
@@ -133,7 +147,7 @@ export default class DatePicker extends Component {
    * @private
    * @return {void}
    */
-  moveBackward() {
+  moveMonthBackward() {
     const nYear = (this.state.month - 1 == 0 ? this.state.year - 1 : this.state.year)
     const nMonth = (this.state.month - 1 == 0 ? 12 : this.state.month - 1)
     this.setState({ year: nYear, month: nMonth })
@@ -160,16 +174,18 @@ export default class DatePicker extends Component {
      * @type {array<ReactComponent>}
      */
     const headRow = <tr>
-      <th scope={ 'row' } style={ STYLE.srOnly }>{ '週' }</th>
+      <th
+        scope={ 'row' }
+        { ...this.classStyle('srOnly') }
+      >{ '週' }</th>
+
       { config.weekLabels.ja.map(label => <th
-        className={ CLASS_PREFIX + 'week-label' }
         key={ 'weeklabel-' + label }
         scope={ 'col' }
-        style={ STYLE.weekLabel }
-      >
-        { label }
-      </th>
+        { ...this.classStyle('weekLabel') }
+      >{ label }</th>
       ) }
+
     </tr>
 
     /**
@@ -182,8 +198,12 @@ export default class DatePicker extends Component {
      * render date picker table body component
      * @type {array<ReactComponent>}
      */
-    const bodyRow = thisMonth.map((week, i) => <tr key={ `${month}-${i + 1}` }>
-      <th scope={ 'row' } style={ STYLE.srOnly }>{ `第${i + 1}週` }</th>
+    const bodyRows = thisMonth.map((week, i) => <tr key={ `${month}-${i + 1}` }>
+      <th
+        scope={ 'row' }
+        { ...this.classStyle('srOnly') }
+      >{ `第${i + 1}週` }</th>
+
       { week.map(({ day, month, active, isHoliday }) => {
 
         const key = `month-day-${month}-${day}`
@@ -198,25 +218,24 @@ export default class DatePicker extends Component {
           style={ this.isHovering(key) ? STYLE['day:hover'] : STYLE.day }
           onMouseEnter={ () => this.hoverOn(key) }
           onMouseLeave={ () => this.hoverOn(false) }
-        >
-          { type === 'link' ? // aタグとボタンタグを条件に応じて出力する
-            <a
-              className={ CLASS_PREFIX + 'day' }
-              href={ this.getURL(year, month, day) }
-              style={ this.isFocusing(`${year}-${month}-${day}`) ? STYLE['link:focus'] : STYLE.link }
-              onBlur={ () => this.focusOn(false) }
-              onFocus={ () => this.focusOn(`${year}-${month}-${day}`) }
-            >{ day }</a> :
-            <button
-              className={ CLASS_PREFIX + 'day' }
-              style={ this.isFocusing(`${year}-${month}-${day}`) ? STYLE['day:focus'] : STYLE.day }
-              onBlur={ () => this.focusOn(false) }
-              onClick={ () => onSelect(year, month, day) }
-              onFocus={ () => this.focusOn(`${year}-${month}-${day}`) }
-              onMouseEnter={ false }
-            >{ day }</button>
-          }
-        </td>)
+        >{ type === 'link' ? // exports <a> or <button>
+          <a
+            className={ CLASS_PREFIX + 'day' }
+            href={ this.getURL(year, month, day) }
+            style={ this.isFocusing(`${year}-${month}-${day}`) ? STYLE['link:focus'] : STYLE.link }
+            onBlur={ () => this.focusOn(false) }
+            onFocus={ () => this.focusOn(`${year}-${month}-${day}`) }
+          >{ day }</a> :
+          <button
+            className={ CLASS_PREFIX + 'day' }
+            style={ this.isFocusing(`${year}-${month}-${day}`) ? STYLE['day:focus'] : STYLE.day }
+            onBlur={ () => this.focusOn(false) }
+            onClick={ () => onSelect(year, month, day) }
+            onFocus={ () => this.focusOn(`${year}-${month}-${day}`) }
+            onMouseEnter={ false }
+          >{ day }</button>
+
+        }</td>)
       }) }
     </tr>)
 
@@ -237,36 +256,36 @@ export default class DatePicker extends Component {
       { ...STYLE.navButton,          ...STYLE.navNext }
 
     return (
-      <div className={ CLASS_PREFIX + 'container' } style={ STYLE.container }>
+      <div { ...this.classStyle('container') }>
 
-        <div className={ CLASS_PREFIX + 'nav__wrap' } style={ STYLE.navWrap }>
+        <div { ...this.classStyle('navWrap') }>
           <button
             className={ CLASS_PREFIX + 'nav-button ' + CLASS_PREFIX + 'nav-prev' }
             style={ stylePrev }
-            onClick={ () => this.moveBackward() }
+            onClick={ () => this.moveMonthBackward() }
             onMouseEnter={ () => this.hoverOn('button-prev') }
             onMouseLeave={ () => this.hoverOn(false) }
           >{ '←' }</button>
           <button
             className={ CLASS_PREFIX + 'nav-button ' + CLASS_PREFIX + 'nav-next' }
             style={ styleNext }
-            onClick={ () => this.moveFoward() }
+            onClick={ () => this.moveMonthFoward() }
             onMouseEnter={ () => this.hoverOn('button-next') }
             onMouseLeave={ () => this.hoverOn(false) }
           >{ '→' }</button>
         </div>
 
-        <div className={ CLASS_PREFIX + 'month' } style={ STYLE.month }>
+        <div { ...this.classStyle('month') }>
 
           <table>
 
-            <caption className={ CLASS_PREFIX + 'caption' } style={ STYLE.caption }>
+            <caption { ...this.classStyle('caption') }>
               <strong>{ `${year}年${month}月` }</strong>
             </caption>
 
-            <thead className={ CLASS_PREFIX + 'week' } style={ STYLE.week }>{ headRow }</thead>
+            <thead { ...this.classStyle('week') }>{ headRow }</thead>
 
-            <tbody className={ CLASS_PREFIX + 'month-grid' } style={ STYLE.monthGrid }>{ bodyRow }</tbody>
+            <tbody { ...this.classStyle('monthGrid') }>{ bodyRows }</tbody>
 
           </table>
         </div>
