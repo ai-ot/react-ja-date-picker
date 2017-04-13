@@ -52,6 +52,7 @@ export default {
       'border' : '1px solid #c4c4c4',
       'color'  : '#c4c4c4',
     }
+
   },
 
   navPrev: { left  : '20px' },
@@ -113,7 +114,11 @@ export default {
     height         : '100%',
     lineHeight     : '40px',
 
-    ':focus' : {}
+    ':focus' : {
+      background : '#37c5ab',
+      color      : '#fff',
+      outline    : 'none',
+    }
   },
 
   button: {
@@ -126,5 +131,11 @@ export default {
     cursor     : 'pointer',
     width      : '100%',
     height     : '100%',
+
+    ':focus' : {
+      background : '#37c5ab',
+      color      : '#fff',
+      outline    : 'none',
+    }
   }
 }
