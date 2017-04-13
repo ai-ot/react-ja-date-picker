@@ -106,8 +106,12 @@ export default {
   },
 
   link: {
+    display        : 'block',
     textDecoration : 'none',
     color          : 'inherit',
+    width          : '100%',
+    height         : '100%',
+    lineHeight     : '40px',
 
     ':focus' : {}
   },
