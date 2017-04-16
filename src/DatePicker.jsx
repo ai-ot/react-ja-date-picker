@@ -159,8 +159,8 @@ export default class DatePicker extends Component {
    * @return {void}
    */
   moveMonthFoward() {
+    const nMonth = (this.state.month == 12 ? 1 : this.state.month + 1)
     const nYear = (this.state.month + 1 > 12 ? this.state.year + 1 : this.state.year)
-    const nMonth = (this.state.month + 1) % 12
     this.setState({ year: nYear, month: nMonth })
   }
 
