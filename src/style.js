@@ -61,7 +61,6 @@ export default {
   // month wrapper
   month: {
     width   : '100%',
-    // background: 'pink',
     display : 'inline-block',
   },
 
@@ -70,17 +69,12 @@ export default {
     textAlign : 'center',
     padding   : '5px 0',
   },
-
-  week: {
-    margin    : '10px 0',
-    padding   : '0',
-    textAlign : 'center',
-  },
-
+  
   weekLabel: {
     listStyle : 'none',
     display   : 'inline-block',
     width     : '40px',
+    padding   : '10px 0',
     textAlign : 'center',
     boxSizing: 'border-box'
   },
@@ -127,7 +121,7 @@ export default {
 
   button: {
     border     : '0',
-    background : 'white',
+    background : 'transparent',
     outline    : 'none',
     padding    : '0',
     fontSize   : 'inherit',

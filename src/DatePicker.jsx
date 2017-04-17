@@ -192,7 +192,7 @@ export default class DatePicker extends Component {
             >{ day }</a> :
             <button
               className={ CLASS_PREFIX + 'day' }
-              style={ isFocusing(`${year}-${month}-${day}`) ? STYLE['day:focus'] : STYLE.day }
+              style={ isFocusing(`${year}-${month}-${day}`) ? STYLE['button:focus'] : STYLE.button }
               onBlur={ focusOn(false) }
               onClick={ () => onSelect(year, month, day) }
               onFocus={ focusOn(`${year}-${month}-${day}`) }
