@@ -6,15 +6,26 @@ import {
   camel2snake,
   snake2camel
 } from '../src/calc'
-
+import config        from '../src/config'
 
 describe('Test of getMonthCalendar', () => {
-
-
   it('should return weeks', () => {
     const weeks = getMonthCalendar(2017, 4)
     expect(weeks.length).to.be.above(3)
     expect(weeks.length).to.be.below(7)
+  })
+
+  it('should return 2017 April 1st as Saturday', () => {
+    const weeks = getMonthCalendar(2017, 4)
+    expect(weeks[0][6].day).to.equal(1)
+    expect(weeks[0][6].weekday).to.equal('saturday')
+  })
+
+  it('should have same string classes described in configuration', () => {
+    const weeks = getMonthCalendar(2017, 4)
+    for (var i = 0 ; i < config.weekLabels.en.length ; i++) {
+      expect(weeks[0][i].weekday).to.equal(config.weekLabels.en[i])
+    }
   })
 })
 

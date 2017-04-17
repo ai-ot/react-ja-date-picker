@@ -15,7 +15,7 @@ import config from './config'
 export const getMonthCalendar = (year, month) => {
   const monthDays = []
   const idx = moment([year, month - 1, 1])
-  idx.subtract(idx.weekday() - 1, 'days').calendar()
+  idx.subtract(idx.weekday(), 'days').calendar()
 
   // 第1週から第6週までをイテレート
   for (var i = 0 ; i < 6 ; i++ ) {
