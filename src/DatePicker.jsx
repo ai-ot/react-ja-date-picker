@@ -261,7 +261,7 @@ export default class DatePicker extends Component {
           >{ day }</a> :
           <button
             className={ CLASS_PREFIX + 'day' }
-            style={ this.isFocusing(key) ? STYLE['day:focus'] : STYLE.day }
+            style={ this.isFocusing(key) ? STYLE['button:focus'] : STYLE.button }
             { ...this.enableFocus(key) }
             onClick={ () => onSelect(year, month, day) }
           >{ day }</button>

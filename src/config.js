@@ -23,7 +23,7 @@ export default {
     '2017-12-23',
   ],
   weekLabels: {
-    ja: ['月', '火', '水', '木', '金', '土', '日'],
+    ja: ['日', '月', '火', '水', '木', '金', '土'],
     en: ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'],
   }
 }
