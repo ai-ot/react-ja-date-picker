@@ -23,7 +23,7 @@ render(
 render(
   <DatePicker
     date={ '2018-01-01' }
-    format={ 'http://example.com/{0}/{1}/{2}' }
+    format={ 'http://example.com/{year}/{month}/{day}' }
     type={ 'link' }
   />,
   document.getElementById('calendar-link')
@@ -33,7 +33,7 @@ render(
   <DatePicker
     date={ '2018-02-01' }
     type={ 'button' }
-    onSelect={ (year, month, day) => alert(`${year}/${month}/${day}`) }
+    onSelect={ (year, month, day) => alert(`${year}/${month}/${day}を選択しました`) }
   />,
   document.getElementById('calendar-button')
 )

@@ -2,7 +2,9 @@ import { expect } from 'chai'
 import {
   getMonthCalendar,
   normalizeStyle,
-  strFormat
+  strFormat,
+  camel2snake,
+  snake2camel
 } from '../src/calc'
 
 
@@ -68,5 +70,17 @@ describe('Test of format', () => {
   it('should format text', () => {
     expect(strFormat('http://example.com/{year}/{month}/{day}', { year: 2017, month: 12, day: 10 }))
       .to.equal('http://example.com/2017/12/10')
+  })
+})
+
+describe('test of camel2snake', () => {
+  it('should convert', () => {
+    expect(camel2snake('aaBbCc')).to.equal('aa-bb-cc')
+  })
+})
+
+describe('test of snake2camel', () => {
+  it('should convert', () => {
+    expect(snake2camel('dd-ee-ff')).to.equal('ddEeFf')
   })
 })

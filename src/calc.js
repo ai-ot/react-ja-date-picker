@@ -1,11 +1,10 @@
 /**
- * カレンダーピッカーに必要なJavaScriptライブラリ
+ * libralies for the DatePicker
  * @file
  */
 
 import moment from 'moment'
 import config from './config'
-
 
 /**
  * 指定した月のカレンダーを返してくれます
@@ -50,14 +49,13 @@ export const normalizeStyle = style => {
    * @param  {string}  prop propery. if isPseudoClass, it might be like :hover
    * @return {boolean}      result
    */
-  const isPseudoClass = prop => pseudoClasses.map(pseudoClass => `:${pseudoClass}`).includes(prop)
+  const isPseudoClass = prop => pseudoClasses
+    .map(pseudoClass => `:${pseudoClass}`)
+    .includes(prop)
 
   const result = {}
 
-
-  const slugs = Object.keys(style)
-
-  slugs.forEach(slug => {
+  Object.keys(style).forEach(slug => {
     result[slug] = {}
 
     // prepare in case without those pseudo calsses
@@ -86,6 +84,7 @@ export const normalizeStyle = style => {
       }
     })
   })
+
   return result
 }
 
@@ -95,6 +94,21 @@ export const normalizeStyle = style => {
  * @param  {object} args   give varables in { word: 'value' }
  * @return {string}        formatted text
  */
-export const strFormat = (format, args) => {
-  return format.replace(/\{(\w+)\}/g, (x, matched) => args[matched])
-}
+export const strFormat = (format, args) => format
+  .replace(/\{(\w+)\}/g, (x, matched) => args[matched])
+
+/**
+ * convert camel case to snake case
+ * @param  {string} camel lowerCamelCaseString
+ * @return {string}       snake-case-string
+ */
+export const camel2snake = camel => camel
+  .replace(/[A-Z]/g, str => '-' + str.toLowerCase())
+
+/**
+ * convert snake case to camel case
+ * @param  {string} snake lowerCamelCaseString
+ * @return {string}       snake-case-string
+ */
+export const snake2camel = snake => snake
+  .replace(/-[a-zA-Z]/g, str => str[1].toUpperCase())
