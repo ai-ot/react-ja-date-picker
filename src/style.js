@@ -22,6 +22,7 @@
 
 export default {
 
+
   // calender container
   container: {
     width     : '326px',
@@ -29,6 +30,7 @@ export default {
     border    : '1px solid #e4e7e7',
     padding   : '20px',
     boxSizing : 'border-box',
+    margin    : '0 auto',
   },
 
   // wrapper for navigations
@@ -132,7 +134,7 @@ export default {
     color          : 'inherit',
     width          : '100%',
     height         : '100%',
-    lineHeight     : '40px',
+    lineHeight     : '36px',
 
     ':focus' : {
       background : '#37c5ab',
