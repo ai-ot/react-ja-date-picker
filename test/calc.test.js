@@ -15,13 +15,13 @@ describe('Test of getMonthCalendar', () => {
     expect(weeks.length).to.be.below(7)
   })
 
-  it('should return 2017 April 1 is Saturday', () => {
+  it('should return 2017 April 1st as Saturday', () => {
     const weeks = getMonthCalendar(2017, 4)
     expect(weeks[0][6].day).to.equal(1)
     expect(weeks[0][6].weekday).to.equal('saturday')
   })
 
-  it('should same name with weekLabels.en and weeks.weekday name', () => {
+  it('should have same string classes described in configuration', () => {
     const weeks = getMonthCalendar(2017, 4)
     for (var i = 0 ; i < config.weekLabels.en.length ; i++) {
       expect(weeks[0][i].weekday).to.equal(config.weekLabels.en[i])
