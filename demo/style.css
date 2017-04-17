@@ -15,16 +15,8 @@ body {
 .flex {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
 }
-
-/*.container {
-  position: relative;
-}*/
-
-/*.content {
-  padding-bottom: 136px;
-}*/
 
 .link-button {
   text-decoration: none;
@@ -50,29 +42,4 @@ h2 {
 .react-ja-date-picker__container {
   background: #fff;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
-}
-
-footer {
-  margin: 60px 0 30px 0;
-  /*position: fixed;
-  bottom: 0;
-  width: 100%;*/
-}
-
-footer .wrap {
-  border-top: 1px solid rgb(228, 231, 231);
-  padding-top: 20px;
-}
-
-.small {
-  font-size: 12px;
-}
-
-.logo {
-  position: relative;
-  top: 6px;
-}
-
-a img:hover {
-  opacity: .7;
 }
