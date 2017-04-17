@@ -12,6 +12,12 @@
 
 ブラウザの場合は[Browserify](http://browserify.org/)、[webpack](https://webpack.github.io/)、[rollup](https://rollupjs.org/)などを使ってスクリプトにバンドルしてください。
 
+### install
+
+```shell
+$ npm install react react-dom prop-types react-ja-date-picker --save
+```
+
 ### static import with JSX
 
 ```jsx
@@ -100,7 +106,7 @@ $ npm version patch
   type={ 'button' }
   className={ 'some-class' }
   date={ '2017-12-31' }
-  onSelect={ (year, month, day, closeMe) => {
+  onSelect={ (year, month, day) => {
     alert(`${year}/${month}/${day}を選択しました`)
     closeMe()
   } }
