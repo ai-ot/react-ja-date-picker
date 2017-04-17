@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes            from 'prop-types'
-
 import moment from 'moment'
+import update from 'immutability-helper'
 
 import {
   getMonthCalendar,
@@ -142,7 +142,7 @@ export default class DatePicker extends Component {
    * @return {void}
    */
   hoverOn(id) {
-    this.setState({ ...this.state, ...{ hovering: id } })
+    this.setState(update(this.state, { hovering: { $set: id } }))
   }
 
   /**
@@ -151,7 +151,7 @@ export default class DatePicker extends Component {
    * @return {void}
    */
   focusOn(id) {
-    this.setState({ ...this.state, ...{ focusing: id } })
+    this.setState(update(this.state, { focusing: { $set: id } }))
   }
 
   /**
@@ -161,7 +161,7 @@ export default class DatePicker extends Component {
   moveMonthFoward() {
     const nYear = (this.state.month + 1 > 12 ? this.state.year + 1 : this.state.year)
     const nMonth = (this.state.month + 1) % 12
-    this.setState({ year: nYear, month: nMonth })
+    this.setState(update(this.state, { year: { $set: nYear }, month: { $set: nMonth } }))
   }
 
   /**
@@ -171,7 +171,7 @@ export default class DatePicker extends Component {
   moveMonthBackward() {
     const nYear = (this.state.month - 1 == 0 ? this.state.year - 1 : this.state.year)
     const nMonth = (this.state.month - 1 == 0 ? 12 : this.state.month - 1)
-    this.setState({ year: nYear, month: nMonth })
+    this.setState(update(this.state, { year: { $set: nYear }, month: { $set: nMonth } }))
   }
 
   /**
