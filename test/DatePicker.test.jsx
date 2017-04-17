@@ -90,4 +90,30 @@ describe('1. DatePicker Component, ', () => {
       })
     })
   })
+  describe('3) change month, ', () => {
+    it('should render next month', () => {
+      const wrapper = shallow(<DatePicker date={ '2017-11-01' } />)
+      wrapper.find(getClass('nav-next')).simulate('click')
+      expect(wrapper.find(getClass('caption')).text()).to.contains('2017年12月')
+    })
+
+    it('should render next month and next year', () => {
+      const wrapper = shallow(<DatePicker date={ '2017-12-01' } />)
+      wrapper.find(getClass('nav-next')).simulate('click')
+      expect(wrapper.find(getClass('caption')).text()).to.contains('2018年1月')
+    })
+
+    it('should render last month', () => {
+      const wrapper = shallow(<DatePicker date={ '2017-12-01' } />)
+      wrapper.find(getClass('nav-prev')).simulate('click')
+      expect(wrapper.find(getClass('caption')).text()).to.contains('2017年11月')
+    })
+
+    it('should render last month and last year', () => {
+      const wrapper = shallow(<DatePicker date={ '2017-01-01' } />)
+      wrapper.find(getClass('nav-prev')).simulate('click')
+      expect(wrapper.find(getClass('caption')).text()).to.contains('2016年12月')
+    })
+  })
+
 })
