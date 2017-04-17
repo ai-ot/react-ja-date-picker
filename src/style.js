@@ -101,6 +101,7 @@ export default {
     textAlign : 'center',
     cursor    : 'pointer',
     transition: '.2s',
+    padding   : '0',
 
     ':hover' : {
       background : '#37c5ab',
