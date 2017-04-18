@@ -8,7 +8,7 @@
 </head>
 <body>
   <div class="container">
-  <div class="wrap content">＼
+  <div class="wrap content">
     <section>
       <h1>日本語に対応した美しいDatePicker</h1>
       <p>
@@ -33,6 +33,29 @@
         <div id="calendar-button"></div>
       </div>
     </div>
+
+    <h2>インストール</h2>
+    <pre class="shell line-numbers">
+      <code class="langage-shell">
+        $ npm install -S react-ja-date-picker
+      </code>
+    </pre>
+
+    <h2>使い方</h2>
+
+    <pre class="jsx line-numbers">
+      import React      from 'react'
+      import { render } from 'react-dom'
+      import DatePicker from 'react-ja-date-picker'
+
+      render(
+         &lt;DatePicker /&gt;,
+        document.getElementById('app')
+      )
+    </pre>
+
+    <p>``</p>
+
     <script src="./bundle.js"></script>
   </section>
 
