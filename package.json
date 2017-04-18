@@ -1,6 +1,6 @@
 {
   "name": "react-ja-date-picker",
-  "version": "0.1.6",
+  "version": "0.1.8",
   "description": "カレンダーピッカーのReactコンポーネント",
   "main": "lib/DatePicker.js",
   "files": [
@@ -8,8 +8,7 @@
   ],
   "scripts": {
     "build": "NODE_ENV=production babel ./src --out-dir ./lib --source-maps inline",
-    "prepreview": "cp node_modules/normalize.css/normalize.css ./demo/vendor",
-    "build:preview": "npm run prepreview && webpack -p",
+    "build:preview": "cp ./node_modules/normalize.css/normalize.css ./demo/vendor && webpack -p",
     "start": "npm run prepreview && webpack-dev-server --progress --colors --hot --inline --watch",
     "lint": "eslint . --ext=jsx --ext=js",
     "test": "mocha",
@@ -45,6 +44,7 @@
     "webpack-dev-server": "^2.4.2"
   },
   "dependencies": {
+    "immutability-helper": "^2.1.2",
     "moment": "^2.18.1"
   },
   "peerDependencies": {
