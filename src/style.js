@@ -76,6 +76,7 @@ export default {
     margin    : '10px 0',
     padding   : '0',
     textAlign : 'center',
+    height    : '42px',
   },
 
   weekLabel: {
@@ -101,6 +102,7 @@ export default {
     textAlign : 'center',
     cursor    : 'pointer',
     transition: '.2s',
+    padding   : '0',
 
     ':hover' : {
       background : '#37c5ab',
