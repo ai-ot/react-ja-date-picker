@@ -76,6 +76,7 @@ export default {
     margin    : '10px 0',
     padding   : '0',
     textAlign : 'center',
+    height    : '42px',
   },
 
   weekLabel: {
