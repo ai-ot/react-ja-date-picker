@@ -1,4 +1,4 @@
-# React ja Date Picker (alpha)
+# React ja Date Picker
 
 [![Build Status](https://travis-ci.org/ai-ot/react-ja-date-picker.svg?branch=master)](https://travis-ci.org/ai-ot/react-ja-date-picker)
 [![npm](https://img.shields.io/npm/v/react-ja-date-picker.svg)](https://www.npmjs.com/package/react-ja-date-picker)
