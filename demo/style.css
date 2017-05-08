@@ -15,7 +15,7 @@ body {
 .flex {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;;
+  justify-content: space-around;
 }
 
 .link-button {
@@ -28,6 +28,7 @@ body {
   width: 80px;
   margin: 20px auto 0;
   font-size: 13px;
+  transition: .2s;
 }
 
 .link-button:hover {
@@ -40,5 +41,14 @@ h2 {
 
 .react-ja-date-picker__container {
   background: #fff;
-      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
+}
+
+pre {
+  background: #121313;
+  text-align: left;
+  color: #fff;
+  width: 780px;
+  margin: 0 auto;
+  line-height: 1.5em;
 }
