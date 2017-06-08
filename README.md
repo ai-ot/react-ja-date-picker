@@ -45,5 +45,5 @@ $ npm start
 ## release (for commiters)
 
 ```shell
-$ npm version patch
+$ npm version patch -m"Release note"
 ```

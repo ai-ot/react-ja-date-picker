@@ -40,7 +40,9 @@ render(
 
     <section>
       <h2>{ 'インストール' }</h2>
-      <Highlight className="shell">{ '$ npm install react-ja-date-picker -S' }</Highlight>
+      <Highlight className="shell">{ `
+        $ npm install react-ja-date-picker -S
+      ` }</Highlight>
 
       <h2>{ '使い方' }</h2>
       <Highlight className="typescript">
