@@ -67,13 +67,8 @@
     "datepicker",
     "japanese"
   ],
-  "author": "",
+  "author": "kamataryo <mugil.cephalus+npmjs.com@gmail.com>",
   "contributors": [
-    {
-      "name": "kamataryo",
-      "email": "mugil.cephalus+npmjs.com@gmail.com",
-      "url": "https://github.com/KamataRyo"
-    },
     {
       "name": "ItoMaika",
       "email": "rotr9.e@gmail.com",
