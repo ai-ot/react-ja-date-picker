@@ -1,6 +1,6 @@
 {
   "name": "react-ja-date-picker",
-  "version": "2.2.1",
+  "version": "2.2.0",
   "description": "カレンダーピッカーのReactコンポーネント",
   "main": "lib/DatePicker.js",
   "files": [
@@ -15,7 +15,7 @@
     "deploy:demo": "./bin/travis-deploy-demo.sh",
     "tokengen": "travis encrypt $([[ $(cat ~/.npmrc) =~ _authToken=(.*)$ ]] && echo ${BASH_REMATCH[1]}) --add deploy.api_key",
     "preversion": "npm run lint && npm test",
-    "postversion": "git fetch && git pull origin master && git push origin master && git push origin $(git describe --abbrev=0 --tags)"
+    "postversion": "git fetch && git pull --no-ff origin master && git push origin master && git push origin $(git describe --abbrev=0 --tags)"
   },
   "devDependencies": {
     "babel-cli": "^6.24.0",
