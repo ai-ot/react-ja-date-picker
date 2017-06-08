@@ -25,9 +25,11 @@ rm vendor/.gitkeep
 git init
 git config user.name $GIT_USER
 git config user.email $GIT_EMAIL
+git checkout -b gh-pages
 
 git add .
 git commit --quiet -m "Deploy from Travis CI [no ci]"
-git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:gh-pages > /dev/null 2>&1
+git remote add origin git@github.com:ai-ot/react-ja-date-picker.git
+git push --force origin gh-pages
 
 popd

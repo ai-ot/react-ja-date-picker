@@ -15,16 +15,17 @@
   <meta property="og:site_name" content="react-ja-date-picker"> 
 
   <!-- google -->
-  <meta name="Description" CONTENT="日本語に対応した美しいDatePicker DatePickerのReactコンポーネントです。">
-  <meta name="keywords" content="React,日本語,DatePicker,カレンダー"> 
+  <meta name="Description" CONTENT="日本語に対応した美しいDatePickerのReactコンポーネントです。">
+  <meta name="keywords" content="React,日本語,DatePicker,カレンダー">
 
   <!-- twitter -->
-  <meta name="twitter:card" content="summary_large_image"> 
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- end OGP -->
 
   <title>DEMO | react-ja-date-picker</title>
   <link rel="stylesheet" href="./vendor/normalize.css">
+  <link rel="stylesheet" href="./vendor/atom-one-dark.css">
   <link rel="stylesheet" href="./style.css">
 </head>
 <body>
@@ -32,52 +33,11 @@
     <div class="wrap content">
       <section>
         <h1>日本語に対応した美しいDatePicker</h1>
-        <p>
-          DatePickerのReactコンポーネントです。
-        </p>
-        <p>
-          <a href="https://github.com/ai-ot/react-ja-date-picker" class="link-button">view source</a>
-        </p>
+        <p>DatePickerのReactコンポーネントです。</p>
+        <p><a href="https://github.com/ai-ot/react-ja-date-picker" class="link-button">view source</a></p>
       </section>
-
-      <section class="flex">
-        <div class="flex-box">
-          <h2>default</h2>
-          <div id="calendar-default"></div>
-        </div>
-        <div class="flex-box">
-          <h2>リンクモード</h2>
-          <div id="calendar-link"></div>
-        </div>
-        <div class="flex-box">
-          <h2>ボタンモード</h2>
-          <div id="calendar-button"></div>
-        </div>
-      </div>
-
-      <h2>インストール</h2>
-      <pre class="line-numbers">
-        <code class="langage-shell">
-          $ npm install -S react-ja-date-picker</code>
-      </pre>
-
-      <h2>使い方</h2>
-
-      <pre class="line-numbers">
-        <code class="langage-jsx">
-          import React      from 'react'
-          import { render } from 'react-dom'
-          import DatePicker from 'react-ja-date-picker'
-
-          render(
-          &lt;DatePicker /&gt;,
-          document.getElementById('app')
-          )</code>
-      </pre>
-
-      <script src="./bundle.js"></script>
-    </section>
-
+      <section id="demo"></section>
   </div>
+  <script src="./bundle.js"></script>
 </body>
 </html>
