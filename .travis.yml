@@ -22,8 +22,9 @@ before_script:
 
 script:
 - npm run lint
-- npm run coverage >/dev/null 2>&1
-- codecov
+- npm test
+# - npm run coverage >/dev/null 2>&1
+# - codecov
 
 after_success:
 - "openssl aes-256-cbc -K $encrypted_a136b2d89fef_key -iv $encrypted_a136b2d89fef_iv -in .travis_rsa.enc -out \"$HOME/.ssh/id_rsa\" -d"
