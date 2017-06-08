@@ -28,6 +28,8 @@ git config user.email $GIT_EMAIL
 
 git add .
 git commit --quiet -m "Deploy from Travis CI [no ci]"
+git remote remove origin
+git remote add origin git@github.com:ai-ot/react-ja-date-picker.git
 git push origin master
 
 popd
