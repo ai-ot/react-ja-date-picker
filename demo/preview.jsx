@@ -24,7 +24,7 @@ render(
         <h2>{ '日付をリンクとして扱う' }</h2>
         <DatePicker
           date={ '2018-01-01' }
-          format={ 'https://ai-ot.github.io/react-ja-date-picker/?selected_date={year}/{month}/{day}' }
+          format={ 'https://ai-ot.github.io/react-ja-date-picker/#/{year}/{month}/{day}' }
           type={ 'link' }
         />
       </div>
@@ -55,7 +55,7 @@ render(
           render(
             <DatePicker
               date={ '2018-01-01' }
-              format={ 'https://ai-ot.github.io/react-ja-date-picker/?selected_date={year}/{month}/{day}' }
+              format={ 'https://ai-ot.github.io/react-ja-date-picker/#/{year}/{month}/{day}' }
               type={ 'link' }
             />,
             document.getElementById('calendar-link')
