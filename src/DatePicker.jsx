@@ -258,6 +258,7 @@ export default class DatePicker extends Component {
             href={ this.getURL(year, month, day) }
             style={ this.isFocusing(key) ? STYLE['link:focus'] : STYLE.link }
             { ...this.enableFocus(key) }
+            onClick={ () => onSelect(year, month, day) }
           >{ day }</a> :
           <button
             className={ CLASS_PREFIX + 'day_' + type }
@@ -293,14 +294,14 @@ export default class DatePicker extends Component {
 
           <button
             className={ CLASS_PREFIX + 'nav-button ' + CLASS_PREFIX + 'nav-prev' }
-            style={ stylePrev }
             onClick={ () => this.moveMonthBackward() }
+            style={ stylePrev }
             { ...this.enableHover('button-prev') }
           >{ '←' }</button>
           <button
             className={ CLASS_PREFIX + 'nav-button ' + CLASS_PREFIX + 'nav-next' }
-            style={ styleNext }
             onClick={ () => this.moveMonthFoward() }
+            style={ styleNext }
             { ...this.enableHover('button-next') }
           >{ '→' }</button>
 

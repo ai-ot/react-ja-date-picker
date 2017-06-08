@@ -74,5 +74,4 @@ render(
     </section>
   </div>,
   document.getElementById('demo')
-
 )
