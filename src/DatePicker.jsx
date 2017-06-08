@@ -293,14 +293,13 @@ export default class DatePicker extends Component {
 
           <button
             className={ CLASS_PREFIX + 'nav-button ' + CLASS_PREFIX + 'nav-prev' }
-            style={ stylePrev }
             onClick={ () => this.moveMonthBackward() }
+            style={ stylePrev }
             { ...this.enableHover('button-prev') }
           >{ '←' }</button>
           <button
             className={ CLASS_PREFIX + 'nav-button ' + CLASS_PREFIX + 'nav-next' }
             style={ styleNext }
-            onClick={ () => this.moveMonthFoward() }
             { ...this.enableHover('button-next') }
           >{ '→' }</button>
 

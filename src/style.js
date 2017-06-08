@@ -108,7 +108,7 @@ export default {
     },
 
     ':focus' : {
-      color: 'red', //sample
+      color: 'red', /* sample */
     }
   },
 

@@ -32,8 +32,8 @@ render(
 render(
   <DatePicker
     date={ '2018-02-01' }
-    type={ 'button' }
     onSelect={ (year, month, day) => alert(`${year}/${month}/${day}を選択しました`) }
+    type={ 'button' }
   />,
   document.getElementById('calendar-button')
 )

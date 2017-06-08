@@ -82,7 +82,7 @@ describe('1. DatePicker Component, ', () => {
 
     it('should call onSelect callback if type `buton` given', () => {
       const spy = sinon.spy()
-      const wrapper = shallow(<DatePicker type={ 'button' } onSelect={ spy } />)
+      const wrapper = shallow(<DatePicker onSelect={ spy } type={ 'button' } />)
       wrapper.find('button' + getClass('day')).forEach(node => {
         node.simulate('click')
         expect(spy.calledOnce).to.be.ok
