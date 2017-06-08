@@ -122,7 +122,7 @@
     "react/jsx-no-literals": ["error"],
     "react/jsx-no-target-blank": ["error"],
     "react/jsx-pascal-case": ["error"],
-    "react/jsx-sort-props": ["error", {
+    "react/jsx-sort-props": ["off", {
       "callbacksLast": true,
       "shorthandLast": true,
       "ignoreCase": true

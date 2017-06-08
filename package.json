@@ -8,13 +8,14 @@
   ],
   "scripts": {
     "build": "NODE_ENV=production babel ./src --out-dir ./lib --source-maps inline",
-    "build:preview": "cp ./node_modules/normalize.css/normalize.css ./demo/vendor && webpack -p",
+    "build:preview": "./bin/build-preview.sh && webpack -p",
     "start": "webpack-dev-server --progress --colors --hot --inline --watch",
     "lint": "eslint . --ext=jsx --ext=js",
     "test": "mocha",
     "deploy:demo": "./bin/travis-deploy.sh",
     "tokengen": "travis encrypt $([[ $(cat ~/.npmrc) =~ _authToken=(.*)$ ]] && echo ${BASH_REMATCH[1]}) --add deploy.api_key",
-    "postversion": "git push origin master && git push origin $(git tag -l | tail -n1)"
+    "preversion": "npm run lint && npm test",
+    "postversion": "git fetch && git pull origin master && git push origin master && git push origin $(git describe --abbrev=0 --tags)"
   },
   "devDependencies": {
     "babel-cli": "^6.24.0",
@@ -34,10 +35,12 @@
     "eslint-plugin-react": "^7.0.1",
     "mocha": "^3.4.2",
     "normalize.css": "^7.0.0",
+    "npm": "^5.0.3",
     "prop-types": "^15.5.10",
     "react": "^15.5.3",
     "react-addons-test-utils": "^15.4.2",
     "react-dom": "^15.5.4",
+    "react-highlight": "^0.10.0",
     "react-test-renderer": "^15.5.4",
     "sinon": "^2.3.2",
     "webpack": "^2.6.1",
@@ -64,13 +67,8 @@
     "datepicker",
     "japanese"
   ],
-  "author": "",
+  "author": "kamataryo <mugil.cephalus+npmjs.com@gmail.com>",
   "contributors": [
-    {
-      "name": "kamataryo",
-      "email": "mugil.cephalus+npmjs.com@gmail.com",
-      "url": "https://github.com/KamataRyo"
-    },
     {
       "name": "ItoMaika",
       "email": "rotr9.e@gmail.com",

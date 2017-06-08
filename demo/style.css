@@ -15,7 +15,11 @@ body {
 .flex {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: center;
+}
+
+.flex-box {
+  margin: 2em;
 }
 
 .link-button {
@@ -51,4 +55,6 @@ pre {
   width: 780px;
   margin: 0 auto;
   line-height: 1.5em;
+  overflow-x: scroll;
+  font-family: Consolas, 'Courier New', Courier, Monaco, monospace;
 }
