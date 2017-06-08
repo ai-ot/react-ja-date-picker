@@ -28,6 +28,6 @@ git config user.email $GIT_EMAIL
 
 git add .
 git commit --quiet -m "Deploy from Travis CI [no ci]"
-git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:gh-pages > /dev/null 2>&1
+git push origin master
 
 popd
