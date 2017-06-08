@@ -1,6 +1,6 @@
 {
   "name": "react-ja-date-picker",
-  "version": "0.1.8",
+  "version": "2.1.0",
   "description": "カレンダーピッカーのReactコンポーネント",
   "main": "lib/DatePicker.js",
   "files": [
@@ -8,9 +8,8 @@
   ],
   "scripts": {
     "build": "NODE_ENV=production babel ./src --out-dir ./lib --source-maps inline",
-    "prepreview": "cp node_modules/normalize.css/normalize.css ./demo/vendor",
-    "build:preview": "npm run prepreview && webpack -p",
-    "start": "npm run prepreview && webpack-dev-server --progress --colors --hot --inline --watch",
+    "build:preview": "cp ./node_modules/normalize.css/normalize.css ./demo/vendor && webpack -p",
+    "start": "webpack-dev-server --progress --colors --hot --inline --watch",
     "lint": "eslint . --ext=jsx --ext=js",
     "test": "mocha",
     "deploy:demo": "./bin/travis-deploy.sh",
@@ -73,14 +72,14 @@
       "url": "https://github.com/KamataRyo"
     },
     {
+      "name": "ItoMaika",
+      "email": "rotr9.e@gmail.com",
+      "url": ""
+    },
+    {
       "name": "uchinishi",
       "email": "rp7rf@users.noreply.github.com",
       "url": "https://github.com/Rp7rf"
-    },
-    {
-      "name": "",
-      "email": "",
-      "url": ""
     }
   ],
   "license": "MIT",
