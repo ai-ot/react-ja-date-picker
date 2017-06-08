@@ -25,6 +25,7 @@ rm vendor/.gitkeep
 git init
 git config user.name $GIT_USER
 git config user.email $GIT_EMAIL
+git checkout -b gh-pages
 
 git add .
 git commit --quiet -m "Deploy from Travis CI [no ci]"
