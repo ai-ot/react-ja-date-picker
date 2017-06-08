@@ -254,13 +254,13 @@ export default class DatePicker extends Component {
           { ...this.enableHover(key) }
         >{ type === 'link' ? // exports <a> or <button>
           <a
-            className={ CLASS_PREFIX + 'day' }
+            className={ CLASS_PREFIX + 'day_' + type }
             href={ this.getURL(year, month, day) }
             style={ this.isFocusing(key) ? STYLE['link:focus'] : STYLE.link }
             { ...this.enableFocus(key) }
           >{ day }</a> :
           <button
-            className={ CLASS_PREFIX + 'day' }
+            className={ CLASS_PREFIX + 'day_' + type }
             style={ this.isFocusing(key) ? STYLE['button:focus'] : STYLE.button }
             { ...this.enableFocus(key) }
             onClick={ () => onSelect(year, month, day) }

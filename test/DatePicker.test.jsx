@@ -67,12 +67,14 @@ describe('1. DatePicker Component, ', () => {
 
     it('should render 42 day link totally', () => {
       const wrapper = shallow(<DatePicker date={ '2017-12-01' } type={ 'link' } />)
-      expect(wrapper.find('a' + getClass('day'))).to.have.length(42)
+      expect(wrapper.find('a' + getClass('day_link'))).to.have.length(42)
+      expect(wrapper.find('td' + getClass('day'))).to.have.length(42)
     })
 
     it('should render 42 day buttons totally including previous month and next month', () => {
       const wrapper = shallow(<DatePicker date={ '2017-12-01' } type={ 'button' } />)
-      expect(wrapper.find('button' + getClass('day'))).to.have.length(42)
+      expect(wrapper.find('button' + getClass('day_button'))).to.have.length(42)
+      expect(wrapper.find('td' + getClass('day'))).to.have.length(42)
     })
 
     it('should render 1 holidays for December 2017', () => {
