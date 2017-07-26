@@ -24,6 +24,7 @@
     "babel-loader": "^7.0.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-plugin-transform-react-remove-prop-types": "^0.4.6",
     "babel-preset-env": "^1.5.2",
     "babel-preset-react": "^6.23.0",
     "chai": "^4.0.2",
@@ -49,11 +50,6 @@
   "dependencies": {
     "immutability-helper": "^2.2.2",
     "moment": "^2.18.1"
-  },
-  "peerDependencies": {
-    "prop-types": "^15.5.0",
-    "react": "^0.15.0",
-    "react-dom": "^0.15.0"
   },
   "directories": {
     "test": "test"
