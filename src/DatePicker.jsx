@@ -226,7 +226,7 @@ export default class DatePicker extends Component {
         { ...this.classStyle('sr-only') }
       >{ `第${i + 1}週` }</th>
 
-      { week.map(({ day, month, active, weekday, isHoliday }) => {
+      { week.map(({ day, month, year, active, weekday, isHoliday }) => {
 
         const key = `month-day-${year}-${month}-${day}`
 

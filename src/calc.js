@@ -23,11 +23,12 @@ export const getMonthCalendar = (year, month) => {
     // 日曜から土曜までをいてレート
     for (var j = 0 ; j < 7 ; j++ ) {
       monthDays[i].push({
-        day: idx.date(),
-        month: idx.month() + 1,
-        active: (idx.month() + 1 == month),
-        weekday: config.weekLabels.en[idx.weekday()],
-        isHoliday: config.holidays.indexOf(idx.format('YYYY-MM-DD')) > 0
+        day       : idx.date(),
+        month     : idx.month() + 1,
+        year      : idx.year(),
+        active    : (idx.month() + 1 == month),
+        weekday   : config.weekLabels.en[idx.weekday()],
+        isHoliday : config.holidays.indexOf(idx.format('YYYY-MM-DD')) > 0
       })
       idx.add(1, 'days')
     }
