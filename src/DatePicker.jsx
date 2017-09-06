@@ -215,6 +215,7 @@ export default class DatePicker extends Component {
      */
     const thisMonth = getMonthCalendar(year, month)
     const todayUnixSec = moment().startOf('day').unix()
+    const selectedDayUnixSec = moment(this.props.date).startOf('day').unix()
 
     /**
      * render date picker table body component
@@ -250,12 +251,18 @@ export default class DatePicker extends Component {
           todayUnixSec === theDayUnixSec ? 'today' :
           todayUnixSec > theDayUnixSec ? 'past' : 'tens-error'
 
+        const relativeTens =
+          selectedDayUnixSec < theDayUnixSec ? 'relative-future' :
+          selectedDayUnixSec === theDayUnixSec ? 'relative-today' :
+          selectedDayUnixSec > theDayUnixSec ? 'relative-past' : 'relative-tens-error'
+
         return (<td
           className={ [
             'day',
             (active    ? 'active'  : 'not-active'),
             (isHoliday ? 'holiday' : 'weekday'),
             tens,
+            relativeTens,
           ].map(slug => CLASS_PREFIX + slug).join(' ') }
           key={ key }
           style={ style }
