@@ -214,6 +214,7 @@ export default class DatePicker extends Component {
      * @type {array<array<{day:number,month:number,active:boolean,weekday:string,isHoliday:boolean}>>}
      */
     const thisMonth = getMonthCalendar(year, month)
+    const todayUnixSec = moment().startOf('day').unix()
 
     /**
      * render date picker table body component
@@ -243,11 +244,18 @@ export default class DatePicker extends Component {
           ...(this.isHovering(key) ? STYLE['day:hover'] : {}), // ホバーしている時
         }
 
+        const theDayUnixSec = moment([year, month - 1, day]).unix()
+        const tens =
+          todayUnixSec < theDayUnixSec ? 'future' :
+          todayUnixSec === theDayUnixSec ? 'today' :
+          todayUnixSec > theDayUnixSec ? 'past' : 'tens-error'
+
         return (<td
           className={ [
             'day',
             (active    ? 'active'  : 'not-active'),
             (isHoliday ? 'holiday' : 'weekday'),
+            tens,
           ].map(slug => CLASS_PREFIX + slug).join(' ') }
           key={ key }
           style={ style }
