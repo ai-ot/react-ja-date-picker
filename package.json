@@ -1,6 +1,6 @@
 {
   "name": "react-ja-date-picker",
-  "version": "2.2.5",
+  "version": "2.2.6",
   "description": "カレンダーピッカーのReactコンポーネント",
   "main": "lib/DatePicker.js",
   "files": [
