@@ -31,10 +31,11 @@ export default class DatePicker extends Component {
    * @type {Object}
    */
   static propTypes = {
-    date     : PropTypes.string,
-    format   : PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
-    type     : PropTypes.oneOf(['link', 'button']),
-    onSelect : PropTypes.func,
+    date        : PropTypes.string,
+    format      : PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+    highlighted : PropTypes.oneOfType([PropTypes.string]),
+    type        : PropTypes.oneOf(['link', 'button']),
+    onSelect    : PropTypes.func,
   }
 
   /**
@@ -42,10 +43,11 @@ export default class DatePicker extends Component {
    * @type {Object}
    */
   static defaultProps = {
-    date     : '',
-    format   : '#',
-    type     : 'link',
-    onSelect : x => x,
+    date        : '',
+    format      : '#',
+    highlighted : '',
+    type        : 'link',
+    onSelect    : x => x,
   }
 
   /**
@@ -230,6 +232,16 @@ export default class DatePicker extends Component {
       { week.map(({ day, month, year, active, weekday, isHoliday }) => {
 
         const key = `month-day-${year}-${month}-${day}`
+        const [
+          highlightedYear,
+          highlightedMonth,
+          highlightedDay,
+        ] = this.props.highlighted.split('-').map(x => parseInt(x))
+
+        const isHighlighted =
+          year  === highlightedYear &&
+          month === highlightedMonth &&
+          day   === highlightedDay
 
         /**
          * deprecated
@@ -259,8 +271,9 @@ export default class DatePicker extends Component {
         return (<td
           className={ [
             'day',
-            (active    ? 'active'  : 'not-active'),
-            (isHoliday ? 'holiday' : 'weekday'),
+            (active        ? 'active'      : 'not-active'),
+            (isHighlighted ? 'highlighted' : 'not-highlighted'),
+            (isHoliday     ? 'holiday'     : 'weekday'),
             tens,
             relativeTens,
           ].map(slug => CLASS_PREFIX + slug).join(' ') }

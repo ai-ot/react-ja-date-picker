@@ -18,10 +18,16 @@ describe('1. DatePicker Component, ', () => {
       const wrapper = shallow(<DatePicker />)
       expect(wrapper.find(getClass('nav-button'))).to.have.length(2)
     })
+
     it('should render prev and next button', () => {
       const wrapper = shallow(<DatePicker />)
       expect(wrapper.find(getClass('nav-prev'))).to.have.length(1)
       expect(wrapper.find(getClass('nav-next'))).to.have.length(1)
+    })
+
+    it('should hilight a date', () => {
+      const wrapper = shallow(<DatePicker date={ '2017-05-01' } highlighted={ '2017-05-02' } />)
+      expect(wrapper.find(getClass('highlighted'))).to.have.length(1)
     })
 
     it('should toggle month backward', () => {
